@@ -1,10 +1,7 @@
-function App() {
+import Introduction from "../Introduction";
 
-  return (
-    <h1 className="bgtext-3xl font-bold underline">
-      Hello world!
-    </h1>
-  )
+function App() {
+  return <Introduction />;
 }
 
-export default App
+export default App;
