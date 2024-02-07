@@ -1,10 +1,7 @@
-function App() {
+import LoginForm from "../LoginForm";
 
-  return (
-    <h1 className="bgtext-3xl font-bold underline">
-      Hello world!
-    </h1>
-  )
+function App() {
+  return <LoginForm />;
 }
 
-export default App
+export default App;
