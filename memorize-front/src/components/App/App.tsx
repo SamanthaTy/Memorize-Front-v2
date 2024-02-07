@@ -6,10 +6,10 @@ import LoginForm from "../LoginForm";
 function App() {
   return (
     <>
+      <Header />
       <Introduction />
       <LoginForm />
       <Footer />
-      <Header />
     </>
   );
 }
