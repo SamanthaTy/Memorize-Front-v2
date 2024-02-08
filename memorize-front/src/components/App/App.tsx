@@ -3,6 +3,8 @@ import Footer from "../Footer";
 import Header from "../Header";
 import Modal from "react-modal";
 
+import Decks from "../Decks"
+
 function App() {
   Modal.setAppElement("#root");
 
