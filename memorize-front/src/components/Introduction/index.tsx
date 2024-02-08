@@ -1,7 +1,7 @@
 function Introduction() {
   return (
     <>
-    <div className="flex items-center justify-center h-screen">
+    <div className="flex items-center justify-center">
       <div className="w-4/5 md:w-auto border-2 p-4 m-4">
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora
