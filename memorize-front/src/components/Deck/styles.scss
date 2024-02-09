@@ -1,7 +1,7 @@
 .flip-card {
   background-color: transparent;
   width: 190px;
-  height: 254px;
+  height: 340px;
   perspective: 1000px;
   font-family: sans-serif;
 }
@@ -36,12 +36,17 @@ color: #fff;
 }
 
 .edit-btn {
+  font-size: 0.5em;
   border: 1px solid white;
   border-radius: 1rem;
 }
 
 .delete-btn {
+  font-size: 0.5em;
   border: 1px solid white;
   border-radius: 1rem;
 }
+
+
+
 
