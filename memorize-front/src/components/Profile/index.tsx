@@ -3,6 +3,10 @@ import { useState } from "react";
 function Profile() {
   const [isEditing, setIsEditing] = useState(false);
 
+  const handleEditClick = () => {
+    setIsEditing(true);
+  };
+
   const user = {
     name: "Angèle",
     email: "angèle@gmail.com",
@@ -25,7 +29,7 @@ function Profile() {
       <button type="submit">Save</button>
       <button>Cancel</button>
       <button>Delete my account</button>
-      <button>Edit</button>
+      <button onClick={handleEditClick}>Edit</button>
     </div>
   );
 }
