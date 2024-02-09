@@ -1,10 +1,26 @@
+import Card from "../Card";
+import Cards from "../Cards/Cards";
+import Footer from "../Footer";
+import Header from "../Header";
+import Introduction from "../Introduction";
+import LoginForm from "../LoginForm";
+import Modal from "react-modal";
+
 function App() {
+  Modal.setAppElement("#root");
 
   return (
-    <h1 className="bgtext-3xl font-bold underline">
-      Hello world!
-    </h1>
-  )
+    <div className="flex flex-col h-screen justify-between">
+      <Header />
+      <main className="flex flex-col justify-items-center">
+        <Introduction />
+        <LoginForm />
+        <Cards />
+        <Card />
+      </main>
+      <Footer />
+    </div>
+  );
 }
 
-export default App
+export default App;
