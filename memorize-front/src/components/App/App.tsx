@@ -5,6 +5,7 @@ import Header from "../Header";
 import Introduction from "../Introduction";
 import LoginForm from "../LoginForm";
 import Modal from "react-modal";
+import Profile from "../Profile";
 
 function App() {
   Modal.setAppElement("#root");
@@ -17,6 +18,7 @@ function App() {
         <LoginForm />
         <Cards />
         <Card />
+        <Profile />
       </main>
       <Footer />
     </div>
