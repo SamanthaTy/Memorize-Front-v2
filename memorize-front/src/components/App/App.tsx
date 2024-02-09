@@ -1,5 +1,10 @@
 
 
+function App() {
+
+=======
+
+
 =======
 import Footer from "../Footer";
 import Header from "../Header";
@@ -24,6 +29,7 @@ function App() {
       <Footer />
     </div>
   );
+
 
 }
 
