@@ -1,17 +1,26 @@
-import { useState } from "react";
+//import { useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../Hooks/redux";
+import { toggleModal } from "../../store/actions/modal";
 import SignUpFormModal from "./SignUpFormModal";
 
 
 function LoginForm() {
-  const [modalIsOpen, setIsOpen] = useState(false);
+  // const [modalIsOpen, setIsOpen] = useState(false);
 
-  function openModal() {
-    setIsOpen(true);
-  }
+  // function openModal() {
+  //   setIsOpen(true);
+  // }
 
-  function closeModal() {
-    setIsOpen(false);
-  }
+  // function closeModal() {
+  //   setIsOpen(false);
+  // }
+
+  const dispatch = useAppDispatch();
+  
+const handleToggleClick = () => {
+  dispatch(toggleModal())
+}
+
 
   return (
     <div className="flex items-center justify-center">
@@ -39,7 +48,7 @@ function LoginForm() {
             href=""
             onClick={(event) => {
               event.preventDefault();
-              openModal();
+              handleToggleClick()
             }}
           >
             Inscrivez-vous
@@ -47,7 +56,7 @@ function LoginForm() {
         </p>
       </form>
 
-      <SignUpFormModal openModal={openModal} closeModal={closeModal} modalIsOpen={modalIsOpen}/>
+      <SignUpFormModal />
     </div>
   );
 }
