@@ -1,7 +1,6 @@
 import { Outlet } from "react-router-dom";
 import Footer from "../Footer";
 import Header from "../Header";
-
 import Modal from "react-modal";
 import { useEffect } from "react";
 import { tokenCheck } from "../../store/actions/login";
