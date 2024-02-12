@@ -3,6 +3,8 @@ import ReactDOM from "react-dom/client";
 import App from "./components/App/App.tsx";
 import "./index.scss";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import Decks from "./components/Decks/index.tsx";
+import Cards from "./components/Cards/Cards.tsx";
 import Cards from "./components/Cards/index.tsx";
 import Home from "./components/Home/index.tsx";
 
@@ -15,6 +17,7 @@ const router = createBrowserRouter([
     children: [
       {index: true, element: <Home />},
       {path: "/decks/:id", element: <Cards />},
+      {path: "/decks", element: <Decks />},
     ]
 
   }
