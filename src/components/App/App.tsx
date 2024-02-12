@@ -10,6 +10,7 @@ import Modal from "react-modal";
 function App() {
   Modal.setAppElement("#root");
 
+  // We use out tokenCheck action from our store to check that the user does have a token at each render of the app.
   const dispatch = useAppDispatch();
 
   useEffect(() => {
