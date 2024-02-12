@@ -1,6 +1,6 @@
-import ModalContainer, { ModalProps } from "../ModalContainer";
+import ModalContainer, { ModalProps } from "../../ModalContainer";
 
-const deleteAccountModal = ({
+const DeleteAccountModal = ({
   openModal,
   closeModal,
   modalIsOpen,
@@ -16,4 +16,4 @@ const deleteAccountModal = ({
   );
 };
 
-export default deleteAccountModal;
+export default DeleteAccountModal;

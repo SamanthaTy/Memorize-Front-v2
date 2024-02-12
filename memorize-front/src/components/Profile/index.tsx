@@ -1,7 +1,19 @@
 import { useState } from "react";
+import DeleteAccountModal from "./DeleteAccountModal";
+
 
 function Profile() {
   const [isEditing, setIsEditing] = useState(false);
+
+  const [modalIsOpen, setIsOpen] = useState(false);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
 
   const handleEditClick = () => {
     setIsEditing(true);
@@ -15,6 +27,11 @@ function Profile() {
     name: "Angèle",
     email: "angèle@gmail.com",
     password: "*******",
+  };
+
+  const handleOpenModalClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    openModal();
   };
 
   return (
@@ -72,10 +89,18 @@ function Profile() {
         >
           Edit
         </button>
-        <button className="bg-blue-500 text-white px-4 py-2 rounded">
+        <button
+          onClick={handleOpenModalClick}
+          className="bg-blue-500 text-white px-4 py-2 rounded"
+        >
           Delete my account
         </button>
       </div>
+      <DeleteAccountModal
+        openModal={openModal}
+        closeModal={closeModal}
+        modalIsOpen={modalIsOpen}
+      />
     </div>
   );
 }

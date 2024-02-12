@@ -23,7 +23,7 @@ function App() {
 
         <Profile />
 
-        <Outlet />
+        {/* <Outlet /> */}
 
       </main>
       <Footer />
