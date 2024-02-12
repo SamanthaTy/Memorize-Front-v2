@@ -1,14 +1,9 @@
 import Modal from "react-modal";
+import { useAppDispatch, useAppSelector } from "../../Hooks/redux";
+import { toggleModal } from "../../store/actions/modal";
 
 
-
-export interface ModalProps {
-  openModal: () => void;
-  closeModal: () => void;
-  modalIsOpen: boolean;
-}
-
-interface ModalContainerProps extends ModalProps {
+interface ModalContainerProps {
   children: React.ReactNode;
 }
 
@@ -31,17 +26,19 @@ const customStyles = {
   },
 };
 
-function ModalContainer({
-  openModal,
-  closeModal,
-  modalIsOpen,
-  children,
-}: ModalContainerProps) {
+function ModalContainer({children}: ModalContainerProps) {
+
+  const dispatch = useAppDispatch();
+  const modalIsOpen = useAppSelector((state) => state.modal.modalIsOpen);
+  const handleToggleClick = () => {
+    dispatch(toggleModal())
+  };
+
   return (
     <div>
       <Modal
         isOpen={modalIsOpen}
-        onRequestClose={closeModal}
+        onRequestClose={handleToggleClick}
         style={customStyles}
         contentLabel="Example Modal"
       >
@@ -50,7 +47,7 @@ function ModalContainer({
         </div>
         <button
           className="absolute top-0 right-1 text-gray-500"
-          onClick={closeModal}
+          onClick={handleToggleClick}
         >
           X
         </button>
