@@ -1,25 +1,35 @@
-import Card from "../Card";
-import Cards from "../Cards/Cards";
+
+
+
+import { Outlet } from "react-router-dom";
 import Footer from "../Footer";
 import Header from "../Header";
-import Introduction from "../Introduction";
-import LoginForm from "../LoginForm";
+
 import Modal from "react-modal";
 import Profile from "../Profile";
+
+
+
 
 function App() {
   Modal.setAppElement("#root");
 
   return (
-    <div className="flex flex-col h-screen justify-between">
+
+    <div >
       <Header />
       <main className="flex flex-col justify-items-center">
 
+
         <Profile />
+
+        <Outlet />
+
       </main>
       <Footer />
     </div>
   );
+
 }
 
 export default App;
