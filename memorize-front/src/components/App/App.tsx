@@ -1,9 +1,6 @@
-import Card from "../Card";
-import Cards from "../Cards/Cards";
+import { Outlet } from "react-router-dom";
 import Footer from "../Footer";
 import Header from "../Header";
-import Introduction from "../Introduction";
-import LoginForm from "../LoginForm";
 import Modal from "react-modal";
 
 function App() {
@@ -13,10 +10,7 @@ function App() {
     <div className="flex flex-col h-screen justify-between">
       <Header />
       <main className="flex flex-col justify-items-center">
-        <Introduction />
-        <LoginForm />
-        <Cards />
-        <Card />
+        <Outlet />
       </main>
       <Footer />
     </div>

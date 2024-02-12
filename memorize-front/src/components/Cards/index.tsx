@@ -1,3 +1,5 @@
+import Card from "./Card";
+
 function Cards() {
   return (
     <main className="container mx-auto p-4">
@@ -19,6 +21,7 @@ function Cards() {
           className="border p-2 rounded"
         />
       </div>
+      <Card />
     </main>
   );
 }
