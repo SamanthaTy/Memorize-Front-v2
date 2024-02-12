@@ -1,12 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./components/App/App.tsx";
+import Decks from "./components/Decks/index.tsx";
+import Home from "./components/Home/index.tsx";
+import Cards from "./components/Cards/index.tsx";
 import "./index.scss";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import Decks from "./components/Decks/index.tsx";
-import Cards from "./components/Cards/Cards.tsx";
-import Cards from "./components/Cards/index.tsx";
-import Home from "./components/Home/index.tsx";
 
 const router = createBrowserRouter([
   {
@@ -22,9 +21,6 @@ const router = createBrowserRouter([
 
   }
 ])
-
-
-
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
