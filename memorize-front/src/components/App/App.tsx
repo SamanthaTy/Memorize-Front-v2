@@ -6,9 +6,6 @@ import { useAppDispatch } from "../../hooks/redux";
 import Footer from "../Footer";
 import Header from "../Header";
 import Modal from "react-modal";
-import { useEffect } from "react";
-import { tokenCheck } from "../../store/actions/login";
-import { useAppDispatch } from "../../hooks/redux";
 
 function App() {
   Modal.setAppElement("#root");
