@@ -7,6 +7,10 @@ function Profile() {
     setIsEditing(true);
   };
 
+  const handleCancelClick = () => {
+    setIsEditing(false);
+  };
+
   const user = {
     name: "Angèle",
     email: "angèle@gmail.com",
@@ -16,20 +20,56 @@ function Profile() {
   return (
     <div className="mx-auto">
       <div>
-        <p>Profile</p>
+        <p>Page de Profile</p>
       </div>
       <p>Username:</p>
-      <div>{isEditing ? <input type="text" /> : <p>{user.name}</p>}</div>
-      <p>Email:</p>
-      <div>{isEditing ? <input type="email" /> : <p>{user.email}</p>}</div>
-      <p>Password:</p>
       <div>
-        {isEditing ? <input type="password" /> : <p>{user.password}</p>}
+        {isEditing ? (
+          <input type="text" className="border rounded px-2 py-1 w-full" />
+        ) : (
+          <p>{user.name}</p>
+        )}
       </div>
-      <button type="submit">Save</button>
-      <button>Cancel</button>
-      <button>Delete my account</button>
-      <button onClick={handleEditClick}>Edit</button>
+      <p>Email:</p>
+      <div>
+        {isEditing ? (
+          <input type="email" className="border rounded px-2 py-1 w-full" />
+        ) : (
+          <p>{user.email}</p>
+        )}
+      </div>
+      <p>Mot de passe:</p>
+      <div>
+        {isEditing ? (
+          <input type="password" className="border rounded px-2 py-1 w-full mb-2" />
+        ) : (
+          <p>{user.password}</p>
+        )}
+      </div>
+      <div className="flex space-x-4">
+        <button
+          type="submit"
+          className="bg-blue-500 text-white px-4 py-2 rounded"
+        >
+          Save
+        </button>
+        <button
+          onClick={handleCancelClick}
+          className="bg-blue-500 text-white px-4 py-2 rounded"
+        >
+          Cancel
+        </button>
+
+        <button
+          onClick={handleEditClick}
+          className="bg-blue-500 text-white px-4 py-2 rounded"
+        >
+          Edit
+        </button>
+        <button className="bg-blue-500 text-white px-4 py-2 rounded">
+          Delete my account
+        </button>
+      </div>
     </div>
   );
 }
