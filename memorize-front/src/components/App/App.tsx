@@ -7,7 +7,7 @@ function App() {
   Modal.setAppElement("#root");
 
   return (
-    <div className="flex flex-col h-screen justify-between">
+    <div >
       <Header />
       <main className="flex flex-col justify-items-center">
         <Outlet />
