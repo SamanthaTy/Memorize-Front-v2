@@ -18,7 +18,7 @@ function Profile() {
   };
 
   return (
-    <div className="mx-auto">
+    <div className="mx-auto bg-slate-400 p-10 rounded-xl">
       <div>
         <p className="text-2xl font-bold mb-4">Page de Profile</p>
       </div>
@@ -68,7 +68,7 @@ function Profile() {
         )}
         <button
           onClick={handleEditClick}
-          className="bg-blue-500 text-white px-4 py-2 rounded"
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300"
         >
           Edit
         </button>
