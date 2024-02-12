@@ -1,12 +1,8 @@
-import ModalContainer, { ModalProps } from "../../ModalContainer";
+import ModalContainer from "../../ModalContainer";
 
-function SignUpFormModal({ openModal, closeModal, modalIsOpen }: ModalProps) {
+function SignUpFormModal() {
   return (
-    <ModalContainer
-      openModal={openModal}
-      closeModal={closeModal}
-      modalIsOpen={modalIsOpen}
-    >
+    <ModalContainer>
       <input
         type="text"
         placeholder="Identifiant"
