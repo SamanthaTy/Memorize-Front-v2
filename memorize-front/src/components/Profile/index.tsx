@@ -20,9 +20,9 @@ function Profile() {
   return (
     <div className="mx-auto">
       <div>
-        <p>Page de Profile</p>
+        <p className="text-2xl font-bold mb-4">Page de Profile</p>
       </div>
-      <p>Username:</p>
+      <p className="text-lg font-semibold">Username:</p>
       <div>
         {isEditing ? (
           <input type="text" className="border rounded px-2 py-1 w-full" />
@@ -30,7 +30,7 @@ function Profile() {
           <p>{user.name}</p>
         )}
       </div>
-      <p>Email:</p>
+      <p className="text-lg font-semibold">Email:</p>
       <div>
         {isEditing ? (
           <input type="email" className="border rounded px-2 py-1 w-full" />
@@ -38,28 +38,34 @@ function Profile() {
           <p>{user.email}</p>
         )}
       </div>
-      <p>Mot de passe:</p>
+      <p className="text-lg font-semibold">Mot de passe:</p>
       <div>
         {isEditing ? (
-          <input type="password" className="border rounded px-2 py-1 w-full mb-2" />
+          <input
+            type="password"
+            className="border rounded px-2 py-1 w-full mb-2"
+          />
         ) : (
           <p>{user.password}</p>
         )}
       </div>
       <div className="flex space-x-4">
-        <button
-          type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded"
-        >
-          Save
-        </button>
-        <button
-          onClick={handleCancelClick}
-          className="bg-blue-500 text-white px-4 py-2 rounded"
-        >
-          Cancel
-        </button>
-
+        {isEditing && (
+          <button
+            type="submit"
+            className="bg-blue-500 text-white px-4 py-2 rounded"
+          >
+            Save
+          </button>
+        )}
+        {isEditing && (
+          <button
+            onClick={handleCancelClick}
+            className="bg-blue-500 text-white px-4 py-2 rounded"
+          >
+            Cancel
+          </button>
+        )}
         <button
           onClick={handleEditClick}
           className="bg-blue-500 text-white px-4 py-2 rounded"
