@@ -14,10 +14,7 @@ function App() {
     <div className="flex flex-col h-screen justify-between">
       <Header />
       <main className="flex flex-col justify-items-center">
-        <Introduction />
-        <LoginForm />
-        <Cards />
-        <Card />
+
         <Profile />
       </main>
       <Footer />
