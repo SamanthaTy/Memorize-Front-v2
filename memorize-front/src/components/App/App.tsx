@@ -6,6 +6,7 @@ import Footer from "../Footer";
 import Header from "../Header";
 
 import Modal from "react-modal";
+import Profile from "../Profile";
 
 
 
@@ -18,7 +19,12 @@ function App() {
     <div >
       <Header />
       <main className="flex flex-col justify-items-center">
+
+
+        <Profile />
+
         <Outlet />
+
       </main>
       <Footer />
     </div>
