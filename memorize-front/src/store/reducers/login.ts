@@ -20,9 +20,8 @@ const loginReducer = createReducer(initialState, (builder) => {
     })
     .addCase(login.fulfilled, (state, action) => {
       console.log("Connexion réussie :", action.payload);
-      
-      state.isLogged = action.payload.isLogged;
       console.log("isLogged :", action.payload.isLogged)
+      state.isLogged = action.payload.isLogged;
       state.username = action.payload.username;
 
       localStorage.setItem("accessToken", action.payload.accessToken);

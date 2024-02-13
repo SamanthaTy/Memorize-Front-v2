@@ -6,6 +6,7 @@ const Header = () => {
 
   const dispatch = useAppDispatch();
   const isLogged = useAppSelector((state) => state.login.isLogged);
+  console.log(isLogged)
  
   const username = useAppSelector((state) => state.login.username);
 
