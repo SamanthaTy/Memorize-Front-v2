@@ -11,13 +11,14 @@ import { Provider } from "react-redux";
 import store from "./store/index.ts";
 
 import './index.scss'
+import Error from "./components/Error/index.tsx";
 
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-
+    errorElement: <Error />,
 
     children: [
       {index: true, element: <Home />},
