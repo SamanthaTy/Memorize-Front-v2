@@ -9,15 +9,7 @@ import "./index.scss";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store/index.ts";
-
-import ReactDOM from "react-dom/client";
-import App from "./components/App/App.tsx";
-import "./index.scss";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
-import Home from "./components/Home/index.tsx";
-import Decks from "./components/Decks/index.tsx";
-import Cards from "./components/Cards/index.tsx";
+import Error from "./components/Error/index.tsx";
 
 const router = createBrowserRouter([
   {
