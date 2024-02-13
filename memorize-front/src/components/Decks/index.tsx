@@ -1,11 +1,12 @@
 import React from "react";
 import Deck from "./Deck";
+import { useAppSelector } from "../../hooks/redux";
 
 const Decks = () => {
-
+  const username = useAppSelector((state) => state.login.username);
   return (
     <>
-      <h2 className="flex content-start ">Salut User !</h2>
+      <h2 className="flex content-start ">Salut {username} !</h2>
       <div className="flex content-end">
         <button className="border-2 px-5 mx-5 border-black rounded-md">Créer un nouveau deck</button>
         <div className="search-container">
