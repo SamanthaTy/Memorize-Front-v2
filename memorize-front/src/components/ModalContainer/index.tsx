@@ -1,5 +1,5 @@
 import Modal from "react-modal";
-import { useAppDispatch, useAppSelector } from "../../Hooks/redux";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { toggleModal } from "../../store/actions/modal";
 
 
