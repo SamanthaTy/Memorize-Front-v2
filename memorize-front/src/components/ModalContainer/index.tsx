@@ -2,9 +2,9 @@ import Modal from "react-modal";
 import { useAppDispatch, useAppSelector } from "../../Hooks/redux";
 import { toggleModal } from "../../store/actions/modal";
 
-
 interface ModalContainerProps {
   children: React.ReactNode;
+  modalTitle: string;
 }
 
 const customStyles = {
@@ -26,12 +26,13 @@ const customStyles = {
   },
 };
 
-function ModalContainer({children}: ModalContainerProps) {
-
+function ModalContainer({ children, modalTitle }: ModalContainerProps) {
   const dispatch = useAppDispatch();
-  const modalIsOpen = useAppSelector((state: { modal: { modalIsOpen: boolean; }; }) => state.modal.modalIsOpen);
+  const modalIsOpen = useAppSelector(
+    (state: { modal: { modalIsOpen: boolean } }) => state.modal.modalIsOpen
+  );
   const handleToggleClick = () => {
-    dispatch(toggleModal())
+    dispatch(toggleModal());
   };
 
   return (
@@ -43,7 +44,7 @@ function ModalContainer({children}: ModalContainerProps) {
         contentLabel="Example Modal"
       >
         <div className="flex items-center justify-center pb-2 mb-2">
-          <h1 className="font-bold text-2xl">Création de compte</h1>
+          <h1 className="font-bold text-2xl">{modalTitle}</h1>
         </div>
         <button
           className="absolute top-0 right-1 text-gray-500"
@@ -52,15 +53,15 @@ function ModalContainer({children}: ModalContainerProps) {
           X
         </button>
         <form className="flex flex-col items-center space-y-4">
-        {children}
-        <div className="flex space-x-4">
-          <button className="flex bg-red-500 p-2 rounded-md text-white hover:bg-red-700">
-            Annuler
-          </button>
-          <button className="flex bg-green-500 p-2 rounded-md text-white hover:bg-green-700">
-            Confirmer
-          </button>
-        </div>
+          {children}
+          <div className="flex space-x-4">
+            <button className="flex bg-red-500 p-2 rounded-md text-white hover:bg-red-700">
+              Annuler
+            </button>
+            <button className="flex bg-green-500 p-2 rounded-md text-white hover:bg-green-700">
+              Confirmer
+            </button>
+          </div>
         </form>
       </Modal>
     </div>

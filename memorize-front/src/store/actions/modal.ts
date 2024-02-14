@@ -1,5 +1,6 @@
 import { createAction } from "@reduxjs/toolkit";
+import { ModalState } from "../reducers/modal";
 
 export const TOGGLE_MODAL = "TOGGLE MODAL";
 
-export const toggleModal = createAction(TOGGLE_MODAL);
+export const toggleModal = createAction<ModalState>(TOGGLE_MODAL);
