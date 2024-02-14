@@ -1,5 +1,7 @@
 import ModalContainer from "../../ModalContainer";
 
+//We use the ModalContainer created separately to use it as a template into which we can inject additional elements. 
+//Here the inputs are the children of ModalContainer.
 function SignUpFormModal() {
   return (
     <ModalContainer>
