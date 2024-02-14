@@ -11,6 +11,7 @@ import { Provider } from "react-redux";
 import store from "./store/index.ts";
 import Error from "./components/Error/index.tsx";
 
+// setting up the router with App as the Root element to have a fixed header and footer on all pages and the children will be inserted in Outlet depending on the URL accessed
 const router = createBrowserRouter([
   {
     path: "/",
@@ -28,6 +29,9 @@ const router = createBrowserRouter([
     ],
   },
 ]);
+
+// Added the Provider for the store, so all the states set can be accessed throughout the app.
+// Added the RouterProvider so the App can be configured as a Single Page Application with React Router
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
