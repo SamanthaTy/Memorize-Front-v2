@@ -1,6 +1,8 @@
 import { useState } from "react";
 
 function Profile() {
+
+// We use useState to turn the <p> into <input> after clicking the Edit button, which will allow the user to edit.
   const [isEditing, setIsEditing] = useState(false);
 
   const handleEditClick = () => {
