@@ -30,7 +30,7 @@ const Header = () => {
             Mes decks
           </button>
 
-          {!isLogged && 
+          {isLogged && 
             <button 
               className="btn-header border-2 px-5 mx-5 border-black rounded-md"
               onClick={handleDisconnectClick}
@@ -38,7 +38,7 @@ const Header = () => {
               Déconnexion
             </button>
           }
-          {!isLogged && 
+          {isLogged && 
             <p>Bienvenue {username}</p>         
           }
          
