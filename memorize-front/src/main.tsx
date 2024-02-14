@@ -11,7 +11,8 @@ import { Provider } from "react-redux";
 import store from "./store/index.ts";
 import Error from "./components/Error/index.tsx";
 
-// setting up the router with App as the Root element to have a fixed header and footer on all pages and the children will be inserted in Outlet depending on the URL accessed
+// Setting up the router with App as the Root element to have a fixed header and footer on all pages and the children will be inserted in Outlet depending on the URL accessed
+
 const router = createBrowserRouter([
   {
     path: "/",
