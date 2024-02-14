@@ -7,6 +7,7 @@ interface ModalContainerProps {
   children: React.ReactNode;
 }
 
+// Styles provided by React Modal module, which send the size of the modal as well as the overlay color behind
 const customStyles = {
   content: {
     top: "50%",
@@ -26,6 +27,7 @@ const customStyles = {
   },
 };
 
+// We pass children as prop in order to allow the injection of specific elements whenever necessary. 
 function ModalContainer({children}: ModalContainerProps) {
 
   const dispatch = useAppDispatch();

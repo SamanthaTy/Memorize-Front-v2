@@ -3,10 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { FormEvent, useState } from "react";
 import { useAppDispatch } from "../../hooks/redux";
 import { toggleModal } from "../../store/actions/modal";
-import SignUpFormModal from "./SignUpFormModal";
 import { login } from "../../store/actions/login";
+import SignUpFormModal from "./SignUpFormModal";
+
 
 function LoginForm() {
+// For now, we hard code the user info to log into his account.
   const [formValues, setFormValues] = useState({
     email: "archiballe@gmail.com",
     password: "archiballe",
@@ -16,11 +18,13 @@ function LoginForm() {
 
   const dispatch = useAppDispatch();
 
-
+// Handles the appearance of the Create an account modal when the user click on "inscrivez-vous"
   const handleToggleClick = () => {
     dispatch(toggleModal());
   };
 
+// Handles sending the email and password sent to the API in order to let the user log into their account. 
+// Once the user has successfully logged in, they're redirected to the page "/decks"
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
@@ -31,6 +35,7 @@ function LoginForm() {
     }
   };
 
+// Handles the input fields for email and password and identifies them as the formValues' email and password.
   const handleChangeField = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
 
@@ -65,7 +70,6 @@ function LoginForm() {
         >
           Se connecter
         </button>
-
         <p className="mt-4 text-gray-600 flex items-center justify-center">
           Vous n'avez pas de compte?
           <a
@@ -80,7 +84,6 @@ function LoginForm() {
           </a>
         </p>
       </form>
-
       <SignUpFormModal />
     </div>
   );
