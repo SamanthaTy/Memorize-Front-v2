@@ -5,7 +5,7 @@ const Deck = () => {
   return (
     <div className="decks-container flex">
       <div className="flip-card">
-        <div className="flip-card-inner">
+        <div className="flex flip-card-inner">
             <div className="flip-card-front">
                 <h3 className="title">Nom du deck</h3>
                 <p>15 cartes</p>
