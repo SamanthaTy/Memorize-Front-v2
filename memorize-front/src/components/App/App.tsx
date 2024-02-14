@@ -3,9 +3,26 @@ import Footer from "../Footer";
 import Header from "../Header";
 
 import Modal from "react-modal";
+import { useEffect } from "react";
+import { tokenCheck } from "../../store/actions/login";
+import { useAppDispatch } from "../../hooks/redux";
 
 function App() {
   Modal.setAppElement("#root");
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const fetchTokenCheck = async () => {
+      try {
+        await dispatch(tokenCheck());
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchTokenCheck();
+  }, [dispatch]);
 
   return (
     <div>
