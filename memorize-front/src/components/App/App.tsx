@@ -7,6 +7,8 @@ import Modal from "react-modal";
 function App() {
   Modal.setAppElement("#root");
 
+// With React Router, we use App as the root element. The components Header and Footer will be common to all the pages and Outlet will allow the app to insert the component to render per URL
+
   return (
     <div>
       <Header />
