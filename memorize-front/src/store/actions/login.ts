@@ -12,5 +12,7 @@ export const login = createAsyncThunk(LOGIN, async(formData) => {
   const response = await axios.post("http://127.0.0.1:3000/api/auth/", formData, {
     headers: { Authorization: `Bearer ${localStorage.getItem("accessToken")}` },
   })
+  console.log("Response from login action:", response.data);
   return response.data;
+  
 })
