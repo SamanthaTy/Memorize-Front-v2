@@ -1,4 +1,8 @@
 import { Outlet } from "react-router-dom";
+import { useEffect } from "react";
+import { tokenCheck } from "../../store/actions/login";
+import { useAppDispatch } from "../../hooks/redux";
+
 import Footer from "../Footer";
 import Header from "../Header";
 import Modal from "react-modal";
@@ -19,7 +23,6 @@ function App() {
         console.log(error);
       }
     };
-
     fetchTokenCheck();
   }, [dispatch]);
 
