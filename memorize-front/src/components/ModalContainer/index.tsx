@@ -29,7 +29,7 @@ const customStyles = {
 function ModalContainer({children}: ModalContainerProps) {
 
   const dispatch = useAppDispatch();
-  const modalIsOpen = useAppSelector((state) => state.modal.modalIsOpen);
+  const modalIsOpen = useAppSelector((state: { modal: { modalIsOpen: boolean; }; }) => state.modal.modalIsOpen);
   const handleToggleClick = () => {
     dispatch(toggleModal())
   };
