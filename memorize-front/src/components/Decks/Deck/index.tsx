@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import DeleteDeckModal from "./DeleteDeckModal"
 import "./styles.scss";
+import EditDeckModal from "./EditDeckModal";
 
 const Deck = () => {
 
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   return (
     <div className="decks-container flex">
@@ -25,9 +27,17 @@ const Deck = () => {
                 </button>
                 
                 <button 
-                className="edit-btn p-0.5 m-0.5">
+                className="edit-btn p-0.5 m-0.5"
+                onClick={(event) => {
+                  setIsEditModalOpen(true);
+                }}
+                >
                   Modifier
                 </button>
+                <EditDeckModal
+                  isOpen={isEditModalOpen} 
+                  onClose={() => {setIsEditModalOpen(false)}}
+                />
 
                 <button 
                 className="delete-btn p-0.5 m-0.5"
@@ -36,7 +46,6 @@ const Deck = () => {
                 }}>
                   Supprimer
                 </button>
-
                 <DeleteDeckModal 
                 isOpen={isDeleteModalOpen} 
                 onClose={() => {setIsDeleteModalOpen(false)}}
