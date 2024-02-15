@@ -3,10 +3,12 @@ import { useState } from "react";
 import Card from "./Card";
 import CreateCardModal from "./CreateCardModal";
 import EditCardModal from "./Card/EditCardModal";
+import DeleteCardModal from "./Card/DeleteCardModal";
 
 function Cards() {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   const handleCreateClick = () => {
     setIsCreateModalOpen(true);
@@ -14,6 +16,10 @@ function Cards() {
 
   const handleEditClick = () => {
     setIsEditModalOpen(true);
+  };
+
+  const handleDeleteClick = () => {
+    setIsDeleteModalOpen(true);
   };
 
   return (
@@ -56,7 +62,10 @@ function Cards() {
         >
           Edit
         </button>
-        <button className="bg-red-500 text-white px-4 py-2 mt-4 rounded">
+        <button
+          className="bg-red-500 text-white px-4 py-2 mt-4 rounded"
+          onClick={handleDeleteClick}
+        >
           Delete
         </button>
 
@@ -64,6 +73,13 @@ function Cards() {
           isOpen={isEditModalOpen}
           onClose={() => {
             setIsEditModalOpen(false);
+          }}
+        />
+
+        <DeleteCardModal
+          isOpen={isDeleteModalOpen}
+          onClose={() => {
+            setIsDeleteModalOpen(false);
           }}
         />
       </div>
