@@ -1,9 +1,18 @@
 import ModalContainer from "../../ModalContainer";
 
-const CreateCardModal = () => {
-    
+const CreateCardModal = ({
+  isOpen,
+  onClose,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+}) => {
   return (
-    <ModalContainer modalTitle="Créer une carte">
+    <ModalContainer
+      isOpen={isOpen}
+      onClose={onClose}
+      modalTitle="Créer une carte"
+    >
       <input
         type="text"
         placeholder="Nouvelle question"
