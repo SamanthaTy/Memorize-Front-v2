@@ -1,9 +1,11 @@
 import ModalContainer from "../../ModalContainer";
 
-const CreateDeckModal = () => {
+const CreateDeckModal = ({isOpen, onClose} : {isOpen: boolean, onClose: () => void}) => {
   return (
-    <ModalContainer>
-      <h2>Créer un nouveau deck</h2>
+    <ModalContainer 
+      isOpen={isOpen} 
+      onClose={onClose} 
+      modalTitle="Créer un nouveau Deck">
       <input
         type="text"
         placeholder="Nom du nouveau deck"
