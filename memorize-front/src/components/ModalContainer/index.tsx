@@ -4,6 +4,8 @@ import { toggleModal } from "../../store/actions/modal";
 
 
 interface ModalContainerProps {
+  isOpen: boolean;
+  onClose: () => void;
   children: React.ReactNode;
 }
 
@@ -28,10 +30,10 @@ const customStyles = {
 };
 
 // We pass children as prop in order to allow the injection of specific elements whenever necessary. 
-function ModalContainer({children}: ModalContainerProps) {
+function ModalContainer({isOpen, onClose, children}: ModalContainerProps) {
 
   const dispatch = useAppDispatch();
-  const modalIsOpen = useAppSelector((state: { modal: { modalIsOpen: boolean; }; }) => state.modal.modalIsOpen);
+ 
   const handleToggleClick = () => {
     dispatch(toggleModal())
   };
@@ -39,8 +41,8 @@ function ModalContainer({children}: ModalContainerProps) {
   return (
     <div>
       <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={handleToggleClick}
+        isOpen={isOpen}
+        onRequestClose={onClose}
         style={customStyles}
         contentLabel="Example Modal"
       >
@@ -49,16 +51,26 @@ function ModalContainer({children}: ModalContainerProps) {
         </div>
         <button
           className="absolute top-0 right-1 text-gray-500"
-          onClick={handleToggleClick}
+          onClick={onClose}
         >
           X
         </button>
         <form className="flex flex-col items-center space-y-4">
+
         {children}
+
         <div className="flex space-x-4">
-          <button className="flex bg-red-500 p-2 rounded-md text-white hover:bg-red-700">
+
+          <button 
+            className="flex bg-red-500 p-2 rounded-md text-white hover:bg-red-700"
+            onClick={(event)=>{
+              event.preventDefault();
+              onClose();
+            }}
+          >
             Annuler
           </button>
+
           <button className="flex bg-green-500 p-2 rounded-md text-white hover:bg-green-700">
             Confirmer
           </button>
