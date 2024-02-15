@@ -1,15 +1,32 @@
 import React from "react";
 import Deck from "./Deck";
-import { useAppSelector } from "../../hooks/redux";
+import CreateDeckModal from "./CreateDeckModal";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import { toggleModal } from "../../store/actions/modal";
 
 const Decks = () => {
   const username = useAppSelector((state) => state.login.username);
+
+  const dispatch = useAppDispatch();
+
+  const handleToggleCreateClick = () => {
+    dispatch(toggleModal());
+  }
+
   return (
     <>
-
       <h2 className="flex content-start ">Salut {username} !</h2>
       <div className="flex justify-end space-x-4 mb-4">
-        <button className="bg-blue-500 text-white px-4 py-2 rounded">Créer un nouveau deck</button>
+        <button 
+          className="bg-blue-500 text-white px-4 py-2 rounded"
+          onClick={(event) => {
+            event.preventDefault();
+            handleToggleCreateClick();
+          }}
+        >
+        Créer un nouveau deck
+        </button>
+        <CreateDeckModal />
 
         <div className="search-container">
           <input 
