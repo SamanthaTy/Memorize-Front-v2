@@ -1,17 +1,19 @@
 import Modal from "react-modal";
-// import { useAppDispatch, useAppSelector } from "../../Hooks/redux";
-// import { toggleModal } from "../../store/actions/modal";
+
 
 export interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
+
 interface ModalContainerProps extends ModalProps {
+
   children: React.ReactNode;
   modalTitle: string;
 }
 
+// Styles provided by React Modal module, which send the size of the modal as well as the overlay color behind
 const customStyles = {
   content: {
     top: "50%",
@@ -31,12 +33,17 @@ const customStyles = {
   },
 };
 
+
 function ModalContainer({
   isOpen,
   onClose,
   children,
   modalTitle,
 }: ModalContainerProps) {
+
+// We pass children as prop in order to allow the injection of specific elements whenever necessary. 
+function ModalContainer({isOpen, onClose, children}: ModalContainerProps) {
+
 
   return (
     <div>
@@ -56,21 +63,23 @@ function ModalContainer({
           X
         </button>
         <form className="flex flex-col items-center space-y-4">
-          {children}
-          <div className="flex space-x-4">
-            <button
-              className="flex bg-red-500 p-2 rounded-md text-white hover:bg-red-700"
-              onClick={(event) => {
-                event.preventDefault();
-                onClose();
-              }}
-            >
-              Annuler
-            </button>
-            <button className="flex bg-green-500 p-2 rounded-md text-white hover:bg-green-700">
-              Confirmer
-            </button>
-          </div>
+
+        {children}
+
+        <div className="flex space-x-4">
+          <button 
+            className="flex bg-red-500 p-2 rounded-md text-white hover:bg-red-700"
+            onClick={(event)=>{
+              event.preventDefault();
+              onClose();
+            }}
+          >
+            Annuler
+          </button>
+          <button className="flex bg-green-500 p-2 rounded-md text-white hover:bg-green-700">
+            Confirmer
+          </button>
+        </div>
         </form>
       </Modal>
     </div>
