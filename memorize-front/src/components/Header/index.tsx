@@ -18,17 +18,26 @@ const Header = () => {
   return (
     <>
       <header className="header-container w-screen flex justify-between h-10 border-b-4 box-content py-10">
-        <div className="flex">
-          <img src={logo} alt="Logo Mem'O'rize" />
-          <h1 className="title">MEM'O'RIZE</h1>
+        <div className="flex items-center">
+          <a href="/">
+            <img src={logo} alt="Logo Mem'O'rize" className="flex" />
+          </a>
+          <a href="/">
+          <h1 className="title flex">MEM'O'RIZE</h1>
+          </a>
         </div>
         <div className="btn-container flex content-end">
-          <button className="btn-header border-2 px-5 mx-5 border-black rounded-md">
+          <a 
+            className="btn-header border-2 px-5 pt-1.5 mx-5 border-black rounded-md"
+            href="/profile">
             Mon compte
-          </button>
-          <button className="btn-header border-2 px-5 mx-5 border-black rounded-md">
+          </a>
+
+          <a 
+            className="btn-header border-2 px-5 pt-1.5 mx-5 border-black rounded-md"
+            href="/decks">
             Mes decks
-          </button>
+          </a>
 
           {isLogged && 
             <button 
