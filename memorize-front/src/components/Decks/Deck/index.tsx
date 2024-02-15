@@ -7,6 +7,7 @@ const Deck = () => {
 
   
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   return (
     <div className="decks-container flex">
