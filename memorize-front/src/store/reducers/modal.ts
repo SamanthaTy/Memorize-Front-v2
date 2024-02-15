@@ -16,7 +16,7 @@ const modalReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(toggleModal, (state, action) => {
       state.modalIsOpen = !state.modalIsOpen;
-      state.modalType = action.payload?.modalType
+      state.modalType = action.payload?.modalType || null
     })
 })
 
