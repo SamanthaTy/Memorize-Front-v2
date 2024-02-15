@@ -1,10 +1,11 @@
 import Modal from "react-modal";
-import { useAppDispatch, useAppSelector } from "../../hooks/redux";
-import { toggleModal } from "../../store/actions/modal";
 
-interface ModalContainerProps {
+export interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
+}
+
+interface ModalContainerProps extends ModalProps {
   children: React.ReactNode;
   modalTitle: string;
 }
@@ -29,7 +30,6 @@ const customStyles = {
   },
 };
 
-// We pass children as prop in order to allow the injection of specific elements whenever necessary.
 function ModalContainer({
   isOpen,
   onClose,
@@ -66,7 +66,6 @@ function ModalContainer({
             >
               Annuler
             </button>
-
             <button className="flex bg-green-500 p-2 rounded-md text-white hover:bg-green-700">
               Confirmer
             </button>
