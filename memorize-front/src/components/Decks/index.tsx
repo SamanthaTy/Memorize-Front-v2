@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import Deck from "./Deck";
 import CreateDeckModal from "./CreateDeckModal";
-import { useAppDispatch, useAppSelector } from "../../hooks/redux";
-import { toggleModal } from "../../store/actions/modal";
+import { useAppSelector } from "../../hooks/redux";
 
 const Decks = () => {
   const username = useAppSelector((state) => state.login.username);
