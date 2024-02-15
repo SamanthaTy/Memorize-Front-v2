@@ -1,12 +1,16 @@
 import Modal from "react-modal";
-import { useAppDispatch, useAppSelector } from "../../hooks/redux";
-import { toggleModal } from "../../store/actions/modal";
 
 
-interface ModalContainerProps {
+export interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
+}
+
+
+interface ModalContainerProps extends ModalProps {
+
   children: React.ReactNode;
+  modalTitle: string;
 }
 
 // Styles provided by React Modal module, which send the size of the modal as well as the overlay color behind
@@ -29,14 +33,17 @@ const customStyles = {
   },
 };
 
+
+function ModalContainer({
+  isOpen,
+  onClose,
+  children,
+  modalTitle,
+}: ModalContainerProps) {
+
 // We pass children as prop in order to allow the injection of specific elements whenever necessary. 
 function ModalContainer({isOpen, onClose, children}: ModalContainerProps) {
 
-  const dispatch = useAppDispatch();
- 
-  const handleToggleClick = () => {
-    dispatch(toggleModal())
-  };
 
   return (
     <div>
@@ -47,7 +54,7 @@ function ModalContainer({isOpen, onClose, children}: ModalContainerProps) {
         contentLabel="Example Modal"
       >
         <div className="flex items-center justify-center pb-2 mb-2">
-          <h1 className="font-bold text-2xl">Création de compte</h1>
+          <h1 className="font-bold text-2xl">{modalTitle}</h1>
         </div>
         <button
           className="absolute top-0 right-1 text-gray-500"
@@ -60,7 +67,6 @@ function ModalContainer({isOpen, onClose, children}: ModalContainerProps) {
         {children}
 
         <div className="flex space-x-4">
-
           <button 
             className="flex bg-red-500 p-2 rounded-md text-white hover:bg-red-700"
             onClick={(event)=>{
@@ -70,7 +76,6 @@ function ModalContainer({isOpen, onClose, children}: ModalContainerProps) {
           >
             Annuler
           </button>
-
           <button className="flex bg-green-500 p-2 rounded-md text-white hover:bg-green-700">
             Confirmer
           </button>
