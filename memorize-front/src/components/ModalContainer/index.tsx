@@ -1,8 +1,13 @@
 import Modal from "react-modal";
-import { useAppDispatch, useAppSelector } from "../../Hooks/redux";
-import { toggleModal } from "../../store/actions/modal";
+// import { useAppDispatch, useAppSelector } from "../../Hooks/redux";
+// import { toggleModal } from "../../store/actions/modal";
 
-interface ModalContainerProps {
+export interface ModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+interface ModalContainerProps extends ModalProps {
   children: React.ReactNode;
   modalTitle: string;
 }
@@ -26,20 +31,18 @@ const customStyles = {
   },
 };
 
-function ModalContainer({ children, modalTitle }: ModalContainerProps) {
-  const dispatch = useAppDispatch();
-  const modalIsOpen = useAppSelector(
-    (state: { modal: { modalIsOpen: boolean } }) => state.modal.modalIsOpen
-  );
-  const handleToggleClick = () => {
-    dispatch(toggleModal());
-  };
+function ModalContainer({
+  isOpen,
+  onClose,
+  children,
+  modalTitle,
+}: ModalContainerProps) {
 
   return (
     <div>
       <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={handleToggleClick}
+        isOpen={isOpen}
+        onRequestClose={onClose}
         style={customStyles}
         contentLabel="Example Modal"
       >
@@ -48,14 +51,20 @@ function ModalContainer({ children, modalTitle }: ModalContainerProps) {
         </div>
         <button
           className="absolute top-0 right-1 text-gray-500"
-          onClick={handleToggleClick}
+          onClick={onClose}
         >
           X
         </button>
         <form className="flex flex-col items-center space-y-4">
           {children}
           <div className="flex space-x-4">
-            <button className="flex bg-red-500 p-2 rounded-md text-white hover:bg-red-700">
+            <button
+              className="flex bg-red-500 p-2 rounded-md text-white hover:bg-red-700"
+              onClick={(event) => {
+                event.preventDefault();
+                onClose();
+              }}
+            >
               Annuler
             </button>
             <button className="flex bg-green-500 p-2 rounded-md text-white hover:bg-green-700">
