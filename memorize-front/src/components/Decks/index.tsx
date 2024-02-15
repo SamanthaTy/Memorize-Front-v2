@@ -12,7 +12,11 @@ const Decks = () => {
         <button className="bg-blue-500 text-white px-4 py-2 rounded">Créer un nouveau deck</button>
 
         <div className="search-container">
-          <input type="search" placeholder="Chercher les decks" className="border-2 border-gray-300 p-2 mt-2 rounded-md"/>
+          <input 
+            type="search" 
+            placeholder="Chercher les decks" 
+            className="border-2 border-gray-300 p-2 mt-2 rounded-md"
+          />
           <button className="bg-blue-500 text-white p-2 mt-2 rounded-md">Search</button>
         </div>
       </div>  

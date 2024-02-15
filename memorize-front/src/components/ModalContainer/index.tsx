@@ -7,6 +7,7 @@ interface ModalContainerProps {
   isOpen: boolean;
   onClose: () => void;
   children: React.ReactNode;
+  modalTitle: string;
 }
 
 // Styles provided by React Modal module, which send the size of the modal as well as the overlay color behind
@@ -30,13 +31,7 @@ const customStyles = {
 };
 
 // We pass children as prop in order to allow the injection of specific elements whenever necessary. 
-function ModalContainer({isOpen, onClose, children}: ModalContainerProps) {
-
-  const dispatch = useAppDispatch();
- 
-  const handleToggleClick = () => {
-    dispatch(toggleModal())
-  };
+function ModalContainer({isOpen, onClose, children, modalTitle}: ModalContainerProps) {
 
   return (
     <div>
@@ -47,7 +42,7 @@ function ModalContainer({isOpen, onClose, children}: ModalContainerProps) {
         contentLabel="Example Modal"
       >
         <div className="flex items-center justify-center pb-2 mb-2">
-          <h1 className="font-bold text-2xl">Création de compte</h1>
+          <h1 className="font-bold text-2xl">{modalTitle}</h1>
         </div>
         <button
           className="absolute top-0 right-1 text-gray-500"
