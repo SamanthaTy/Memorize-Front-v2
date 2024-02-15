@@ -5,7 +5,7 @@ import EditDeckModal from "./EditDeckModal";
 
 const Deck = () => {
 
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   return (
