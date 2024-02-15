@@ -2,7 +2,10 @@ import ModalContainer from "../../../ModalContainer";
 
 const EditDeckModal = ({isOpen, onClose} : {isOpen: boolean, onClose: () => void}) => {
   return (
-   <ModalContainer isOpen={isOpen} onClose={onClose} modalTitle="Modifier le deck">
+   <ModalContainer 
+   isOpen={isOpen} 
+   onClose={onClose} 
+   modalTitle="Modifier le deck">
    <input
         type="text"
         placeholder="Modifier le nom du deck"

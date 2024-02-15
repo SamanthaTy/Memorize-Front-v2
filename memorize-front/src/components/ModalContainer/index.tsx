@@ -30,14 +30,9 @@ const customStyles = {
   },
 };
 
-// We pass children as prop in order to allow the injection of specific elements whenever necessary.
+// We pass children as prop in order to allow the injection of specific elements whenever necessary. 
+function ModalContainer({isOpen, onClose, children, modalTitle}: ModalContainerProps) {
 
-function ModalContainer({
-  isOpen,
-  onClose,
-  children,
-  modalTitle,
-}: ModalContainerProps) {
   return (
     <div>
       <Modal

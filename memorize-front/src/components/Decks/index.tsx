@@ -1,17 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import Deck from "./Deck";
 import CreateDeckModal from "./CreateDeckModal";
-import { useAppDispatch, useAppSelector } from "../../hooks/redux";
-import { toggleModal } from "../../store/actions/modal";
+import { useAppSelector } from "../../hooks/redux";
+
 
 const Decks = () => {
   const username = useAppSelector((state) => state.login.username);
 
-  const dispatch = useAppDispatch();
-
-  const handleToggleCreateClick = () => {
-    dispatch(toggleModal());
-  }
+  const [isCreateModalOpen, setCreateModalOpen] = useState(false);
 
   return (
     <>
@@ -21,12 +17,15 @@ const Decks = () => {
           className="bg-blue-500 text-white px-4 py-2 rounded"
           onClick={(event) => {
             event.preventDefault();
-            handleToggleCreateClick();
+            setCreateModalOpen(true);
           }}
         >
         Créer un nouveau deck
         </button>
-        <CreateDeckModal />
+        <CreateDeckModal 
+          isOpen={isCreateModalOpen}
+          onClose={() => {setCreateModalOpen(false)}}
+        />
 
         <div className="search-container">
           <input 
