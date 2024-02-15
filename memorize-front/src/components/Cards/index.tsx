@@ -2,13 +2,19 @@ import { useState } from "react";
 
 import Card from "./Card";
 import CreateCardModal from "./CreateCardModal";
+import EditCardModal from "./Card/EditCardModal";
 
 function Cards() {
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
   const handleCreateClick = () => {
     setIsCreateModalOpen(true);
   };
 
-  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const handleEditClick = () => {
+    setIsEditModalOpen(true);
+  };
 
   return (
     <main className="container mx-auto p-4">
@@ -42,7 +48,25 @@ function Cards() {
         }}
       />
 
-      <Card />
+      <div className="space-x-4">
+        <Card />
+        <button
+          className="bg-blue-500 text-white px-4 py-2 mt-4 rounded"
+          onClick={handleEditClick}
+        >
+          Edit
+        </button>
+        <button className="bg-red-500 text-white px-4 py-2 mt-4 rounded">
+          Delete
+        </button>
+
+        <EditCardModal
+          isOpen={isEditModalOpen}
+          onClose={() => {
+            setIsEditModalOpen(false);
+          }}
+        />
+      </div>
     </main>
   );
 }
