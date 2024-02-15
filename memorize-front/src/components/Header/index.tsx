@@ -23,12 +23,17 @@ const Header = () => {
           <h1 className="title">MEM'O'RIZE</h1>
         </div>
         <div className="btn-container flex content-end">
-          <button className="btn-header border-2 px-5 mx-5 border-black rounded-md">
+          <a 
+            className="btn-header border-2 px-5 pt-1.5 mx-5 border-black rounded-md"
+            href="/profile">
             Mon compte
-          </button>
-          <button className="btn-header border-2 px-5 mx-5 border-black rounded-md">
+          </a>
+
+          <a 
+            className="btn-header border-2 px-5 pt-1.5 mx-5 border-black rounded-md"
+            href="/decks">
             Mes decks
-          </button>
+          </a>
 
           {isLogged && 
             <button 
