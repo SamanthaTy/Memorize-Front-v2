@@ -1,9 +1,15 @@
 import { useState } from "react";
+import DeleteAccountModal from "./DeleteAccountModal";
 
 function Profile() {
-
-// We use useState to turn the <p> into <input> after clicking the Edit button, which will allow the user to edit.
+  // We use useState to turn the <p> into <input> after clicking the Edit button, which will allow the user to edit.
   const [isEditing, setIsEditing] = useState(false);
+
+  const [isDeleteAccountModal, setIsDeleteAccountModal] = useState(false);
+
+  function handleDeleteClick() {
+    setIsDeleteAccountModal(true);
+  }
 
   const handleEditClick = () => {
     setIsEditing(true);
@@ -18,6 +24,8 @@ function Profile() {
     email: "angèle@gmail.com",
     password: "*******",
   };
+
+
 
   return (
     <div className="mx-auto bg-slate-400 p-10 rounded-xl">
@@ -74,10 +82,19 @@ function Profile() {
         >
           Edit
         </button>
-        <button className="bg-blue-500 text-white px-4 py-2 rounded">
+        <button
+          onClick={handleDeleteClick}
+          className="bg-blue-500 text-white px-4 py-2 rounded"
+        >
           Delete my account
         </button>
       </div>
+      <DeleteAccountModal
+        isOpen={isDeleteAccountModal}
+        onClose={() => {
+          setIsDeleteAccountModal(false);
+        }}
+      />
     </div>
   );
 }
