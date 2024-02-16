@@ -1,20 +1,14 @@
 import { useState } from "react";
 import DeleteAccountModal from "./DeleteAccountModal";
 
-
 function Profile() {
-
-// We use useState to turn the <p> into <input> after clicking the Edit button, which will allow the user to edit.
+  // We use useState to turn the <p> into <input> after clicking the Edit button, which will allow the user to edit.
   const [isEditing, setIsEditing] = useState(false);
 
-  const [modalIsOpen, setIsOpen] = useState(false);
+  const [isDeleteAccountModal, setIsDeleteAccountModal] = useState(false);
 
-  function openModal() {
-    setIsOpen(true);
-  }
-
-  function closeModal() {
-    setIsOpen(false);
+  function handleDeleteClick() {
+    setIsDeleteAccountModal(true);
   }
 
   const handleEditClick = () => {
@@ -29,11 +23,6 @@ function Profile() {
     name: "Angèle",
     email: "angèle@gmail.com",
     password: "*******",
-  };
-
-  const handleOpenModalClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-    openModal();
   };
 
   return (
@@ -92,16 +81,17 @@ function Profile() {
           Edit
         </button>
         <button
-          onClick={handleOpenModalClick}
+          onClick={handleDeleteClick}
           className="bg-blue-500 text-white px-4 py-2 rounded"
         >
           Delete my account
         </button>
       </div>
       <DeleteAccountModal
-        openModal={openModal}
-        closeModal={closeModal}
-        modalIsOpen={modalIsOpen}
+        isOpen={isDeleteAccountModal}
+        onClose={() => {
+          setIsDeleteAccountModal(false);
+        }}
       />
     </div>
   );
