@@ -15,13 +15,9 @@ function LoginForm() {
   });
 
   const navigate = useNavigate();
-
   const dispatch = useAppDispatch();
 
-// Handles the appearance of the Create an account modal when the user click on "inscrivez-vous"
-  const handleToggleClick = () => {
-    dispatch(toggleModal());
-  };
+  const [isSignUpFormModalOpen, setSignUpFormModalOpen] = useState(false);
 
 // Handles sending the email and password sent to the API in order to let the user log into their account. 
 // Once the user has successfully logged in, they're redirected to the page "/decks"
@@ -77,14 +73,16 @@ function LoginForm() {
             href=""
             onClick={(event) => {
               event.preventDefault();
-              handleToggleClick();
+              setSignUpFormModalOpen(true);
             }}
           >
             Inscrivez-vous
           </a>
         </p>
       </form>
-      <SignUpFormModal />
+      <SignUpFormModal 
+        isOpen={isSignUpFormModalOpen}
+        onClose={() => {setSignUpFormModalOpen(false)}}/>
     </div>
   );
 }
