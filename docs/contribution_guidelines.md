@@ -68,6 +68,13 @@ Examples:
 [Route] Card / DELETE
 [Component] Introduction
 
+`[Category] Brief task title`
+
+Examples:
+
+`[Route] Card / DELETE`
+`[Component] Introduction`
+
 Please keep the titles short.
 
 ## Body Format

@@ -2,16 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-
 import store from "./store/index.ts";
-
 import App from "./components/App/App.tsx";
 import Decks from "./components/Decks/index.tsx";
 import Home from "./components/Home/index.tsx";
 import Cards from "./components/Cards/index.tsx";
 import Profile from "./components/Profile/index.tsx";
 import Error from "./components/Error/index.tsx";
-
+import { CheckAuthentication } from "./components/CheckAuthentication";
+import store from "./store/index.ts";
 import "./index.scss";
 
 // Setting up the router with App as the Root element to have a fixed header and footer on all pages and the children will be inserted in Outlet depending on the URL accessed

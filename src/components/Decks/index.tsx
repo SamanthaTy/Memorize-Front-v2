@@ -3,7 +3,6 @@ import Deck from "./Deck";
 import CreateDeckModal from "./CreateDeckModal";
 import { useAppSelector } from "../../hooks/redux";
 
-
 const Decks = () => {
   const username = useAppSelector((state) => state.login.username);
 
