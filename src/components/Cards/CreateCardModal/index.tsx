@@ -1,6 +1,15 @@
 import ModalContainer, { ModalProps } from "../../ModalContainer";
 
 const CreateCardModal = ({ isOpen, onClose }: ModalProps) => {
+
+const CreateCardModal = ({
+  isOpen,
+  onClose,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+}) => {
+
   return (
     <ModalContainer
       isOpen={isOpen}

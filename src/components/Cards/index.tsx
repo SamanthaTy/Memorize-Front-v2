@@ -7,7 +7,6 @@ import DeleteCardModal from "./Card/DeleteCardModal";
 import EditDeckModal from "../Decks/Deck/EditDeckModal";
 import DeleteDeckModal from "../Decks/Deck/DeleteDeckModal";
 
-
 function Cards() {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -32,7 +31,7 @@ function Cards() {
     <main className="container mx-auto p-4">
       <div className="flex space-x-4 mb-4">
 
-        <button 
+        <button
           className="bg-blue-500 text-white px-4 py-2 rounded"
           onClick={() => {
             setIsEditDeckModalOpen(true);
@@ -43,6 +42,14 @@ function Cards() {
         <EditDeckModal
                   isOpen={isEditDeckModalOpen} 
                   onClose={() => {setIsEditDeckModalOpen(false)}}
+        >
+          Edit
+        </button>
+        <EditDeckModal
+          isOpen={isEditDeckModalOpen}
+          onClose={() => {
+            setIsEditDeckModalOpen(false);
+          }}
         />
 
         <h2 className="text-3xl font-bold">Nom du Deck</h2>
@@ -60,6 +67,21 @@ function Cards() {
                 onClose={() => {setIsDeleteDeckModalOpen(false)}}
         />
         
+        <button
+          className="bg-red-500 text-white px-4 py-2 rounded"
+          onClick={() => {
+            setIsDeleteDeckModalOpen(true);
+          }}
+        >
+          Delete
+        </button>
+        <DeleteDeckModal
+          isOpen={isDeleteDeckModalOpen}
+          onClose={() => {
+            setIsDeleteDeckModalOpen(false);
+          }}
+        />
+
         <button
           onClick={handleCreateClick}
           className="bg-blue-500 text-white px-4 py-2 rounded"
