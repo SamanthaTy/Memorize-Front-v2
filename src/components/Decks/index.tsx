@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Deck from "./Deck";
 import CreateDeckModal from "./CreateDeckModal";
 import { useAppSelector } from "../../hooks/redux";
