@@ -61,21 +61,19 @@ Please follow the guidelines below when creating new tasks on Github Projects.
 
 The title must be formatted as follows:
 
-<<<<<<< HEAD
 [Category] Brief task title
 
 Examples:
 
 [Route] Card / DELETE
 [Component] Introduction
-=======
+
 `[Category] Brief task title`
 
 Examples:
 
 `[Route] Card / DELETE`
 `[Component] Introduction`
->>>>>>> 661e2aa (docs: extend guidelines for github projects, commits)
 
 Please keep the titles short.
 
