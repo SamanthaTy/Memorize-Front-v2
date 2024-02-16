@@ -4,7 +4,6 @@ import CreateDeckModal from "./CreateDeckModal";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 
 const Decks = () => {
-  const dispatch = useAppDispatch();
   const username = useAppSelector((state) => state.login.username);
 
   const allDecks = useAppSelector((state) => state.allDecks.decks)

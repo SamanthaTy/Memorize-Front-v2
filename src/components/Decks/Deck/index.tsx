@@ -1,18 +1,33 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DeleteDeckModal from "./DeleteDeckModal";
 import "./styles.scss";
 import EditDeckModal from "./EditDeckModal";
+import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
+import { useParams } from "react-router-dom";
+import { getAllDecks } from "../../../store/actions/decks/allDecks";
 
 const Deck = () => {
+
+  const {id} = useParams()
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const dispatch = useAppDispatch();
+  const allDecks = useAppSelector((state) => state.allDecks.decks)
+  console.log("Je suis Alldecks: ", allDecks)
+
+useEffect(() => {
+  dispatch(getAllDecks(id));
+}, [])
 
   return (
-    <div className="decks-container flex">
+    <>
+    {allDecks.map((deck) => 
+    <div key={deck.id} className="decks-container flex">
       <div className="flip-card">
         <div className="flex flip-card-inner">
           <div className="flip-card-front">
-            <h3 className="title py-2">Nom du deck</h3>
+            <h3 className="title py-2">{deck.name}</h3>
+            <p className="text-sm">{deck.description}</p>
             <p className="text-xs">15 cartes</p>
             <ul className="text-sm">
               <li>Easy : 5</li>
@@ -57,6 +72,8 @@ const Deck = () => {
         </div>
       </div>
     </div>
+    )}
+    </>
   );
 };
 

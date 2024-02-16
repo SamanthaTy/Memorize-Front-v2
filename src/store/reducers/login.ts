@@ -25,6 +25,7 @@ const loginReducer = createReducer(initialState, (builder) => {
 
       localStorage.setItem("accessToken", action.payload.accessToken);
       localStorage.setItem("username", action.payload.username);
+      // localStorage.setItem("id", action.payload.id);
     })
     .addCase(login.rejected, (state) => {
       state.errorMessage = "identifiant ou mot de passe incorrect";
