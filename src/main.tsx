@@ -10,7 +10,7 @@ import Cards from "./components/Cards/index.tsx";
 import Profile from "./components/Profile/index.tsx";
 import Error from "./components/Error/index.tsx";
 import { CheckAuthentication } from "./components/CheckAuthentication";
-import store from "./store/index.ts";
+
 import "./index.scss";
 
 // Setting up the router with App as the Root element to have a fixed header and footer on all pages and the children will be inserted in Outlet depending on the URL accessed
