@@ -3,12 +3,11 @@ import DeleteDeckModal from "./DeleteDeckModal";
 import "./styles.scss";
 import EditDeckModal from "./EditDeckModal";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
-import { useParams } from "react-router-dom";
 import { getAllDecks } from "../../../store/actions/decks/allDecks";
 
 const Deck = () => {
 
-  const {id} = useParams()
+
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const dispatch = useAppDispatch();
@@ -16,7 +15,7 @@ const Deck = () => {
   console.log("Je suis Alldecks: ", allDecks)
 
 useEffect(() => {
-  dispatch(getAllDecks(id));
+  dispatch(getAllDecks());
 }, [])
 
   return (

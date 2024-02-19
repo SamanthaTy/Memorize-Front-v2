@@ -28,7 +28,8 @@ const allDecksReducer = createReducer(initialState, (builder) => {
       state.errorMessage = null;
     })
     .addCase(getAllDecks.fulfilled, (state, action) => {
-      console.log(action.payload);
+      console.log("Redux State:", state);
+      console.log("Action Payload:", action.payload);
       
       state.loading = false;
       state.decks = action.payload;

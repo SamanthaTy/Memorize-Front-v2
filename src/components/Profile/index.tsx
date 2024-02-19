@@ -26,7 +26,6 @@ function Profile() {
   };
 
 
-
   return (
     <div className="mx-auto bg-slate-400 p-10 rounded-xl">
       <div>
