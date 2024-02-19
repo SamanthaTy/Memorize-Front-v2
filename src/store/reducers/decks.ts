@@ -1,6 +1,7 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { getAllDecks } from "../actions/decks/allDecks";
 import { createDeck } from "../actions/decks/createDeck";
+import { editDeck } from "../actions/decks/editDeck";
 
 export interface Deck {
   id: number | null;
@@ -13,6 +14,7 @@ interface AllDecksState {
   decks: Deck[];
   isFetching: boolean;
   isCreating: boolean;
+  isEditing: boolean;
   loading: boolean;
   errorMessage: string | null;
 }
@@ -21,6 +23,7 @@ export const initialState: AllDecksState = {
   decks: [],
   isFetching: false,
   isCreating: false,
+  isEditing: false,
   loading: false,
   errorMessage: null,
 };
@@ -37,13 +40,14 @@ const decksReducer = createReducer(initialState, (builder) => {
 
       state.isFetching = true;
       state.isCreating = false;
+      state.isEditing = false;
 
       state.loading = false;
       state.decks = action.payload;
     })
     .addCase(getAllDecks.rejected, (state) => {
       state.loading = false;
-      state.errorMessage = "Pas de deck associé à ce compte";
+      state.errorMessage = "No associated deck found";
     })
     // CREATE NEW DECK
     .addCase(createDeck.pending, (state) => {
@@ -57,12 +61,32 @@ const decksReducer = createReducer(initialState, (builder) => {
 
       state.isFetching = false;
       state.isCreating = true;
+      state.isEditing = false;
 
       state.errorMessage = null;
     })
     .addCase(createDeck.rejected, (state) => {
       state.loading = false;
-      state.errorMessage = "Veuillez donner un nom à votre deck.";
+      state.errorMessage = "Please set a name for this deck";
+    })
+    // EDIT DECK
+    .addCase(editDeck.pending, (state) => {
+      state.loading = true;
+      state.errorMessage = null;
+    })
+    .addCase(editDeck.fulfilled, (state, action) => {
+      state.loading = false;
+     
+      state.decks = action.payload;
+
+      state.isFetching = false;
+      state.isCreating = false;
+      state.isEditing = true;
+      state.errorMessage = null;
+    })
+    .addCase(editDeck.rejected, (state) => {
+      state.loading = false;
+      state.errorMessage = "Please ";
     });
 });
 
