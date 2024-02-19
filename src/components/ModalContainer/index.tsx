@@ -1,4 +1,6 @@
+import { FormEventHandler } from "react";
 import Modal from "react-modal";
+import { Styles } from "react-modal";
 
 export interface ModalProps {
   isOpen: boolean;
@@ -8,10 +10,11 @@ export interface ModalProps {
 interface ModalContainerProps extends ModalProps {
   children: React.ReactNode;
   modalTitle: string;
+  handleSubmitType: FormEventHandler<HTMLFormElement>;
 }
 
 // Styles provided by React Modal module, which send the size of the modal as well as the overlay color behind
-const customStyles = {
+const customStyles: Styles = {
   content: {
     top: "50%",
     left: "50%",
@@ -36,9 +39,8 @@ function ModalContainer({
   onClose,
   children,
   modalTitle,
+  handleSubmitType,
 }: ModalContainerProps) {
-
-
   return (
     <div>
       <Modal
@@ -56,7 +58,10 @@ function ModalContainer({
         >
           X
         </button>
-        <form className="flex flex-col items-center space-y-4">
+        <form
+          className="flex flex-col items-center space-y-4"
+          onSubmit={handleSubmitType}
+        >
           {children}
 
           <div className="flex space-x-4">
@@ -69,6 +74,7 @@ function ModalContainer({
             >
               Annuler
             </button>
+
             <button className="flex bg-green-500 p-2 rounded-md text-white hover:bg-green-700">
               Confirmer
             </button>
