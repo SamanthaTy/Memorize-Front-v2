@@ -9,6 +9,7 @@ export interface DeckProps {
 }
 
 const Deck = ({ deck }: DeckProps) => {
+  
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
