@@ -4,8 +4,8 @@ import Card from "./Card";
 import CreateCardModal from "./CreateCardModal";
 import EditCardModal from "./Card/EditCardModal";
 import DeleteCardModal from "./Card/DeleteCardModal";
-import EditDeckModal from "../Decks/Deck/EditDeckModal";
-import DeleteDeckModal from "../Decks/Deck/DeleteDeckModal";
+import EditDeckModal from "../Decks/DeckList/Deck/EditDeckModal";
+import DeleteDeckModal from "../Decks/DeckList/Deck/DeleteDeckModal";
 
 function Cards() {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);

@@ -11,7 +11,6 @@ const CreateDeckModal = ({ isOpen, onClose }: ModalProps) => {
   const handleCreateDeckSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     dispatch(createDeck(newDeck));
-    console.log(dispatch(createDeck(newDeck)));
     setNewDeck({ name: "", description: "" });
     onClose();
   };
@@ -21,7 +20,7 @@ const CreateDeckModal = ({ isOpen, onClose }: ModalProps) => {
   ) => {
     const { name, value } = event.target;
 
-    console.log(name, value);
+  
     setNewDeck({ ...newDeck, [name]: value });
   };
 

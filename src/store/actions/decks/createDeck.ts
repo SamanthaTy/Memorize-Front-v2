@@ -10,15 +10,12 @@ export const createDeck = createAsyncThunk<any, Partial<Deck>>(
   async (newDeck) => {
     const userId = localStorage.getItem("id");
 
-    console.log("je suis id : ", userId);
-
     if (userId) {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/account/${userId}/decks`,
         newDeck
       );
 
-      console.log("Hello: ", response.data);
       return response.data;
     } else {
       console.log("userId est null ou undefined");
