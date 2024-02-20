@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Deck from "./Deck";
+import DeckList from "./DeckList";
 import CreateDeckModal from "./CreateDeckModal";
 import { useAppSelector } from "../../hooks/redux";
 
@@ -40,7 +40,7 @@ const Decks = () => {
         </div>
       </div>
       <div className="flex flex-wrap">
-        <Deck />
+        <DeckList />
       </div>
     </>
   );

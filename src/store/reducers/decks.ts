@@ -35,9 +35,6 @@ const decksReducer = createReducer(initialState, (builder) => {
       state.errorMessage = null;
     })
     .addCase(getAllDecks.fulfilled, (state, action) => {
-      console.log("Redux State:", state);
-      console.log("Action Payload:", action.payload);
-
       state.isFetching = true;
       state.isCreating = false;
       state.isEditing = false;
@@ -76,17 +73,20 @@ const decksReducer = createReducer(initialState, (builder) => {
     })
     .addCase(editDeck.fulfilled, (state, action) => {
       state.loading = false;
-     
-      state.decks = action.payload;
+
+      state.decks = state.decks.map((deck) =>
+        deck.id === action.payload.id ? action.payload : deck
+      );
 
       state.isFetching = false;
       state.isCreating = false;
       state.isEditing = true;
       state.errorMessage = null;
     })
-    .addCase(editDeck.rejected, (state) => {
+    .addCase(editDeck.rejected, (state, action) => {
       state.loading = false;
-      state.errorMessage = "Please ";
+      state.errorMessage =
+        action.error.message || "An error occurred while editing the deck";
     });
 });
 
