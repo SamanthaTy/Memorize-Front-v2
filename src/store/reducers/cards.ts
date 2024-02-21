@@ -1,6 +1,13 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { getAllCards } from "../actions/cards/allcards";
 
+import { createCard } from "../actions/cards/createCard";
+
+export interface CreateCardProps {
+  deckId: number;
+  newCard: Partial<CardInterface>;
+}
+
 export interface CardInterface {
   id: number;
   front: string;
@@ -64,6 +71,27 @@ const cardsReducer = createReducer(initialState, (builder) => {
     .addCase(getAllCards.rejected, (state) => {
       state.loading = false;
       state.errorMessage = "No associated card found";
+    })
+    // CREATE NEW DECK
+    .addCase(createCard.pending, (state) => {
+      state.loading = true;
+      state.errorMessage = null;
+    })
+    .addCase(createCard.fulfilled, (state, action) => {
+      state.loading = false;
+
+      state.cards.push(action.payload);
+
+      state.isFetching = false;
+      state.isCreating = true;
+      state.isEditing = false;
+      state.isDeleting = false;
+
+      state.errorMessage = null;
+    })
+    .addCase(createCard.rejected, (state) => {
+      state.loading = false;
+      state.errorMessage = "Please set a name for this card";
     });
 });
 

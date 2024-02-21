@@ -4,8 +4,10 @@ import CreateCardModal from "./CreateCardModal";
 import EditDeckModal from "../Decks/DeckList/Deck/EditDeckModal";
 import DeleteDeckModal from "../Decks/DeckList/Deck/DeleteDeckModal";
 import CardList from "./CardList";
+import { useParams } from "react-router-dom";
 
 function Cards() {
+  const { deckId } = useParams();
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
   const [isEditDeckModalOpen, setIsEditDeckModalOpen] = useState(false);
@@ -16,11 +18,8 @@ function Cards() {
   };
 
   return (
-    
     <main className="container mx-auto p-4">
-
       <div className="flex space-x-4 mb-4">
-
         <button
           className="bg-blue-500 text-white px-4 py-2 rounded"
           onClick={() => {
@@ -65,8 +64,8 @@ function Cards() {
           onClose={() => {
             setIsCreateModalOpen(false);
           }}
+          deckId={deckId}
         />
-
 
         <input
           type="text"
@@ -75,13 +74,11 @@ function Cards() {
         />
       </div>
 
-
       <div className="flex flex-wrap">
         <CardList />
       </div>
     </main>
-    
-  );  
+  );
 }
 
 export default Cards;
