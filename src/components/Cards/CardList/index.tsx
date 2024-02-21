@@ -2,10 +2,11 @@ import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
 import { getAllCards } from "../../../store/actions/cards/allcards";
 import Card from "./Card";
+import { useParams } from "react-router-dom";
 
-const cardList = ({deckId}) => {
+const cardList = () => {
 
-
+  const { deckId } = useParams();
 const dispatch = useAppDispatch();
 const allCards = useAppSelector((state) => state.cards.cards);
 console.log(allCards);

@@ -23,7 +23,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       { path: "/decks", element: <Decks /> },
-      { path: "/decks/:id", element: <Cards /> }, // (user_id)
+      { path: "/decks/:deckId", element: <Cards /> }, // (user_id)
       { path: "/profile", element: <Profile /> },
       //{path: "/decks/:id/trainingsession", element: <TrainingSession />},
     ],
