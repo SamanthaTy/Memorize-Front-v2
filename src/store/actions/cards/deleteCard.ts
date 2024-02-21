@@ -5,6 +5,7 @@ export const DELETE_CARD = "DELETE_CARD";
 
 export const deleteCard = createAsyncThunk(
   DELETE_CARD,
+
   async ({ deckId, cardId }) => {
     const userId = localStorage.getItem("id");
 
