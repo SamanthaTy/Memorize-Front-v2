@@ -1,4 +1,5 @@
-import logo from "../../assets/flashcard-icon.png";
+import { Link, useNavigate } from "react-router-dom";
+import logo from "../../assets/memorize logo.png";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { logout } from "../../store/actions/login";
 
@@ -8,46 +9,53 @@ const Header = () => {
   const isLogged = useAppSelector((state) => state.login.isLogged);
   console.log(isLogged);
 
-  const username = useAppSelector((state) => state.login.username);
+  const navigate = useNavigate();
 
   const handleDisconnectClick = () => {
     dispatch(logout());
+    navigate("/");
   };
 
   return (
-    <header className="header-container w-screen flex justify-between h-16 border-b-4 box-content p-4">
+    <header className="bg-F5E9E0 text-1F3D75 h-21 flex items-center justify-between p-4">
       <div className="flex items-center">
         <a href="/">
-          <img src={logo} alt="Logo Mem'O'rize" className="flex" />
+          <img src={logo} alt="Logo Mem'O'rize" className="h-20 mr-2" />
         </a>
-        <a href="/">
-          <h1 className="title flex text-xl font-semibold ml-2">MEM'O'RIZE</h1>
+        <div className="flex items-center"></div>
+        <a href="/" className="text-xl font-semibold">
+          MEM'O'RIZE
         </a>
       </div>
-      <div className="btn-container flex items-center space-x-4">
-        <a
-          className="btn-header border-2 px-4 py-2 border-black rounded-md"
-          href="/profile"
+      <div className="flex items-center space-x-4">
+        <Link
+          className="px-4 py-2 rounded-full transition-colors duration-300 ease-in-out hover:bg-1F3D75 hover:text-F5E9E0"
+          to="/profile"
         >
-          Mon compte
-        </a>
-
-        <a
-          className="btn-header border-2 px-4 py-2 border-black rounded-md"
-          href="/decks"
-        >
-          Mes decks
-        </a>
+          Accueil
+        </Link>
 
         {isLogged && (
           <>
+            <Link
+              className="px-4 py-2 rounded-full transition-colors duration-300 ease-in-out hover:bg-1F3D75 hover:text-F5E9E0"
+              to="/profile"
+            >
+              Mon compte
+            </Link>
+
+            <Link
+              className="px-4 py-2 rounded-full transition-colors duration-300 ease-in-out hover:bg-1F3D75 hover:text-F5E9E0"
+              to="/decks"
+            >
+              Mes decks
+            </Link>
             <button
-              className="btn-header border-2 px-4 py-2 border-black rounded-md"
+              className="px-4 py-2 rounded-full transition-colors duration-300 ease-in-out hover:bg-1F3D75 hover:text-F5E9E0"
               onClick={handleDisconnectClick}
             >
               Déconnexion
             </button>
-            <p className="text-white">Bienvenue {username}</p>
           </>
         )}
       </div>
