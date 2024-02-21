@@ -60,6 +60,13 @@ function Cards() {
         >
           Nouvelle Carte
         </button>
+        <CreateCardModal
+          isOpen={isCreateModalOpen}
+          onClose={() => {
+            setIsCreateModalOpen(false);
+          }}
+        />
+
 
         <input
           type="text"
@@ -68,12 +75,6 @@ function Cards() {
         />
       </div>
 
-      <CreateCardModal
-        isOpen={isCreateModalOpen}
-        onClose={() => {
-          setIsCreateModalOpen(false);
-        }}
-      />
 
       <div className="flex flex-wrap">
         <CardList />

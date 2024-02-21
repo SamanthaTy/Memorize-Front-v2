@@ -2,9 +2,13 @@ import { useState } from "react";
 import "./style.scss";
 import EditCardModal from "./EditCardModal";
 import DeleteCardModal from "./DeleteCardModal";
-import React from "react";
+import { CardInterface } from "../../../../store/reducers/cards";
 
-function Card() {
+export interface CardProps {
+  card: CardInterface;
+}
+
+function Card({card}: CardProps) {
   // Set up a state boolean to know if the flip is true or false
   const [flip, setFlip] = useState(false);
 
@@ -33,15 +37,13 @@ function Card() {
     >
       <div className="flip-card-inner">
         <div className="flip-card-front">
-          <p className="title">QUESTION</p>
+          <p className="title">{card.front}</p>
         </div>
         <div className="flip-card-back">
-          <p className="title">ANSWER</p>
+          <p className="title">{card.back}</p>
         </div>
       </div>
     </div>
-
-    <Card />
 
     <button
       className="bg-blue-500 text-white px-4 py-2 mt-4 rounded"

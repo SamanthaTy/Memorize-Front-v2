@@ -3,7 +3,8 @@ import axios from "axios";
 
 export const GET_ALL_CARDS = "GET_ALL_CARDS";
 
-export const getAllCards = createAsyncThunk(GET_ALL_CARDS, async deckId => {
+export const getAllCards = createAsyncThunk(GET_ALL_CARDS, async (deckId) => {
+  console.log(deckId);
   const userId = localStorage.getItem("id");
 
   if (userId) {
