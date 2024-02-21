@@ -9,7 +9,6 @@ import Home from "./components/Home/index.tsx";
 import Cards from "./components/Cards/index.tsx";
 import Profile from "./components/Profile/index.tsx";
 import Error from "./components/Error/index.tsx";
-import { CheckAuthentication } from "./components/CheckAuthentication";
 
 import "./index.scss";
 

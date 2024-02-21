@@ -1,5 +1,31 @@
-const initialState = {
-  cards: [],
+import { createReducer } from "@reduxjs/toolkit";
+import { getAllCards } from "../actions/cards/allcards";
+
+export interface Card {
+  front: string;
+  back: string;
+  difficulty: number;
+  deck_id: number;
+}
+
+interface CardsById {
+  [deckId: number]: Card[];
+}
+
+export interface CardsState {
+  cards: CardsById;
+  isFetching: boolean;
+  isCreating: boolean;
+  isEditing: boolean;
+  isDeleting: boolean;
+  loading: boolean;
+  errorMessage: string | null;
+}
+
+const initialState: CardsState = {
+  cards: {
+    123: [],
+  },
   isFetching: false,
   isCreating: false,
   isEditing: false,
@@ -21,11 +47,18 @@ const cardsReducer = createReducer(initialState, builder => {
       state.isDeleting = false;
 
       state.loading = false;
-      state.decks = action.payload;
+      const cards = {};
+      action.payload.forEach(card => {
+        if (!cards[card.id]) {
+          cards[card.id] = [];
+        }
+        cards[card.id].push(card);
+      });
+      state.cards = cards;
     })
     .addCase(getAllCards.rejected, state => {
       state.loading = false;
-      state.errorMessage = "No associated deck found";
+      state.errorMessage = "No associated card found";
     });
 });
 
