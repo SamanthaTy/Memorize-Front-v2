@@ -18,7 +18,9 @@ const Deck = ({ deck }: DeckProps) => {
       <div className="flip-card">
         <div className="flex flip-card-inner">
           <div className="flip-card-front">
-            <h3 className="title py-2">{deck.name}</h3>
+            <a href={`/decks/${deck.id}`}>
+            <h3 className="title py-2" >{deck.name}</h3>
+            </a>
             <p className="text-sm">{deck.description}</p>
             <p className="text-xs">15 cartes</p>
             <ul className="text-sm">

@@ -1,16 +1,12 @@
 import { useState } from "react";
 
-import Card from "./Card";
 import CreateCardModal from "./CreateCardModal";
-import EditCardModal from "./Card/EditCardModal";
-import DeleteCardModal from "./Card/DeleteCardModal";
 import EditDeckModal from "../Decks/DeckList/Deck/EditDeckModal";
 import DeleteDeckModal from "../Decks/DeckList/Deck/DeleteDeckModal";
+import CardList from "./CardList";
 
 function Cards() {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   const [isEditDeckModalOpen, setIsEditDeckModalOpen] = useState(false);
   const [isDeleteDeckModalOpen, setIsDeleteDeckModalOpen] = useState(false);
@@ -19,17 +15,12 @@ function Cards() {
     setIsCreateModalOpen(true);
   };
 
-  const handleEditClick = () => {
-    setIsEditModalOpen(true);
-  };
-
-  const handleDeleteClick = () => {
-    setIsDeleteModalOpen(true);
-  };
-
   return (
+    
     <main className="container mx-auto p-4">
+
       <div className="flex space-x-4 mb-4">
+
         <button
           className="bg-blue-500 text-white px-4 py-2 rounded"
           onClick={() => {
@@ -69,6 +60,13 @@ function Cards() {
         >
           Nouvelle Carte
         </button>
+        <CreateCardModal
+          isOpen={isCreateModalOpen}
+          onClose={() => {
+            setIsCreateModalOpen(false);
+          }}
+        />
+
 
         <input
           type="text"
@@ -77,44 +75,13 @@ function Cards() {
         />
       </div>
 
-      <CreateCardModal
-        isOpen={isCreateModalOpen}
-        onClose={() => {
-          setIsCreateModalOpen(false);
-        }}
-      />
 
-      <div className="space-x-4">
-        <Card />
-        <button
-          className="bg-blue-500 text-white px-4 py-2 mt-4 rounded"
-          onClick={handleEditClick}
-        >
-          Edit
-        </button>
-        <button
-          className="bg-red-500 text-white px-4 py-2 mt-4 rounded"
-          onClick={handleDeleteClick}
-        >
-          Delete
-        </button>
-
-        <EditCardModal
-          isOpen={isEditModalOpen}
-          onClose={() => {
-            setIsEditModalOpen(false);
-          }}
-        />
-
-        <DeleteCardModal
-          isOpen={isDeleteModalOpen}
-          onClose={() => {
-            setIsDeleteModalOpen(false);
-          }}
-        />
+      <div className="flex flex-wrap">
+        <CardList />
       </div>
     </main>
-  );
+    
+  );  
 }
 
 export default Cards;

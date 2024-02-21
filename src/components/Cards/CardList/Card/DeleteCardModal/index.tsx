@@ -1,4 +1,4 @@
-import ModalContainer, { ModalProps } from "../../../ModalContainer";
+import ModalContainer, { ModalProps } from "../../../../ModalContainer";
 
 const DeleteCardModal = ({isOpen, onClose}: ModalProps) => {
   return (
