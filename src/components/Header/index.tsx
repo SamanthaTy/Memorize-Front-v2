@@ -1,59 +1,65 @@
-import logo from "../../assets/flashcard-icon.png";
+import { Link, useNavigate } from "react-router-dom";
+import logo from "../../assets/memorize logo.png";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { logout } from "../../store/actions/login";
 
 const Header = () => {
-
-// Use the state stored in our reducer so the button "Déconnection" and the welcome text only appear when the user is logged in. 
+  // Use the state stored in our reducer so the button "Déconnection" and the welcome text only appear when the user is logged in.
   const dispatch = useAppDispatch();
   const isLogged = useAppSelector((state) => state.login.isLogged);
-  console.log(isLogged)
- 
-  const username = useAppSelector((state) => state.login.username);
+  console.log(isLogged);
+
+  const navigate = useNavigate();
 
   const handleDisconnectClick = () => {
     dispatch(logout());
-  }
+    navigate("/");
+  };
 
   return (
-    <>
-      <header className="header-container w-screen flex justify-between h-10 border-b-4 box-content py-10">
-        <div className="flex items-center">
-          <a href="/">
-            <img src={logo} alt="Logo Mem'O'rize" className="flex" />
-          </a>
-          <a href="/">
-          <h1 className="title flex">MEM'O'RIZE</h1>
-          </a>
-        </div>
-        <div className="btn-container flex content-end">
-          <a 
-            className="btn-header border-2 px-5 pt-1.5 mx-5 border-black rounded-md"
-            href="/profile">
-            Mon compte
-          </a>
+    <header className="bg-F5E9E0 text-1F3D75 h-21 flex items-center justify-between p-4">
+      <div className="flex items-center">
+        <a href="/">
+          <img src={logo} alt="Logo Mem'O'rize" className="h-20 mr-2" />
+        </a>
+        <div className="flex items-center"></div>
+        <a href="/" className="text-xl font-semibold">
+          MEM'O'RIZE
+        </a>
+      </div>
+      <div className="flex items-center space-x-4">
+        <Link
+          className="px-4 py-2 rounded-full transition-colors duration-300 ease-in-out hover:bg-1F3D75 hover:text-F5E9E0"
+          to="/profile"
+        >
+          Accueil
+        </Link>
 
-          <a 
-            className="btn-header border-2 px-5 pt-1.5 mx-5 border-black rounded-md"
-            href="/decks">
-            Mes decks
-          </a>
+        {isLogged && (
+          <>
+            <Link
+              className="px-4 py-2 rounded-full transition-colors duration-300 ease-in-out hover:bg-1F3D75 hover:text-F5E9E0"
+              to="/profile"
+            >
+              Mon compte
+            </Link>
 
-          {isLogged && 
-            <button 
-              className="btn-header border-2 px-5 mx-5 border-black rounded-md"
+            <Link
+              className="px-4 py-2 rounded-full transition-colors duration-300 ease-in-out hover:bg-1F3D75 hover:text-F5E9E0"
+              to="/decks"
+            >
+              Mes decks
+            </Link>
+            <button
+              className="px-4 py-2 rounded-full transition-colors duration-300 ease-in-out hover:bg-1F3D75 hover:text-F5E9E0"
               onClick={handleDisconnectClick}
             >
               Déconnexion
             </button>
-          }
-          {isLogged && 
-            <p>Bienvenue {username}</p>         
-          }
-         
-        </div>
-      </header>
-    </>
+          </>
+        )}
+      </div>
+    </header>
   );
 };
 
