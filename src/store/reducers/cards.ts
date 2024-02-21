@@ -2,6 +2,7 @@ import { createReducer } from "@reduxjs/toolkit";
 import { getAllCards } from "../actions/cards/allcards";
 
 import { createCard } from "../actions/cards/createCard";
+import { deleteCard } from "../actions/cards/deleteCard";
 
 export interface CreateCardProps {
   deckId: number;
@@ -92,6 +93,28 @@ const cardsReducer = createReducer(initialState, (builder) => {
     .addCase(createCard.rejected, (state) => {
       state.loading = false;
       state.errorMessage = "Please set a name for this card";
+    })
+    // DELETE DECK
+    .addCase(deleteCard.pending, (state) => {
+      state.loading = true;
+      state.errorMessage = null;
+    })
+    .addCase(deleteCard.fulfilled, (state, action) => {
+      state.loading = false;
+
+      state.cards = state.cards.filter((card) => card.id !== action.payload);
+
+      state.isFetching = false;
+      state.isCreating = false;
+      state.isEditing = false;
+      state.isDeleting = true;
+
+      state.errorMessage = null;
+    })
+    .addCase(deleteCard.rejected, (state, action) => {
+      state.loading = false;
+      state.errorMessage =
+        action.error.message || "An error occurred while deleting the card";
     });
 });
 
