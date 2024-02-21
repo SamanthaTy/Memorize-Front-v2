@@ -1,5 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { getAllCards } from "../actions/cards/allcards";
+import { editCard } from "../actions/cards/editCard";
 
 export interface CardInterface {
   id: number;
@@ -64,6 +65,31 @@ const cardsReducer = createReducer(initialState, (builder) => {
     .addCase(getAllCards.rejected, (state) => {
       state.loading = false;
       state.errorMessage = "No associated card found";
+    })
+
+    // EDIT CARD
+    .addCase(editCard.pending, (state) => {
+      state.loading = true;
+      state.errorMessage = null;
+    })
+    .addCase(editCard.fulfilled, (state, action) => {
+      state.loading = false;
+
+      state.cards = state.cards.map((card) =>
+        card.id === action.payload.id ? action.payload : card
+      );
+
+      state.isFetching = false;
+      state.isCreating = false;
+      state.isEditing = true;
+      state.isDeleting = false;
+
+      state.errorMessage = null;
+    })
+    .addCase(editCard.rejected, (state, action) => {
+      state.loading = false;
+      state.errorMessage =
+        action.error.message || "An error occurred while editing the card";
     });
 });
 
