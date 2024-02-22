@@ -9,7 +9,12 @@ export const getAllCards = createAsyncThunk(GET_ALL_CARDS, async (deckId) => {
 
   if (userId) {
     const response = await axios.get(
-      `${import.meta.env.VITE_API_URL}/account/${userId}/decks/${deckId}/cards`
+      `${import.meta.env.VITE_API_URL}/account/${userId}/decks/${deckId}/cards`,
+      {
+        headers: {
+          authorization: localStorage.getItem("accessToken"),
+        },
+      }
     );
 
     return response.data;
