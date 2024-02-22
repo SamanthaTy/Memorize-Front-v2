@@ -29,7 +29,7 @@ function App() {
 // With React Router, we use App as the root element. The components Header and Footer will be common to all the pages and Outlet will allow the app to insert the component to render per URL
 
   return (
-    <div>
+    <div className="flex flex-col h-screen">
       <Header />
       <main className="flex flex-col justify-items-center">
         <Outlet />

@@ -1,4 +1,5 @@
-import logo from "../../assets/flashcard-icon.png";
+import { Link } from "react-router-dom";
+import logo from "../../assets/Rengoku.png";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { logout } from "../../store/actions/login";
 
@@ -17,41 +18,49 @@ const Header = () => {
 
   return (
     <>
-      <header className="header-container w-screen flex justify-between h-10 border-b-4 box-content py-10">
+      <header className="header-container border-b-4 border-orange-600 ">
+
+        <div className="w-screen flex justify-between h-10 box-content py-10">
         <div className="flex items-center">
-          <a href="/">
-            <img src={logo} alt="Logo Mem'O'rize" className="flex" />
-          </a>
-          <a href="/">
+          <Link to="/">
+            <img src={logo} alt="Logo Mem'O'rize" className="flex max-w-32" />
+          </Link>
+          <Link to="/">
           <h1 className="title flex">MEM'O'RIZE</h1>
-          </a>
+          </Link>
         </div>
-        <div className="btn-container flex content-end">
-          <a 
-            className="btn-header border-2 px-5 pt-1.5 mx-5 border-black rounded-md"
-            href="/profile">
-            Mon compte
-          </a>
 
-          <a 
-            className="btn-header border-2 px-5 pt-1.5 mx-5 border-black rounded-md"
-            href="/decks">
-            Mes decks
-          </a>
-
-          {isLogged && 
-            <button 
-              className="btn-header border-2 px-5 mx-5 border-black rounded-md"
-              onClick={handleDisconnectClick}
+          <div className="btn-container flex content-end">
+            <Link to= "/profile"
+              className="btn-header border-2 px-5 pt-1.5 mx-5 border-black rounded-md"
             >
-              Déconnexion
-            </button>
-          }
+              Mon compte
+            </Link>
+
+            <Link to="/decks"
+              className="btn-header border-2 px-5 pt-1.5 mx-5 border-black rounded-md"
+              >
+              Mes decks
+            </Link>
+
+            {isLogged && 
+              
+              <button 
+                className="flex btn-header border-2 px-5 pt-1.5 mx-5 border-black rounded-md"
+                onClick={handleDisconnectClick}
+              >
+                Déconnexion
+              </button>
+            }
+          </div>
+        </div>
           {isLogged && 
-            <p>Bienvenue {username}</p>         
+            <div className="flex justify-end">
+              <p className="flex justify-end pr-5 pb-2">Bienvenue {username}</p> 
+            </div>        
           }
          
-        </div>
+        
       </header>
     </>
   );
