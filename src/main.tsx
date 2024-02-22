@@ -9,6 +9,7 @@ import Home from "./components/Home/index.tsx";
 import Cards from "./components/Cards/index.tsx";
 import Profile from "./components/Profile/index.tsx";
 import Error from "./components/Error/index.tsx";
+import TrainingSession from "./components/TrainingSession/index.tsx";
 import { CheckAuthentication } from "./components/CheckAuthentication";
 
 import "./index.scss";
@@ -26,7 +27,7 @@ const router = createBrowserRouter([
       { path: "/decks", element: <Decks /> },
       { path: "/decks/:id", element: <Cards /> }, // (user_id)
       { path: "/profile", element: <Profile /> },
-      //{path: "/decks/:id/trainingsession", element: <TrainingSession />},
+      { path: "/decks/:id/trainingsession", element: <TrainingSession />},
     ],
   },
 ]);
