@@ -25,6 +25,7 @@ const loginReducer = createReducer(initialState, (builder) => {
       state.username = action.payload.username;
 
       localStorage.setItem("accessToken", action.payload.accessToken);
+      localStorage.setItem("refreshToken", action.payload.refreshToken);
       localStorage.setItem("username", action.payload.username);
       localStorage.setItem("id", action.payload.id);
     })
@@ -35,6 +36,7 @@ const loginReducer = createReducer(initialState, (builder) => {
       state.username = null;
       state.isLogged = false;
       localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
       localStorage.removeItem("username");
       localStorage.removeItem("id");
     })
