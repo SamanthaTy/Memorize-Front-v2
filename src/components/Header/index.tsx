@@ -30,7 +30,7 @@ const Header = () => {
       <div className="flex items-center space-x-4">
         <Link
           className="px-4 py-2 rounded-full transition-colors duration-300 ease-in-out hover:bg-1F3D75 hover:text-F5E9E0"
-          to="/profile"
+          to="/"
         >
           Accueil
         </Link>
