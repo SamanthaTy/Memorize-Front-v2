@@ -2,24 +2,26 @@ import { FormEvent, useState } from "react";
 import ModalContainer, { ModalProps } from "../../../../ModalContainer";
 import { editCard } from "../../../../../store/actions/cards/editCard";
 import { useAppDispatch } from "../../../../../hooks/redux";
+import { useParams } from "react-router-dom";
 
 interface EditCardModalProps extends ModalProps {
   cardId: number | null;
 }
 
 const EditCardModal = ({ isOpen, onClose, cardId }: EditCardModalProps) => {
-
   const [updatedCard, setUpdatedCard] = useState({
     front: "",
     back: "",
   });
+
+  const { deckId } = useParams();
 
   const dispatch = useAppDispatch();
 
   const handleEditCardSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log(updatedCard);
-    dispatch(editCard({ cardId, updatedCard }));
+    dispatch(editCard({ deckId, cardId, updatedCard }));
     setUpdatedCard({ front: "", back: "" });
     onClose();
   };
@@ -30,7 +32,6 @@ const EditCardModal = ({ isOpen, onClose, cardId }: EditCardModalProps) => {
     console.log(name, value);
     setUpdatedCard({ ...updatedCard, [name]: value });
   };
-
 
   return (
     <ModalContainer

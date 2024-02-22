@@ -57,6 +57,7 @@ function Card({ card }: CardProps) {
             onClose={() => {
               setIsEditModalOpen(false);
             }}
+            cardId={card.id}
           />
           <button
             className="bg-1F3D75 text-F5E9E0 px-4 py-2 mt-4 rounded transition-colors duration-300 ease-in-out hover:bg-F5E9E0 hover:text-1F3D75"
@@ -73,35 +74,7 @@ function Card({ card }: CardProps) {
           />
         </div>
       </div>
-      
-      <div className="flex gap-2 mt-2 justify-center item-center">
-        <button
-          className="bg-blue-500 text-white px-4 py-2 mt-4 rounded"
-          onClick={handleEditClick}
-        >
-          Edit
-        </button>
-        <EditCardModal
-          isOpen={isEditModalOpen}
-          onClose={() => {
-            setIsEditModalOpen(false);
-          }}
-          cardId={card.id}
-        />
-        <button
-          className="bg-red-500 text-white px-4 py-2 mt-4 rounded"
-          onClick={handleDeleteClick}
-        >
-          Delete
-        </button>
-        <DeleteCardModal
-          isOpen={isDeleteModalOpen}
-          onClose={() => {
-            setIsDeleteModalOpen(false);
-          }}
-        />
-      </div>   
-  </> 
+    </>
   );
 }
 

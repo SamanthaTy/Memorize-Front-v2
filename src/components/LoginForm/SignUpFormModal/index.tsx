@@ -15,8 +15,7 @@ function SignUpFormModal({ isOpen, onClose }: ModalProps) {
 
   const dispatch = useAppDispatch();
 
-  const handleCreateUserSubmit = (e) => {
-    e.preventDefault();
+  const handleCreateUserSubmit = () => {
     dispatch(createUser(userData));
   };
 

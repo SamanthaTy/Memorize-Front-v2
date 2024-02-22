@@ -1,4 +1,3 @@
-
 import { useNavigate } from "react-router-dom";
 import { FormEvent, useState } from "react";
 import { useAppDispatch } from "../../hooks/redux";
@@ -6,12 +5,11 @@ import { toggleModal } from "../../store/actions/modal";
 import { login } from "../../store/actions/login";
 import SignUpFormModal from "./SignUpFormModal";
 
-
 function LoginForm() {
-// For now, we hard code the user info to log into his account.
+  // For now, we hard code the user info to log into his account.
   const [formValues, setFormValues] = useState({
     email: "archiballe@gmail.com",
-    password: "archiballe",
+    password: "Archi123!",
   });
 
   const navigate = useNavigate();
@@ -19,8 +17,8 @@ function LoginForm() {
 
   const [isSignUpFormModalOpen, setSignUpFormModalOpen] = useState(false);
 
-// Handles sending the email and password sent to the API in order to let the user log into their account. 
-// Once the user has successfully logged in, they're redirected to the page "/decks"
+  // Handles sending the email and password sent to the API in order to let the user log into their account.
+  // Once the user has successfully logged in, they're redirected to the page "/decks"
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
@@ -31,7 +29,7 @@ function LoginForm() {
     }
   };
 
-// Handles the input fields for email and password and identifies them as the formValues' email and password.
+  // Handles the input fields for email and password and identifies them as the formValues' email and password.
   const handleChangeField = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
 
@@ -80,9 +78,12 @@ function LoginForm() {
           </a>
         </p>
       </form>
-      <SignUpFormModal 
+      <SignUpFormModal
         isOpen={isSignUpFormModalOpen}
-        onClose={() => {setSignUpFormModalOpen(false)}}/>
+        onClose={() => {
+          setSignUpFormModalOpen(false);
+        }}
+      />
     </div>
   );
 }
