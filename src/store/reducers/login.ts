@@ -1,3 +1,4 @@
+import axios from "axios";
 import { createReducer } from "@reduxjs/toolkit";
 import { login, logout, tokenCheck } from "../actions/login";
 
@@ -40,6 +41,7 @@ const loginReducer = createReducer(initialState, (builder) => {
     .addCase(tokenCheck, (state, action) => {
       const storedToken = localStorage.getItem("accessToken");
       const storedUserName = localStorage.getItem("username");
+      console.log(storedToken);
 
       if (storedToken && storedUserName) {
         state.isLogged = true;

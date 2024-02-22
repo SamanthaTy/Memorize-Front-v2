@@ -1,17 +1,19 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { EditDeckProps } from "../../reducers/decks";
 
-export const DELETE_DECK = "DELETE_DECK";
+export const DELETE_CARD = "DELETE_CARD";
 
-export const deleteDeck = createAsyncThunk<any, Partial<EditDeckProps>>(
-  DELETE_DECK,
-  async (deckId) => {
+export const deleteCard = createAsyncThunk(
+  DELETE_CARD,
+
+  async ({ deckId, cardId }) => {
     const userId = localStorage.getItem("id");
 
     if (userId) {
       const response = await axios.delete(
-        `${import.meta.env.VITE_API_URL}/account/${userId}/decks/${deckId}`,
+        `${
+          import.meta.env.VITE_API_URL
+        }/account/${userId}/decks/${deckId}/cards/${cardId}`,
         {
           headers: {
             authorization: localStorage.getItem("accessToken"),
