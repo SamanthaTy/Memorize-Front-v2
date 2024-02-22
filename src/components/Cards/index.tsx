@@ -1,16 +1,14 @@
 import { useState } from "react";
 
-import Card from "./Card";
 import CreateCardModal from "./CreateCardModal";
-import EditCardModal from "./Card/EditCardModal";
-import DeleteCardModal from "./Card/DeleteCardModal";
 import EditDeckModal from "../Decks/DeckList/Deck/EditDeckModal";
 import DeleteDeckModal from "../Decks/DeckList/Deck/DeleteDeckModal";
+import CardList from "./CardList";
+import { useParams } from "react-router-dom";
 
 function Cards() {
+  const { deckId } = useParams();
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   const [isEditDeckModalOpen, setIsEditDeckModalOpen] = useState(false);
   const [isDeleteDeckModalOpen, setIsDeleteDeckModalOpen] = useState(false);
@@ -19,19 +17,11 @@ function Cards() {
     setIsCreateModalOpen(true);
   };
 
-  const handleEditClick = () => {
-    setIsEditModalOpen(true);
-  };
-
-  const handleDeleteClick = () => {
-    setIsDeleteModalOpen(true);
-  };
-
   return (
     <main className="container mx-auto p-4">
       <div className="flex space-x-4 mb-4">
         <button
-          className="bg-blue-500 text-white px-4 py-2 rounded"
+          className="px-4 py-2 bg-1F3D75 text-F5E9E0 rounded transition-colors duration-300 ease-in-out hover:bg-F5E9E0 hover:text-1F3D75"
           onClick={() => {
             setIsEditDeckModalOpen(true);
           }}
@@ -46,10 +36,10 @@ function Cards() {
           }}
         />
 
-        <h2 className="text-3xl font-bold">Nom du Deck</h2>
+        <h2 className="text-3xl font-bold text-1F3D75">Nom du Deck</h2>
 
         <button
-          className="bg-red-500 text-white px-4 py-2 rounded"
+          className="px-4 py-2 bg-1F3D75 text-F5E9E0 rounded transition-colors duration-300 ease-in-out hover:bg-F5E9E0 hover:text-1F3D75"
           onClick={() => {
             setIsDeleteDeckModalOpen(true);
           }}
@@ -65,10 +55,17 @@ function Cards() {
 
         <button
           onClick={handleCreateClick}
-          className="bg-blue-500 text-white px-4 py-2 rounded"
+          className="px-4 py-2 bg-B4ABCE text-white rounded transition-colors duration-300 ease-in-out hover:bg-F5E9E0 hover:text-1F3D75"
         >
           Nouvelle Carte
         </button>
+        <CreateCardModal
+          isOpen={isCreateModalOpen}
+          onClose={() => {
+            setIsCreateModalOpen(false);
+          }}
+          deckId={deckId}
+        />
 
         <input
           type="text"
@@ -77,41 +74,8 @@ function Cards() {
         />
       </div>
 
-      <CreateCardModal
-        isOpen={isCreateModalOpen}
-        onClose={() => {
-          setIsCreateModalOpen(false);
-        }}
-      />
-
-      <div className="space-x-4">
-        <Card />
-        <button
-          className="bg-blue-500 text-white px-4 py-2 mt-4 rounded"
-          onClick={handleEditClick}
-        >
-          Edit
-        </button>
-        <button
-          className="bg-red-500 text-white px-4 py-2 mt-4 rounded"
-          onClick={handleDeleteClick}
-        >
-          Delete
-        </button>
-
-        <EditCardModal
-          isOpen={isEditModalOpen}
-          onClose={() => {
-            setIsEditModalOpen(false);
-          }}
-        />
-
-        <DeleteCardModal
-          isOpen={isDeleteModalOpen}
-          onClose={() => {
-            setIsDeleteModalOpen(false);
-          }}
-        />
+      <div className="flex flex-wrap">
+        <CardList />
       </div>
     </main>
   );

@@ -18,8 +18,6 @@ export const getAllDecks = createAsyncThunk(GET_ALL_DECKS, async () => {
 
     return response.data;
   } else {
-    console.log("userId est null ou undefined");
+    console.log("userId is null or undefined");
   }
 });
-
-
