@@ -13,7 +13,12 @@ export const editCard = createAsyncThunk(
         `${
           import.meta.env.VITE_API_URL
         }/account/${userId}/decks/${deckId}/cards/${cardId}`,
-        updatedCard
+        updatedCard,
+        {
+          headers: {
+            authorization: localStorage.getItem("accessToken"),
+          },
+        }
       );
 
       console.log(response);
