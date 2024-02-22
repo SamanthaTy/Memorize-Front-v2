@@ -22,6 +22,7 @@ const customStyles: Styles = {
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
+    padding: "3%",
   },
   overlay: {
     position: "fixed",
@@ -41,7 +42,6 @@ function ModalContainer({
   modalTitle,
   handleSubmitType,
 }: ModalContainerProps) {
-  
   return (
     <div>
       <Modal
@@ -51,7 +51,7 @@ function ModalContainer({
         contentLabel="Example Modal"
       >
         <div className="flex items-center justify-center pb-2 mb-2">
-          <h1 className="font-bold text-2xl">{modalTitle}</h1>
+          <h1 className="text-3xl font-bold text-1F3D75">{modalTitle}</h1>
         </div>
         <button
           className="absolute top-0 right-1 text-gray-500"
@@ -67,7 +67,7 @@ function ModalContainer({
 
           <div className="flex space-x-4">
             <button
-              className="flex bg-red-500 p-2 rounded-md text-white hover:bg-red-700"
+              className="px-4 py-2 bg-1F3D75 text-F5E9E0 rounded transition-colors duration-300 ease-in-out hover:bg-F5E9E0 hover:text-1F3D75"
               onClick={(event) => {
                 event.preventDefault();
                 onClose();
@@ -76,7 +76,7 @@ function ModalContainer({
               Annuler
             </button>
 
-            <button className="flex bg-green-500 p-2 rounded-md text-white hover:bg-green-700">
+            <button className="px-4 py-2 bg-1F3D75 text-F5E9E0 rounded transition-colors duration-300 ease-in-out hover:bg-F5E9E0 hover:text-1F3D75">
               Confirmer
             </button>
           </div>

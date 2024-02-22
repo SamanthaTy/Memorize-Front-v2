@@ -4,8 +4,10 @@ import CreateCardModal from "./CreateCardModal";
 import EditDeckModal from "../Decks/DeckList/Deck/EditDeckModal";
 import DeleteDeckModal from "../Decks/DeckList/Deck/DeleteDeckModal";
 import CardList from "./CardList";
+import { useParams } from "react-router-dom";
 
 function Cards() {
+  const { deckId } = useParams();
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
   const [isEditDeckModalOpen, setIsEditDeckModalOpen] = useState(false);
@@ -16,13 +18,10 @@ function Cards() {
   };
 
   return (
-    
     <main className="container mx-auto p-4">
-
       <div className="flex space-x-4 mb-4">
-
         <button
-          className="bg-blue-500 text-white px-4 py-2 rounded"
+          className="px-4 py-2 bg-1F3D75 text-F5E9E0 rounded transition-colors duration-300 ease-in-out hover:bg-F5E9E0 hover:text-1F3D75"
           onClick={() => {
             setIsEditDeckModalOpen(true);
           }}
@@ -37,10 +36,10 @@ function Cards() {
           }}
         />
 
-        <h2 className="text-3xl font-bold">Nom du Deck</h2>
+        <h2 className="text-3xl font-bold text-1F3D75">Nom du Deck</h2>
 
         <button
-          className="bg-red-500 text-white px-4 py-2 rounded"
+          className="px-4 py-2 bg-1F3D75 text-F5E9E0 rounded transition-colors duration-300 ease-in-out hover:bg-F5E9E0 hover:text-1F3D75"
           onClick={() => {
             setIsDeleteDeckModalOpen(true);
           }}
@@ -56,7 +55,7 @@ function Cards() {
 
         <button
           onClick={handleCreateClick}
-          className="bg-blue-500 text-white px-4 py-2 rounded"
+          className="px-4 py-2 bg-B4ABCE text-white rounded transition-colors duration-300 ease-in-out hover:bg-F5E9E0 hover:text-1F3D75"
         >
           Nouvelle Carte
         </button>
@@ -65,8 +64,8 @@ function Cards() {
           onClose={() => {
             setIsCreateModalOpen(false);
           }}
+          deckId={deckId}
         />
-
 
         <input
           type="text"
@@ -75,13 +74,11 @@ function Cards() {
         />
       </div>
 
-
       <div className="flex flex-wrap">
         <CardList />
       </div>
     </main>
-    
-  );  
+  );
 }
 
 export default Cards;

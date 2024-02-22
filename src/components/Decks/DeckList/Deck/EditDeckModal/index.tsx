@@ -3,9 +3,8 @@ import ModalContainer, { ModalProps } from "../../../../ModalContainer";
 import { editDeck } from "../../../../../store/actions/decks/editDeck";
 import { useAppDispatch } from "../../../../../hooks/redux";
 
-
 interface EditDeckModalProps extends ModalProps {
- deckId: number | null;
+  deckId: number | null;
 }
 
 const EditDeckModal = ({ isOpen, onClose, deckId }: EditDeckModalProps) => {
