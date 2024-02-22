@@ -97,6 +97,7 @@ const cardsReducer = createReducer(initialState, (builder) => {
       state.loading = false;
       state.errorMessage =
         action.error.message || "An error occurred while editing the card";
+    })
     // CREATE NEW CARD
     .addCase(createCard.pending, (state) => {
       state.loading = true;

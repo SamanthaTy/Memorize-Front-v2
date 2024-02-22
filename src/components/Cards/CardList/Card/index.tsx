@@ -101,7 +101,6 @@ function Card({ card }: CardProps) {
           }}
         />
       </div>   
-    </div>
   </> 
   );
 }
