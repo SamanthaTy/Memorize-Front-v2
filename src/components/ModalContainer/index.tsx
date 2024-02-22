@@ -65,16 +65,15 @@ function ModalContainer({
         >
           {children}
 
-          <div className="flex space-x-4">
-            <button
-              className="px-4 py-2 bg-1F3D75 text-F5E9E0 rounded transition-colors duration-300 ease-in-out hover:bg-F5E9E0 hover:text-1F3D75"
+          <div className="flex space-x-36 mt-15">
+            <img
+              src={crossLogo}
+              className="size-8"
               onClick={(event) => {
                 event.preventDefault();
                 onClose();
               }}
-            >
-              Annuler
-            </button>
+            />
 
             <button className="px-4 py-2 bg-1F3D75 text-F5E9E0 rounded transition-colors duration-300 ease-in-out hover:bg-F5E9E0 hover:text-1F3D75">
               Confirmer
