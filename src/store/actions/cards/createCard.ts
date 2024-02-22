@@ -6,7 +6,7 @@ export const CREATE_CARD = "CREATE_CARD";
 
 export const createCard = createAsyncThunk<any, CreateCardProps>(
   CREATE_CARD,
-  async ({ newCard, deckId }) => {
+  async ({ newCard, deckId }, ) => {
     const userId = localStorage.getItem("id");
 
     if (userId) {

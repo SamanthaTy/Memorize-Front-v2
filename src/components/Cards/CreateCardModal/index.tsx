@@ -7,7 +7,6 @@ const CreateCardModal = ({ isOpen, onClose, deckId }: ModalProps) => {
   const [newCard, setNewCard] = useState({
     front: "",
     back: "",
-    difficulty: 0,
   });
 
   const dispatch = useAppDispatch();
@@ -15,7 +14,7 @@ const CreateCardModal = ({ isOpen, onClose, deckId }: ModalProps) => {
   const handleCreateCardSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     dispatch(createCard({ newCard, deckId }));
-    setNewCard({ front: "", back: "", difficulty: 0 });
+    setNewCard({ front: "", back: ""});
     onClose();
   };
 
