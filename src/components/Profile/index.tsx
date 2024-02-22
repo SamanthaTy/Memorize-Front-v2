@@ -25,13 +25,12 @@ function Profile() {
     password: "*******",
   };
 
-
   return (
-    <div className="mx-auto bg-slate-400 p-10 rounded-xl">
+    <div className="mx-auto bg-F5E9E0 p-10 rounded-xl flex flex-col items-center">
       <div>
-        <p className="text-2xl font-bold mb-4">Page de Profile</p>
+        <p className="text-2xl font-bold mb-4 text-1F3D75">Page de Profile</p>
       </div>
-      <p className="text-lg font-semibold">Username:</p>
+      <p className="text-lg font-semibold text-1F3D75">Username:</p>
       <div>
         {isEditing ? (
           <input type="text" className="border rounded px-2 py-1 w-full" />
@@ -39,7 +38,7 @@ function Profile() {
           <p>{user.name}</p>
         )}
       </div>
-      <p className="text-lg font-semibold">Email:</p>
+      <p className="text-lg font-semibold text-1F3D75">Email:</p>
       <div>
         {isEditing ? (
           <input type="email" className="border rounded px-2 py-1 w-full" />
@@ -47,7 +46,18 @@ function Profile() {
           <p>{user.email}</p>
         )}
       </div>
-      <p className="text-lg font-semibold">Mot de passe:</p>
+      <p className="text-lg font-semibold text-1F3D75">Mot de passe:</p>
+      <div>
+        {isEditing ? (
+          <input
+            type="password"
+            className="border rounded px-2 py-1 w-full mb-2"
+          />
+        ) : (
+          <p>{user.password}</p>
+        )}
+      </div>
+      <p className="text-lg font-semibold text-1F3D75">Nouveau mot de passe:</p>
       <div>
         {isEditing ? (
           <input
@@ -62,7 +72,7 @@ function Profile() {
         {isEditing && (
           <button
             type="submit"
-            className="bg-blue-500 text-white px-4 py-2 rounded"
+            className="px-4 py-2 bg-1F3D75 text-F5E9E0 rounded transition-colors duration-300 ease-in-out hover:bg-F5E9E0 hover:text-1F3D75"
           >
             Save
           </button>
@@ -70,20 +80,20 @@ function Profile() {
         {isEditing && (
           <button
             onClick={handleCancelClick}
-            className="bg-blue-500 text-white px-4 py-2 rounded"
+            className="px-4 py-2 bg-1F3D75 text-F5E9E0 rounded transition-colors duration-300 ease-in-out hover:bg-F5E9E0 hover:text-1F3D75"
           >
             Cancel
           </button>
         )}
         <button
           onClick={handleEditClick}
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300"
+          className="px-4 py-2 bg-1F3D75 text-F5E9E0 rounded transition-colors duration-300 ease-in-out hover:bg-F5E9E0 hover:text-1F3D75"
         >
           Edit
         </button>
         <button
           onClick={handleDeleteClick}
-          className="bg-blue-500 text-white px-4 py-2 rounded"
+          className="px-4 py-2 bg-1F3D75 text-F5E9E0 rounded transition-colors duration-300 ease-in-out hover:bg-F5E9E0 hover:text-1F3D75"
         >
           Delete my account
         </button>
