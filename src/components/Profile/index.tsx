@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getUser } from "../../store/actions/user/getUser.ts";
+import { useDispatch } from "react-redux";
 import DeleteAccountModal from "./DeleteAccountModal";
 
 function Profile() {
@@ -6,6 +8,22 @@ function Profile() {
   const [isEditing, setIsEditing] = useState(false);
 
   const [isDeleteAccountModal, setIsDeleteAccountModal] = useState(false);
+
+  const [user, setUser] = useState({ username: "", email: "" });
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const userId = localStorage.getItem("id");
+
+    dispatch(getUser(userId))
+      .then((res) => {
+        setUser({ ...res.payload });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [dispatch]);
 
   function handleDeleteClick() {
     setIsDeleteAccountModal(true);
@@ -19,23 +37,17 @@ function Profile() {
     setIsEditing(false);
   };
 
-  const user = {
-    name: "Angèle",
-    email: "angèle@gmail.com",
-    password: "*******",
-  };
-
   return (
     <div className="mx-auto bg-F5E9E0 p-10 rounded-xl flex flex-col items-center">
       <div>
-        <p className="text-2xl font-bold mb-4 text-1F3D75">Page de Profile</p>
+        <p className="text-2xl font-bold mb-4 text-1F3D75">Page de Profil</p>
       </div>
       <p className="text-lg font-semibold text-1F3D75">Username:</p>
       <div>
         {isEditing ? (
           <input type="text" className="border rounded px-2 py-1 w-full" />
         ) : (
-          <p>{user.name}</p>
+          <p>{user.username}</p>
         )}
       </div>
       <p className="text-lg font-semibold text-1F3D75">Email:</p>
@@ -54,7 +66,7 @@ function Profile() {
             className="border rounded px-2 py-1 w-full mb-2"
           />
         ) : (
-          <p>{user.password}</p>
+          <p>******</p>
         )}
       </div>
       <p className="text-lg font-semibold text-1F3D75">Nouveau mot de passe:</p>
@@ -65,9 +77,10 @@ function Profile() {
             className="border rounded px-2 py-1 w-full mb-2"
           />
         ) : (
-          <p>{user.password}</p>
+          <p>******</p>
         )}
       </div>
+
       <div className="flex space-x-4">
         {isEditing && (
           <button
@@ -98,6 +111,7 @@ function Profile() {
           Delete my account
         </button>
       </div>
+
       <DeleteAccountModal
         isOpen={isDeleteAccountModal}
         onClose={() => {
