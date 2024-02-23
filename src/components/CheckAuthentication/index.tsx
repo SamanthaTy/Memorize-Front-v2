@@ -3,5 +3,6 @@ import { ReactNode } from "react";
 
 // Created a tokenCheck function, unused for now.
 export function CheckAuthentication(element: ReactNode) {
-  return localStorage.getItem("accessToken") ? element : <Navigate to="/" />;
+  const accessToken = localStorage.getItem("accessToken");
+  return accessToken ? element : <Navigate to="/" />;
 }

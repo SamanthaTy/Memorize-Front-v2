@@ -47,7 +47,6 @@ const decksReducer = createReducer(initialState, (builder) => {
       state.isCreating = false;
       state.isEditing = false;
       state.isDeleting = false;
-
       state.loading = false;
       state.decks = action.payload;
     })
@@ -111,9 +110,7 @@ const decksReducer = createReducer(initialState, (builder) => {
     .addCase(deleteDeck.fulfilled, (state, action) => {
       state.loading = false;
 
-      state.decks = state.decks.filter((deck) =>
-        deck.id !== action.payload 
-      );
+      state.decks = state.decks.filter((deck) => deck.id !== action.payload);
 
       state.isFetching = false;
       state.isCreating = false;

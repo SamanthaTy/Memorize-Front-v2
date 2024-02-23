@@ -12,12 +12,7 @@ export const editDeck = createAsyncThunk<any, EditDeckProps>(
     if (userId) {
       const response = await axios.patch(
         `${import.meta.env.VITE_API_URL}/account/${userId}/decks/${deckId}`,
-        updatedDeck,
-        {
-          headers: {
-            authorization: localStorage.getItem("accessToken"),
-          },
-        }
+        updatedDeck
       );
 
       console.log(response);

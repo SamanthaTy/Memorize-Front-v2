@@ -14,12 +14,7 @@ export const createCard = createAsyncThunk<any, CreateCardProps>(
         `${
           import.meta.env.VITE_API_URL
         }/account/${userId}/decks/${deckId}/cards`,
-        newCard,
-        {
-          headers: {
-            authorization: localStorage.getItem("accessToken"),
-          },
-        }
+        newCard
       );
 
       return response.data;

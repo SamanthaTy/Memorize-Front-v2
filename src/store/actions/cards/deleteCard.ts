@@ -13,12 +13,7 @@ export const deleteCard = createAsyncThunk(
       const response = await axios.delete(
         `${
           import.meta.env.VITE_API_URL
-        }/account/${userId}/decks/${deckId}/cards/${cardId}`,
-        {
-          headers: {
-            authorization: localStorage.getItem("accessToken"),
-          },
-        }
+        }/account/${userId}/decks/${deckId}/cards/${cardId}`
       );
       console.log(response);
       console.log("Hello: ", response.data);

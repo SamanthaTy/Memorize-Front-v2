@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { Deck } from "../../reducers/decks";
+import Cookies from "js-cookie";
 
 export const CREATE_DECK = "CREATE_DECK";
 
@@ -13,12 +14,7 @@ export const createDeck = createAsyncThunk<any, Partial<Deck>>(
     if (userId) {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/account/${userId}/decks`,
-        newDeck,
-        {
-          headers: {
-            authorization: localStorage.getItem("accessToken"),
-          },
-        }
+        newDeck
       );
 
       return response.data;

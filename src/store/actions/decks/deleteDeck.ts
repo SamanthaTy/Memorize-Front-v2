@@ -11,12 +11,7 @@ export const deleteDeck = createAsyncThunk<any, Partial<EditDeckProps>>(
 
     if (userId) {
       const response = await axios.delete(
-        `${import.meta.env.VITE_API_URL}/account/${userId}/decks/${deckId}`,
-        {
-          headers: {
-            authorization: localStorage.getItem("accessToken"),
-          },
-        }
+        `${import.meta.env.VITE_API_URL}/account/${userId}/decks/${deckId}`
       );
 
       console.log(response);
