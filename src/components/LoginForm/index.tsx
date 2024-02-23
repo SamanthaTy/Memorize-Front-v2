@@ -8,8 +8,8 @@ import SignUpFormModal from "./SignUpFormModal";
 function LoginForm() {
   // For now, we hard code the user info to log into his account.
   const [formValues, setFormValues] = useState({
-    email: "archiballe@gmail.com",
-    password: "Archi123!",
+    email: "patoche@gmail.com",
+    password: "Patoche123456+",
   });
 
   const navigate = useNavigate();

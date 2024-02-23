@@ -70,7 +70,7 @@ function ModalContainer({
           <div className="flex space-x-36 mt-15">
             <img
               src={crossLogo}
-              className="size-8"
+              className="size-6 mt-1"
               onClick={(event) => {
                 event.preventDefault();
                 onClose();
