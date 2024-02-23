@@ -12,16 +12,18 @@ export interface DeckProps {
 }
 
 const Deck = ({ deck }: DeckProps) => {
-  
+ 
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   const navigate = useNavigate();
 
+  const { deckId } = useParams()
 
+  
   const handleClickSession = () => {
-    
-    navigate("/decks/:id/trainingsession")
+    console.log(deckId);
+    navigate(`/decks/${deck.id}/trainingsession`)
     }
     
 

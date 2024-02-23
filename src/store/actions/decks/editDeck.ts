@@ -15,7 +15,7 @@ export const editDeck = createAsyncThunk<any, EditDeckProps>(
         updatedDeck,
         {
           headers: {
-            authorization: localStorage.getItem("accessToken"),
+            Authorization: localStorage.getItem("accessToken"),
           },
         }
       );

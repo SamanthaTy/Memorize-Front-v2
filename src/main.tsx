@@ -27,7 +27,7 @@ const router = createBrowserRouter([
       { path: "/decks", element: <Decks /> },
       { path: "/decks/:deckId", element: <Cards /> }, // (user_id)
       { path: "/profile", element: <Profile /> },
-      { path: "/decks/:id/trainingsession", element: <TrainingSession />},
+      { path: "/decks/:deckId/trainingsession", element: <TrainingSession />},
     ],
   },
 ]);

@@ -14,12 +14,16 @@ export interface TrainingSession {
   cards: Card[];
   loading: boolean;
   errorMessage: string | null;
+  currentDifficulty: number,
+  index: number,
 }
 
 const initialState: TrainingSession = { 
     cards: [],
     loading: false,
     errorMessage: null,
+    currentDifficulty: 0,
+    index: 0,
 }
 
 const trainingSessionReducer = createReducer(initialState, (builder) => {
@@ -30,6 +34,7 @@ const trainingSessionReducer = createReducer(initialState, (builder) => {
     })
 
     .addCase(getAllTrainingCards.fulfilled, (state, action) => {
+      console.log("I'm the action payload :", action.payload)
       state.loading = false;
 
       let sortedCards = state.cards
@@ -37,6 +42,10 @@ const trainingSessionReducer = createReducer(initialState, (builder) => {
 
       const filteredCards = sortedCards.slice(0, 14);
       state.cards = filteredCards
+
+      const card = state.cards[state.index];;
+      
+      console.log("I'm the filteredCards :", filteredCards)
     })
 
     .addCase(getAllTrainingCards.rejected, (state) => {
