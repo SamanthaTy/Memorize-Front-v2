@@ -1,6 +1,7 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { createUser } from "../actions/user/createUser.js";
 import { getUser } from "../actions/user/getUser.js";
+import { updateUser } from "../actions/user/updateUser.js";
 
 interface userState {
   username: string | null;
@@ -47,11 +48,28 @@ const createUserReducer = createReducer(initialState, (builder) => {
       state.errorMessage = null;
       state.username = action.payload.username;
       state.email = action.payload.email;
-      state.password = action.payload.password;
     })
     .addCase(getUser.rejected, (state) => {
       state.loading = false;
       state.errorMessage = "User not found";
+    })
+
+    // UPDATE USER
+
+    .addCase(updateUser.pending, (state) => {
+      state.loading = true;
+      state.errorMessage = null;
+    })
+    .addCase(updateUser.fulfilled, (state, action) => {
+      state.loading = false;
+      state.errorMessage = null;
+      state.username = action.payload.username;
+      state.email = action.payload.email;
+      state.password = action.payload.password;
+    })
+    .addCase(updateUser.rejected, (state) => {
+      state.loading = false;
+      state.errorMessage = "Failed to update user";
     });
 });
 
