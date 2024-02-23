@@ -14,7 +14,7 @@ const CreateCardModal = ({ isOpen, onClose, deckId }: ModalProps) => {
   const handleCreateCardSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     dispatch(createCard({ newCard, deckId }));
-    setNewCard({ front: "", back: "" });
+    setNewCard({ front: "", back: ""});
     onClose();
   };
 

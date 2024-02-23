@@ -3,6 +3,9 @@ import DeleteDeckModal from "./DeleteDeckModal";
 import "./styles.scss";
 import EditDeckModal from "./EditDeckModal";
 import { Deck as DeckInterface } from "../../../../store/reducers/decks";
+import { useNavigate, useParams } from "react-router-dom";
+
+
 
 export interface DeckProps {
   deck: DeckInterface;
@@ -12,6 +15,15 @@ const Deck = ({ deck }: DeckProps) => {
   
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
+  const navigate = useNavigate();
+
+
+  const handleClickSession = () => {
+    
+    navigate("/decks/:id/trainingsession")
+    }
+    
 
   return (
     <div className="decks-container flex">
@@ -29,7 +41,8 @@ const Deck = ({ deck }: DeckProps) => {
               <li>Hard : 5</li>
             </ul>
 
-            <button className="session-btn border-2 rounded-full border-white p-1 m-3">
+            <button className="session-btn border-2 rounded-full border-white p-1 m-3"
+            onClick={handleClickSession}>
               START
             </button>
 
