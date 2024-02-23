@@ -1,4 +1,3 @@
-import axios from "axios";
 import { createReducer } from "@reduxjs/toolkit";
 import { login, logout, tokenCheck } from "../actions/login";
 
