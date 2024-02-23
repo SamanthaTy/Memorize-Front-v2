@@ -8,13 +8,13 @@ export interface Card {
   front: string;
   back: string;
   difficulty: number;
+  currentDifficulty: number;
 }
 
 export interface TrainingSession {
   cards: Card[];
   loading: boolean;
   errorMessage: string | null;
-  currentDifficulty: number,
   index: number,
 }
 
@@ -22,7 +22,6 @@ const initialState: TrainingSession = {
     cards: [],
     loading: false,
     errorMessage: null,
-    currentDifficulty: 0,
     index: 0,
 }
 

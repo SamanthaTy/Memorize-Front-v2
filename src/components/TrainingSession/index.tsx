@@ -20,7 +20,8 @@ function TrainingSession() {
 // const { currentDifficulty } = useAppSelector((state) => state.trainingCards)
 // if (currentDifficulty === 0) return null;
  
-const [cardIndex, setCardIndex] = useState(0)
+const [cardIndex, setCardIndex] = useState(0);
+const [finishedCards, setFinishedCard] = useState();
 
 
 const handleNextCard = () => {
@@ -28,23 +29,31 @@ if (cardIndex < cards.length -1) {
   setCardIndex(cardIndex + 1)
   setCountFlip(0)
   setFlip(false)
+  setCurrentDifficulty(0)
+  
 } 
 }
+
 
 const [currentDifficulty, setCurrentDifficulty] = useState(0)
 
 const handleCurrentDifficultyClick = (event) => {
   setCurrentDifficulty(event.target.value);
-  console.log(event.target.value)
+  console.log(event.target.value);
+  
 }
 
 
-  useEffect(()=> {
-    dispatch(getAllTrainingCards(deckId)) 
-  }, [])
-  
-  const cards = useAppSelector((state) => state.trainingCards.cards);
+useEffect(()=> {
+  dispatch(getAllTrainingCards(deckId)) 
+}, [])
 
+const cards = useAppSelector((state) => state.trainingCards.cards);
+
+cards.map((card) => [...cards, card.currentDifficulty])
+const card = cards[cardIndex];
+
+console.log(card);
  
   return (
     <>
@@ -100,7 +109,7 @@ const handleCurrentDifficultyClick = (event) => {
       }
         <div className="flex w-32">
           <div className="flex justify-start">
-            { cardIndex < cards.length -1 && 
+            { cardIndex < cards.length -1 && currentDifficulty > 0 &&
             <button className="block bg-cyan-500 w-24 p-4 ml-10 rounded text-white m-2" 
             onClick={handleNextCard}>
            Next
