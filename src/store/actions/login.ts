@@ -16,7 +16,7 @@ export const login = createAsyncThunk(LOGIN, async (formData) => {
   );
   axios.defaults.headers.common[
     "authorization"
-  ] = `${response.data.accessToken}`;
+  ] = `Bearer: ${response.data.accessToken}`;
   console.log("Response from login action:", response.data);
   return response.data;
 });

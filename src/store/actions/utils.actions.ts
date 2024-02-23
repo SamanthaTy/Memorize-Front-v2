@@ -6,7 +6,7 @@ export const getAuthHeaders = () => {
 
   return {
     headers: {
-      authorization: JSON.stringify(accessToken),
+      authorization: `Bearer: ${JSON.stringify(accessToken)}`,
       "x-refresh-token": JSON.stringify(refreshToken),
     },
   };
@@ -14,7 +14,7 @@ export const getAuthHeaders = () => {
 
 export const updateTokens = (response: AxiosResponse) => {
   if (response.headers["authorization"]) {
-    const newAccessToken = response.headers["authorization"];
+    const newAccessToken = response.headers["authorization"].split(" ")[1];
     localStorage.setItem("accessToken", newAccessToken);
   }
   if (response.headers["x-refresh-token"]) {
