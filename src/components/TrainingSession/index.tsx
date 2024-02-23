@@ -31,9 +31,6 @@ function TrainingSession() {
     <div className="flex justify-center">
 
       <div className="flex justify-end w-96">
-        <button className="block bg-yellow-400 p-4 w-24 mr-10 rounded text-white m-2">
-          Flip
-        </button>
       </div>
 
       <div className="flex justify-center w-96 static">
