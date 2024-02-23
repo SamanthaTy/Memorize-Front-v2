@@ -98,18 +98,22 @@ function Profile() {
             Cancel
           </button>
         )}
-        <button
-          onClick={handleEditClick}
-          className="px-4 py-2 bg-1F3D75 text-F5E9E0 rounded transition-colors duration-300 ease-in-out hover:bg-F5E9E0 hover:text-1F3D75"
-        >
-          Edit
-        </button>
-        <button
-          onClick={handleDeleteClick}
-          className="px-4 py-2 bg-1F3D75 text-F5E9E0 rounded transition-colors duration-300 ease-in-out hover:bg-F5E9E0 hover:text-1F3D75"
-        >
-          Delete my account
-        </button>
+        {!isEditing && (
+          <>
+            <button
+              onClick={handleEditClick}
+              className="px-4 py-2 bg-1F3D75 text-F5E9E0 rounded transition-colors duration-300 ease-in-out hover:bg-F5E9E0 hover:text-1F3D75"
+            >
+              Edit
+            </button>
+            <button
+              onClick={handleDeleteClick}
+              className="px-4 py-2 bg-1F3D75 text-F5E9E0 rounded transition-colors duration-300 ease-in-out hover:bg-F5E9E0 hover:text-1F3D75"
+            >
+              Delete my account
+            </button>
+          </>
+        )}
       </div>
 
       <DeleteAccountModal
