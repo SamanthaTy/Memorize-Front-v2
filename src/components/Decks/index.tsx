@@ -1,10 +1,9 @@
 import { useState } from "react";
 import DeckList from "./DeckList";
 import CreateDeckModal from "./CreateDeckModal";
-import { useAppSelector } from "../../hooks/redux";
 
 const Decks = () => {
-  const username = useAppSelector((state) => state.login.username);
+  const username = localStorage.getItem("username");
 
   const [isCreateModalOpen, setCreateModalOpen] = useState(false);
 

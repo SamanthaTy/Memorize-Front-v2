@@ -1,4 +1,13 @@
+import { useState } from "react";
+import DeleteAccountModal from "../DeleteAccountModal";
+
 function AccountInfo({ toggleEdit, loggedUser }) {
+  const [isDeleteAccountModal, setIsDeleteAccountModal] = useState(false);
+
+  const handleDeleteClick = () => {
+    setIsDeleteAccountModal(true);
+  };
+
   return (
     <section>
       <p>Username:</p>
@@ -10,7 +19,13 @@ function AccountInfo({ toggleEdit, loggedUser }) {
       <p>Nouveau mot de passe:</p>
       <p>******</p>
       <button onClick={toggleEdit}>Edit</button>
-      <button>Delete my account</button>
+      <button onClick={handleDeleteClick}>Delete my account</button>
+      <DeleteAccountModal
+        isOpen={isDeleteAccountModal}
+        onClose={() => {
+          setIsDeleteAccountModal(false);
+        }}
+      />
     </section>
   );
 }

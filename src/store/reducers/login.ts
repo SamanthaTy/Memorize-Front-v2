@@ -21,33 +21,29 @@ const loginReducer = createReducer(initialState, (builder) => {
       console.log("Connexion réussie :", action.payload);
       console.log("isLogged :", action.payload.isLogged);
       state.isLogged = true;
-      state.username = action.payload.username;
-
       localStorage.setItem("accessToken", action.payload.accessToken);
       localStorage.setItem("username", action.payload.username);
+      localStorage.setItem("email", action.payload.email);
       localStorage.setItem("id", action.payload.id);
     })
     .addCase(login.rejected, (state) => {
       state.errorMessage = "identifiant ou mot de passe incorrect";
     })
     .addCase(logout, (state) => {
-      state.username = null;
       state.isLogged = false;
       localStorage.removeItem("accessToken");
       localStorage.removeItem("username");
+      localStorage.removeItem("email");
       localStorage.removeItem("id");
     })
-    .addCase(tokenCheck, (state, action) => {
+    .addCase(tokenCheck, (state) => {
       const storedToken = localStorage.getItem("accessToken");
       const storedUserName = localStorage.getItem("username");
-      console.log(storedToken);
 
       if (storedToken && storedUserName) {
         state.isLogged = true;
-        state.username = storedUserName;
       } else {
         state.isLogged = false;
-        state.username = null;
       }
     });
 });

@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { FormEvent, useState } from "react";
 import { useAppDispatch } from "../../hooks/redux";
-import { toggleModal } from "../../store/actions/modal";
 import { login } from "../../store/actions/login";
 import SignUpFormModal from "./SignUpFormModal";
 
