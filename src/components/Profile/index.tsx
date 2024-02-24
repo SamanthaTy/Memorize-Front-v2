@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useAppDispatch } from "../../hooks/redux";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import EditAccountForm from "./EditAccountForm";
 import AccountInfo from "./AccountInfo";
 import { getUser } from "../../store/actions/user/getUser";
@@ -15,10 +15,7 @@ function Profile() {
     dispatch(getUser());
   }, [dispatch]);
 
-  const loggedUser = {
-    email: localStorage.getItem("email"),
-    username: localStorage.getItem("username"),
-  };
+  const loggedUser = useAppSelector((state) => state.login);
 
   return (
     <section>

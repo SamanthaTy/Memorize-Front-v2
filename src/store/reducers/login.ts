@@ -1,15 +1,20 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { login, logout, tokenCheck } from "../actions/login";
+import { deleteUser } from "../actions/user/deleteUser";
 
 interface LoginState {
   isLogged: boolean;
   username: string | null;
   errorMessage: string | null;
+  email: string | null;
+  id: number | null;
 }
 
 export const initialState: LoginState = {
   isLogged: false,
   username: null,
+  email: null,
+  id: null,
   errorMessage: null,
 };
 
@@ -19,12 +24,12 @@ const loginReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(login.fulfilled, (state, action) => {
       console.log("Connexion réussie :", action.payload);
-      console.log("isLogged :", action.payload.isLogged);
       state.isLogged = true;
+      console.log("isLogged :", action.payload.isLogged);
       localStorage.setItem("accessToken", action.payload.accessToken);
-      localStorage.setItem("username", action.payload.username);
-      localStorage.setItem("email", action.payload.email);
-      localStorage.setItem("id", action.payload.id);
+      state.username = action.payload.username;
+      state.email = action.payload.email;
+      state.id = action.payload.id;
     })
     .addCase(login.rejected, (state) => {
       state.errorMessage = "identifiant ou mot de passe incorrect";
@@ -32,19 +37,19 @@ const loginReducer = createReducer(initialState, (builder) => {
     .addCase(logout, (state) => {
       state.isLogged = false;
       localStorage.removeItem("accessToken");
-      localStorage.removeItem("username");
-      localStorage.removeItem("email");
-      localStorage.removeItem("id");
     })
     .addCase(tokenCheck, (state) => {
       const storedToken = localStorage.getItem("accessToken");
-      const storedUserName = localStorage.getItem("username");
+      const storedUserName = state.username;
 
       if (storedToken && storedUserName) {
         state.isLogged = true;
       } else {
         state.isLogged = false;
       }
+    })
+    .addCase(deleteUser.fulfilled, () => {
+      return initialState;
     });
 });
 

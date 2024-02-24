@@ -7,7 +7,7 @@ import { deleteUser } from "../actions/user/deleteUser.js";
 interface userState {
   username: string | null;
   email: string | null;
-  password: string | null;
+  id: number | null;
   loading: boolean;
   errorMessage: string | null;
 }
@@ -15,7 +15,7 @@ interface userState {
 const initialState: userState = {
   username: null,
   email: null,
-  password: null,
+  id: null,
   loading: false,
   errorMessage: null,
 };
@@ -69,7 +69,7 @@ const createUserReducer = createReducer(initialState, (builder) => {
       state.loading = true;
       state.errorMessage = null;
     })
-    .addCase(updatePassword.fulfilled, (state, action) => {
+    .addCase(updatePassword.fulfilled, (state) => {
       state.loading = false;
       state.errorMessage = null;
     })
@@ -87,10 +87,7 @@ const createUserReducer = createReducer(initialState, (builder) => {
     .addCase(deleteUser.fulfilled, (state) => {
       state.loading = false;
       state.errorMessage = null;
-      state.isLogged = false;
       localStorage.removeItem("accessToken");
-      localStorage.removeItem("username");
-      localStorage.removeItem("id");
     })
     .addCase(deleteUser.rejected, (state) => {
       state.loading = false;
