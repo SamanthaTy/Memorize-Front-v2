@@ -3,12 +3,14 @@ import axios from "axios";
 
 export const GET_USER = "GET_USER";
 
-export const getUser = createAsyncThunk(GET_USER, async (userId) => {
+export const getUser = createAsyncThunk(GET_USER, async () => {
+  const userId = localStorage.getItem("id");
+  const accessToken = localStorage.getItem("accessToken");
   const response = await axios.get(
     `${import.meta.env.VITE_API_URL}/account/${userId}`,
     {
       headers: {
-        authorization: localStorage.getItem("accessToken"),
+        authorization: accessToken,
       },
     }
   );
