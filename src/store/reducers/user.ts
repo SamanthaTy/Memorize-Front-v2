@@ -88,6 +88,7 @@ const createUserReducer = createReducer(initialState, (builder) => {
       state.loading = false;
       state.errorMessage = null;
       localStorage.removeItem("accessToken");
+      localStorage.removeItem("id");
     })
     .addCase(deleteUser.rejected, (state) => {
       state.loading = false;

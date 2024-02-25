@@ -5,7 +5,6 @@ import { useAppSelector } from "../../hooks/redux";
 
 const Decks = () => {
   const { username } = useAppSelector((state) => state.login);
-  console.log(useAppSelector((state) => state.login));
 
   const [isCreateModalOpen, setCreateModalOpen] = useState(false);
 

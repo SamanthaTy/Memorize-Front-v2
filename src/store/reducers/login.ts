@@ -24,19 +24,23 @@ const loginReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(login.fulfilled, (state, action) => {
       console.log("Connexion réussie :", action.payload);
-      state.isLogged = true;
       console.log("isLogged :", action.payload.isLogged);
-      localStorage.setItem("accessToken", action.payload.accessToken);
+      state.isLogged = true;
       state.username = action.payload.username;
       state.email = action.payload.email;
-      state.id = action.payload.id;
+      localStorage.setItem("accessToken", action.payload.accessToken);
+      localStorage.setItem("id", action.payload.id);
+
     })
     .addCase(login.rejected, (state) => {
       state.errorMessage = "identifiant ou mot de passe incorrect";
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("id");
     })
     .addCase(logout, (state) => {
       state.isLogged = false;
       localStorage.removeItem("accessToken");
+      localStorage.removeItem("id");
     })
     .addCase(tokenCheck, (state) => {
       const storedToken = localStorage.getItem("accessToken");
