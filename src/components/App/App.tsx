@@ -31,7 +31,7 @@ function App() {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="container mx-auto p-4 flex-grow">
+      <main className="flex flex-col items-center justify-center container mx-auto p-4 flex-grow">
         <Outlet />
       </main>
       <Footer />

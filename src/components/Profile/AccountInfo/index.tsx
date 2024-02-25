@@ -1,5 +1,6 @@
 import { useState } from "react";
 import DeleteAccountModal from "../DeleteAccountModal";
+import ButtonsGroup from "../EditAccountForm/ButtonsGroup";
 
 function AccountInfo({ toggleEdit, loggedUser }) {
   const [isDeleteAccountModal, setIsDeleteAccountModal] = useState(false);
@@ -9,17 +10,26 @@ function AccountInfo({ toggleEdit, loggedUser }) {
   };
 
   return (
-    <section>
-      <p>Username:</p>
-      <p>{loggedUser.username}</p>
-      <p>Email:</p>
-      <p>{loggedUser.email}</p>
-      <p>Mot de passe:</p>
-      <p>******</p>
-      <p>Nouveau mot de passe:</p>
-      <p>******</p>
-      <button onClick={toggleEdit}>Edit</button>
-      <button onClick={handleDeleteClick}>Delete my account</button>
+    <section className="flex flex-col text-center space-y-2">
+      <div>
+        <h3 className="text-lg font-semibold text-black-600 mb-1">
+          Votre identifiant:
+        </h3>
+        <p className="text-gray-800">{loggedUser.username}</p>
+      </div>
+
+      <div>
+        <h3 className="text-lg font-semibold text-black-600 mb-1">
+          Votre email:
+        </h3>
+        <p className="text-gray-800">{loggedUser.email}</p>
+      </div>
+      <ButtonsGroup
+        buttons={[
+          { text: "Edit", onClick: toggleEdit },
+          { text: "Delete my account", onClick: handleDeleteClick },
+        ]}
+      />
       <DeleteAccountModal
         isOpen={isDeleteAccountModal}
         onClose={() => {

@@ -14,7 +14,6 @@ export default {
         B4ABCE: "#B4ABCE",
       },
     },
-
   },
   plugins: [],
 };
