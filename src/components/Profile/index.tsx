@@ -15,7 +15,9 @@ function Profile() {
     dispatch(getUser());
   }, [dispatch]);
 
-  const loggedUser = useAppSelector((state) => state.login);
+  const loggedUser = useAppSelector((state) => state.user);
+
+  useAppSelector((state) => console.log(state));
 
   return (
     <section>

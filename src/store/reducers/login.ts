@@ -30,17 +30,16 @@ const loginReducer = createReducer(initialState, (builder) => {
       state.email = action.payload.email;
       localStorage.setItem("accessToken", action.payload.accessToken);
       localStorage.setItem("id", action.payload.id);
-
     })
     .addCase(login.rejected, (state) => {
       state.errorMessage = "identifiant ou mot de passe incorrect";
       localStorage.removeItem("accessToken");
       localStorage.removeItem("id");
     })
-    .addCase(logout, (state) => {
-      state.isLogged = false;
+    .addCase(logout, () => {
       localStorage.removeItem("accessToken");
       localStorage.removeItem("id");
+      return initialState;
     })
     .addCase(tokenCheck, (state) => {
       const storedToken = localStorage.getItem("accessToken");

@@ -3,6 +3,8 @@ import { getAllDecks } from "../actions/decks/allDecks";
 import { createDeck } from "../actions/decks/createDeck";
 import { editDeck } from "../actions/decks/editDeck";
 import { deleteDeck } from "../actions/decks/deleteDeck";
+import { logout } from "../actions/login";
+import { deleteUser } from "../actions/user/deleteUser";
 
 export interface EditDeckProps {
   deckId: number | null;
@@ -111,9 +113,7 @@ const decksReducer = createReducer(initialState, (builder) => {
     .addCase(deleteDeck.fulfilled, (state, action) => {
       state.loading = false;
 
-      state.decks = state.decks.filter((deck) =>
-        deck.id !== action.payload 
-      );
+      state.decks = state.decks.filter((deck) => deck.id !== action.payload);
 
       state.isFetching = false;
       state.isCreating = false;
@@ -126,6 +126,18 @@ const decksReducer = createReducer(initialState, (builder) => {
       state.loading = false;
       state.errorMessage =
         action.error.message || "An error occurred while editing the deck";
+    })
+
+    // ON LOGOUT
+
+    .addCase(logout, () => {
+      return initialState;
+    })
+
+    // ON ACCOUNT DELETION
+
+    .addCase(deleteUser.fulfilled, () => {
+      return initialState;
     });
 });
 

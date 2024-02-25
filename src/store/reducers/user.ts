@@ -3,6 +3,7 @@ import { createUser } from "../actions/user/createUser.js";
 import { getUser } from "../actions/user/getUser.js";
 import { updatePassword, updateUser } from "../actions/user/updateUser.js";
 import { deleteUser } from "../actions/user/deleteUser.js";
+import { login, logout } from "../actions/login.js";
 
 interface userState {
   username: string | null;
@@ -35,15 +36,30 @@ const createUserReducer = createReducer(initialState, (builder) => {
       state.errorMessage = "user not found";
     })
 
+    // ON LOGIN
+
+    .addCase(login.fulfilled, (state, action) => {
+      state.username = action.payload.username;
+      state.email = action.payload.email;
+    })
+
+    // ON LOGOUT
+
+    .addCase(logout, () => {
+      return initialState;
+    })
+
     // GET USER
 
     .addCase(getUser.pending, (state) => {
       state.loading = true;
       state.errorMessage = null;
     })
-    .addCase(getUser.fulfilled, (state) => {
+    .addCase(getUser.fulfilled, (state, action) => {
       state.loading = false;
       state.errorMessage = null;
+      state.username = action.payload.username;
+      state.email = action.payload.email;
     })
     .addCase(getUser.rejected, (state) => {
       state.loading = false;
@@ -55,9 +71,11 @@ const createUserReducer = createReducer(initialState, (builder) => {
       state.loading = true;
       state.errorMessage = null;
     })
-    .addCase(updateUser.fulfilled, (state) => {
+    .addCase(updateUser.fulfilled, (state, action) => {
       state.loading = false;
       state.errorMessage = null;
+      state.username = action.payload.username;
+      state.email = action.payload.email;
     })
     .addCase(updateUser.rejected, (state) => {
       state.loading = false;
@@ -89,6 +107,7 @@ const createUserReducer = createReducer(initialState, (builder) => {
       state.errorMessage = null;
       localStorage.removeItem("accessToken");
       localStorage.removeItem("id");
+      return initialState;
     })
     .addCase(deleteUser.rejected, (state) => {
       state.loading = false;
