@@ -3,13 +3,13 @@ import DeleteDeckModal from "./DeleteDeckModal";
 import "./styles.scss";
 import EditDeckModal from "./EditDeckModal";
 import { Deck as DeckInterface } from "../../../../store/reducers/decks";
+import { Link } from "react-router-dom";
 
 export interface DeckProps {
   deck: DeckInterface;
 }
 
 const Deck = ({ deck }: DeckProps) => {
-  
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
@@ -18,9 +18,9 @@ const Deck = ({ deck }: DeckProps) => {
       <div className="flip-card">
         <div className="flex flip-card-inner">
           <div className="flip-card-front">
-            <a href={`/decks/${deck.id}`}>
-            <h3 className="title py-2" >{deck.name}</h3>
-            </a>
+            <Link to={`/decks/${deck.id}`}>
+              <h3 className="title py-2">{deck.name}</h3>
+            </Link>
             <p className="text-sm">{deck.description}</p>
             <p className="text-xs">15 cartes</p>
             <ul className="text-sm">
