@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { getAllTrainingCards } from "../../store/actions/trainingSession/getTrainingCards";
 import { SetStateAction, useEffect, useState } from "react";
+import { editTrainingCards } from "../../store/actions/trainingSession/newTrainingCards";
 
 
 
@@ -21,7 +22,6 @@ function TrainingSession() {
 // if (currentDifficulty === 0) return null;
  
 const [cardIndex, setCardIndex] = useState(0);
-const [finishedCards, setFinishedCard] = useState();
 
 
 const handleNextCard = () => {
@@ -29,31 +29,43 @@ if (cardIndex < cards.length -1) {
   setCardIndex(cardIndex + 1)
   setCountFlip(0)
   setFlip(false)
-  setCurrentDifficulty(0)
-  
-} 
+  } 
 }
 
+const cards = useAppSelector((state) => state.trainingCards.cards);
 
-const [currentDifficulty, setCurrentDifficulty] = useState(0)
+// const [cardCurrentDifficulty, setCardCurrentDifficulty] = useState(0);
+// const [cardsArray, setCardsArray] = useState(cards);
+// const [isHard, setIsHard] = useState(false);
+
+let card = cards[cardIndex];
+console.log(card);
+// const cardId = card.id
+// const updatedCards = [];
 
 const handleCurrentDifficultyClick = (event) => {
-  setCurrentDifficulty(event.target.value);
-  console.log(event.target.value);
-  
+
+  const newCard = { ...card, currentDifficulty: parseInt(event.target.value, 10)}
+  console.log("I am card", card);
+  console.log("I am cardIndex", cardIndex);
+  console.log(card.currentDifficulty);
+  const newCardsTest = cards.map((card) => card.id === newCard.id ? newCard : card)
+  console.log(newCardsTest)
+  // return newCardsTest;
+
+  // setCardsArray(newCardsTest)
+// dispatch(editTrainingCards({ deckId, cardId, newCardsTest }))
 }
 
+
+
+console.log(card);
 
 useEffect(()=> {
   dispatch(getAllTrainingCards(deckId)) 
 }, [])
 
-const cards = useAppSelector((state) => state.trainingCards.cards);
 
-cards.map((card) => [...cards, card.currentDifficulty])
-const card = cards[cardIndex];
-
-console.log(card);
  
   return (
     <>
@@ -109,13 +121,13 @@ console.log(card);
       }
         <div className="flex w-32">
           <div className="flex justify-start">
-            { cardIndex < cards.length -1 && currentDifficulty > 0 &&
+            { cardIndex < cards.length -1 &&  cards[cardIndex].currentDifficulty > 0 &&
             <button className="block bg-cyan-500 w-24 p-4 ml-10 rounded text-white m-2" 
             onClick={handleNextCard}>
            Next
             </button>
             }
-            { cardIndex === cards.length -1 && 
+            { cardIndex === cards.length -1 && cards[cardIndex].currentDifficulty > 0 &&
             <button className="block bg-cyan-500 w-24 p-4 ml-10 rounded text-white m-2" 
             onClick={handleNextCard}>
            Finish

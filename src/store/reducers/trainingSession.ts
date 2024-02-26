@@ -1,14 +1,19 @@
 import { createReducer } from "@reduxjs/toolkit"
-import { getAllTrainingCards } from "../actions/trainingSession/getTrainingCards";
+import { getAllTrainingCards, setCurrentDifficulty } from "../actions/trainingSession/getTrainingCards";
+import { editTrainingCards } from "../actions/trainingSession/newTrainingCards";
 
 
+interface TrainingCard extends Card {
+  currentDifficulty: number;
+  isHard: boolean | null;
+}
 
 export interface Card {
   id: number;
   front: string;
   back: string;
   difficulty: number;
-  currentDifficulty: number;
+  // currentDifficulty: number;
 }
 
 export interface TrainingSession {
@@ -16,6 +21,7 @@ export interface TrainingSession {
   loading: boolean;
   errorMessage: string | null;
   index: number,
+  cardsToBeUpdated: Card[];
 }
 
 const initialState: TrainingSession = { 
@@ -23,6 +29,7 @@ const initialState: TrainingSession = {
     loading: false,
     errorMessage: null,
     index: 0,
+    cardsToBeUpdated: [],    
 }
 
 const trainingSessionReducer = createReducer(initialState, (builder) => {
@@ -40,17 +47,29 @@ const trainingSessionReducer = createReducer(initialState, (builder) => {
       sortedCards = action.payload.sort((a: Card, b: Card) => { return a.difficulty - b.difficulty });
 
       const filteredCards = sortedCards.slice(0, 14);
-      state.cards = filteredCards
 
-      const card = state.cards[state.index];;
+     const cardsAndCurrentDifficulty = filteredCards.map(card => ({...card, currentDifficulty: 0}));
+
+      state.cards = cardsAndCurrentDifficulty
+
+      // const card = state.cards[state.index];;
       
-      console.log("I'm the filteredCards :", filteredCards)
     })
-
+    // .addCase(editTrainingCards.fulfilled, (state, action) => {
+    //   state.cards = action.payload
+    // })
     .addCase(getAllTrainingCards.rejected, (state) => {
       state.loading = false;
       state.errorMessage = "An error occurred while preparing the training deck"
     })
-})
 
-export default trainingSessionReducer
+    // SET CURRENT DIFFICULTY
+    .addCase(setCurrentDifficulty, (state, action) => {
+      
+      let upatedCurrentDifficulty = state.cards
+      upatedCurrentDifficulty = 
+     
+    })
+});
+
+export default trainingSessionReducer;

@@ -1,4 +1,4 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 
@@ -25,4 +25,9 @@ export const getAllTrainingCards = createAsyncThunk<any, string>(GET_ALL_TRAININ
     console.log("There was an error fecthing the data.")
   }
 });
+
+export const SET_CURRENT_DIFFICULTY = "SET_CURRENT_DIFFICULTY";
+
+export const setCurrentDifficulty = createAction(SET_CURRENT_DIFFICULTY)
+
 
