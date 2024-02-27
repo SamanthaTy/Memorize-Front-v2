@@ -3,9 +3,8 @@ import DeleteDeckModal from "./DeleteDeckModal";
 import "./styles.scss";
 import EditDeckModal from "./EditDeckModal";
 import { Deck as DeckInterface } from "../../../../store/reducers/decks";
-import editLogo from "../../../../assets/pencil.png";
-import deleteLogo from "../../../../assets/trash.png";
-import startLogo from "../../../../assets/go.png"
+import AllDecksState from "../../../../store/reducers/decks"
+import { useAppSelector } from "../../../../hooks/redux";
 import AllDecksState from "../../../../store/reducers/decks"
 import { useAppSelector } from "../../../../hooks/redux";
 import { Link } from "react-router-dom";
@@ -57,15 +56,14 @@ const Deck = ({ deck }: DeckProps) => {
             />
           </div>
 
-          <div className="flex justify-center mb-3">
-            <input
-              type="image"
-              src={editLogo}
-              className="size-5 mr-10"
+            <button
+              className="edit-btn p-0.5 m-0.5"
               onClick={() => {
                 setIsEditModalOpen(true);
               }}
-            />
+            >
+              Modifier
+            </button>
             <EditDeckModal
               isOpen={isEditModalOpen}
               onClose={() => {
@@ -74,14 +72,14 @@ const Deck = ({ deck }: DeckProps) => {
               deckId={deck.id}
             />
 
-            <input
-              type="image"
-              src= {deleteLogo}
-              className="size-5 ml-10"
+            <button
+              className="delete-btn p-0.5 m-0.5"
               onClick={() => {
                 setIsDeleteModalOpen(true);
               }}
-            />
+            >
+              Supprimer
+            </button>
             <DeleteDeckModal
               isOpen={isDeleteModalOpen}
               onClose={() => {
@@ -89,7 +87,6 @@ const Deck = ({ deck }: DeckProps) => {
               }}
               deckId={deck.id}
             />
-            </div>
           </div>
         </div>
       </div>
