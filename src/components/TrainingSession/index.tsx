@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
-import { getAllTrainingCards } from "../../store/actions/trainingSession/getTrainingCards";
+import { getAllTrainingCards, newCardArray, setCurrentDifficulty } from "../../store/actions/trainingSession/getTrainingCards";
 import { SetStateAction, useEffect, useState } from "react";
 import { editTrainingCards } from "../../store/actions/trainingSession/newTrainingCards";
 
@@ -23,43 +23,35 @@ function TrainingSession() {
  
 const [cardIndex, setCardIndex] = useState(0);
 
-
-const handleNextCard = () => {
-if (cardIndex < cards.length -1) {
-  setCardIndex(cardIndex + 1)
-  setCountFlip(0)
-  setFlip(false)
-  } 
-}
-
 const cards = useAppSelector((state) => state.trainingCards.cards);
 
-// const [cardCurrentDifficulty, setCardCurrentDifficulty] = useState(0);
-// const [cardsArray, setCardsArray] = useState(cards);
-// const [isHard, setIsHard] = useState(false);
-
 let card = cards[cardIndex];
-console.log(card);
 // const cardId = card.id
 // const updatedCards = [];
 
 const handleCurrentDifficultyClick = (event) => {
-
-  const newCard = { ...card, currentDifficulty: parseInt(event.target.value, 10)}
-  console.log("I am card", card);
-  console.log("I am cardIndex", cardIndex);
-  console.log(card.currentDifficulty);
-  const newCardsTest = cards.map((card) => card.id === newCard.id ? newCard : card)
-  console.log(newCardsTest)
-  // return newCardsTest;
-
-  // setCardsArray(newCardsTest)
-// dispatch(editTrainingCards({ deckId, cardId, newCardsTest }))
+  console.log(cardIndex);
+  console.log(card.id);
+  const id = card.id;
+  const currentDifficulty = Number(event.target.value);
+  dispatch(setCurrentDifficulty({id, currentDifficulty}));
+  // card = {...card, currentDifficulty: Number(event.target.value)};
+  console.log(card);
 }
 
-
+const handleNextCard = (event) => {
+  const id = card.id;
+  console.log(id);
+  dispatch(newCardArray(id))
+  if (cardIndex < cards.length -1) {
+  setCardIndex(cardIndex + 1)
+  setCountFlip(0)
+  setFlip(false);
+  } 
+}
 
 console.log(card);
+console.log(cards);
 
 useEffect(()=> {
   dispatch(getAllTrainingCards(deckId)) 
@@ -98,7 +90,7 @@ useEffect(()=> {
           <button 
             value={1}
             className="block bg-green-500 p-4 w-24 rounded text-white m-2"
-            onClick={handleCurrentDifficultyClick}
+            onClick={(e) => handleCurrentDifficultyClick(e)}
           >
             Easy
           </button>

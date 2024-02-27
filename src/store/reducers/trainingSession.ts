@@ -1,19 +1,12 @@
-import { createReducer } from "@reduxjs/toolkit"
-import { getAllTrainingCards, setCurrentDifficulty } from "../actions/trainingSession/getTrainingCards";
-import { editTrainingCards } from "../actions/trainingSession/newTrainingCards";
-
-
-interface TrainingCard extends Card {
-  currentDifficulty: number;
-  isHard: boolean | null;
-}
+import { createReducer, current } from "@reduxjs/toolkit"
+import { setCurrentDifficulty, getAllTrainingCards, newCardArray } from "../actions/trainingSession/getTrainingCards";
 
 export interface Card {
   id: number;
   front: string;
   back: string;
   difficulty: number;
-  // currentDifficulty: number;
+  currentDifficulty: number;
 }
 
 export interface TrainingSession {
@@ -48,7 +41,7 @@ const trainingSessionReducer = createReducer(initialState, (builder) => {
 
       const filteredCards = sortedCards.slice(0, 14);
 
-     const cardsAndCurrentDifficulty = filteredCards.map(card => ({...card, currentDifficulty: 0}));
+      const cardsAndCurrentDifficulty = filteredCards.map(card => ({...card, currentDifficulty: 0}));
 
       state.cards = cardsAndCurrentDifficulty
 
@@ -62,14 +55,28 @@ const trainingSessionReducer = createReducer(initialState, (builder) => {
       state.loading = false;
       state.errorMessage = "An error occurred while preparing the training deck"
     })
-
-    // SET CURRENT DIFFICULTY
     .addCase(setCurrentDifficulty, (state, action) => {
-      
-      let upatedCurrentDifficulty = state.cards
-      upatedCurrentDifficulty = 
-     
+      const index = state.cards.findIndex((el) => el.id === action.payload.id);
+
+      state.cards[index] = {...state.cards[index], currentDifficulty: action.payload.currentDifficulty};
     })
-});
+    .addCase(newCardArray, (state, action) => {
+        console.log(action.payload);
+        const cardId = action.payload;
+        console.log(cardId);
+        const index = state.cards.findIndex((el) => el.id === cardId);
+        console.log(current(state.cards[index]));
+        console.log(index);
+        if(state.cards[index].currentDifficulty !== 3) {
+        const transferredCard = state.cards.splice(index, 1, {});
+        state.cardsToBeUpdated.push(transferredCard);
+        console.log(current(state.cards));
+        console.log(current(state.cardsToBeUpdated));
+        }
+    })
+})
+
+
+
 
 export default trainingSessionReducer;
