@@ -5,8 +5,7 @@ import EditDeckModal from "./EditDeckModal";
 import { Deck as DeckInterface } from "../../../../store/reducers/decks";
 import AllDecksState from "../../../../store/reducers/decks"
 import { useAppSelector } from "../../../../hooks/redux";
-import AllDecksState from "../../../../store/reducers/decks"
-import { useAppSelector } from "../../../../hooks/redux";
+
 import { Link } from "react-router-dom";
 import { useNavigate, useParams } from "react-router-dom";
 
