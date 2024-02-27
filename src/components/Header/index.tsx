@@ -7,7 +7,7 @@ const Header = () => {
   // Use the state stored in our reducer so the button "Déconnection" and the welcome text only appear when the user is logged in.
   const dispatch = useAppDispatch();
   const isLogged = useAppSelector((state) => state.login.isLogged);
-  console.log(isLogged);
+  console.log(`Am I currently logged in ? ${isLogged ? "Yes" : "No"}`);
 
   const navigate = useNavigate();
 

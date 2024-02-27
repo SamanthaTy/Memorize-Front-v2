@@ -14,9 +14,8 @@ const DeckList = () => {
 
   return (
     <>
-      {allDecks.map((deck) => (
-        <Deck key={deck.id} deck={deck} />
-      ))}
+      {allDecks.length > 0 &&
+        allDecks.map((deck) => <Deck key={deck.id} deck={deck} />)}
     </>
   );
 };

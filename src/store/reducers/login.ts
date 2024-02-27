@@ -1,16 +1,20 @@
-import axios from "axios";
 import { createReducer } from "@reduxjs/toolkit";
 import { login, logout, tokenCheck } from "../actions/login";
+import { deleteUser } from "../actions/user/deleteUser";
 
 interface LoginState {
   isLogged: boolean;
   username: string | null;
   errorMessage: string | null;
+  email: string | null;
+  id: number | null;
 }
 
 export const initialState: LoginState = {
   isLogged: false,
   username: null,
+  email: null,
+  id: null,
   errorMessage: null,
 };
 
@@ -23,13 +27,17 @@ const loginReducer = createReducer(initialState, (builder) => {
       console.log("isLogged :", action.payload.isLogged);
       state.isLogged = true;
       state.username = action.payload.username;
-
       localStorage.setItem("accessToken", action.payload.accessToken);
+      localStorage.setItem("refreshToken", action.payload.refreshToken);
       localStorage.setItem("username", action.payload.username);
       localStorage.setItem("id", action.payload.id);
     })
     .addCase(login.rejected, (state) => {
       state.errorMessage = "identifiant ou mot de passe incorrect";
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
+      localStorage.removeItem("username");
+      localStorage.removeItem("id");
     })
     .addCase(logout, (state) => {
       state.username = null;
@@ -38,18 +46,19 @@ const loginReducer = createReducer(initialState, (builder) => {
       localStorage.removeItem("username");
       localStorage.removeItem("id");
     })
-    .addCase(tokenCheck, (state, action) => {
+    .addCase(tokenCheck, (state) => {
       const storedToken = localStorage.getItem("accessToken");
       const storedUserName = localStorage.getItem("username");
-      console.log(storedToken);
 
       if (storedToken && storedUserName) {
         state.isLogged = true;
-        state.username = storedUserName;
       } else {
         state.isLogged = false;
-        state.username = null;
       }
+    })
+    .addCase(deleteUser.fulfilled, () => {
+      console.log("deleteUser fulfilled in login");
+      return initialState;
     });
 });
 

@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { getAuthHeaders, updateTokens } from "../utils.actions.js";
 
 export const DELETE_CARD = "DELETE_CARD";
 
@@ -14,12 +15,9 @@ export const deleteCard = createAsyncThunk(
         `${
           import.meta.env.VITE_API_URL
         }/account/${userId}/decks/${deckId}/cards/${cardId}`,
-        {
-          headers: {
-            authorization: localStorage.getItem("accessToken"),
-          },
-        }
+        getAuthHeaders()
       );
+      updateTokens(response);
       console.log(response);
       console.log("Hello: ", response.data);
 

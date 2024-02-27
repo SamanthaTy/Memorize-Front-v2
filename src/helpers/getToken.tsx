@@ -1,3 +1,4 @@
 export function getToken(): string | null {
-    return localStorage.getItem('accessToken');
+  const accessToken = localStorage.getItem("accessToken");
+  return accessToken;
 }

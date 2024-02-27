@@ -1,100 +1,31 @@
-import { useState } from "react";
-import DeleteAccountModal from "./DeleteAccountModal";
+import { useEffect, useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import EditAccountForm from "./EditAccountForm";
+import AccountInfo from "./AccountInfo";
+import { getUser } from "../../store/actions/user/getUser";
 
 function Profile() {
-  // We use useState to turn the <p> into <input> after clicking the Edit button, which will allow the user to edit.
   const [isEditing, setIsEditing] = useState(false);
 
-  const [isDeleteAccountModal, setIsDeleteAccountModal] = useState(false);
+  const dispatch = useAppDispatch();
 
-  function handleDeleteClick() {
-    setIsDeleteAccountModal(true);
-  }
+  const toggleEdit = () => setIsEditing(!isEditing);
 
-  const handleEditClick = () => {
-    setIsEditing(true);
-  };
+  useEffect(() => {
+    dispatch(getUser());
+  }, [dispatch]);
 
-  const handleCancelClick = () => {
-    setIsEditing(false);
-  };
-
-  const user = {
-    name: "Angèle",
-    email: "angèle@gmail.com",
-    password: "*******",
-  };
-
+  const loggedUser = useAppSelector((state) => state.user);
 
   return (
-    <div className="mx-auto bg-slate-400 p-10 rounded-xl">
-      <div>
-        <p className="text-2xl font-bold mb-4">Page de Profile</p>
-      </div>
-      <p className="text-lg font-semibold">Username:</p>
-      <div>
-        {isEditing ? (
-          <input type="text" className="border rounded px-2 py-1 w-full" />
-        ) : (
-          <p>{user.name}</p>
-        )}
-      </div>
-      <p className="text-lg font-semibold">Email:</p>
-      <div>
-        {isEditing ? (
-          <input type="email" className="border rounded px-2 py-1 w-full" />
-        ) : (
-          <p>{user.email}</p>
-        )}
-      </div>
-      <p className="text-lg font-semibold">Mot de passe:</p>
-      <div>
-        {isEditing ? (
-          <input
-            type="password"
-            className="border rounded px-2 py-1 w-full mb-2"
-          />
-        ) : (
-          <p>{user.password}</p>
-        )}
-      </div>
-      <div className="flex space-x-4">
-        {isEditing && (
-          <button
-            type="submit"
-            className="bg-blue-500 text-white px-4 py-2 rounded"
-          >
-            Save
-          </button>
-        )}
-        {isEditing && (
-          <button
-            onClick={handleCancelClick}
-            className="bg-blue-500 text-white px-4 py-2 rounded"
-          >
-            Cancel
-          </button>
-        )}
-        <button
-          onClick={handleEditClick}
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300"
-        >
-          Edit
-        </button>
-        <button
-          onClick={handleDeleteClick}
-          className="bg-blue-500 text-white px-4 py-2 rounded"
-        >
-          Delete my account
-        </button>
-      </div>
-      <DeleteAccountModal
-        isOpen={isDeleteAccountModal}
-        onClose={() => {
-          setIsDeleteAccountModal(false);
-        }}
-      />
-    </div>
+    <section className="mx-auto bg-F5E9E0 p-10 rounded-xl flex flex-col items-center">
+      <h1 className="text-2xl font-bold mb-4 text-1F3D75">Page de Profil</h1>
+      {isEditing ? (
+        <EditAccountForm toggleEdit={toggleEdit} />
+      ) : (
+        <AccountInfo toggleEdit={toggleEdit} loggedUser={loggedUser} />
+      )}
+    </section>
   );
 }
 

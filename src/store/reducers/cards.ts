@@ -4,6 +4,8 @@ import { editCard } from "../actions/cards/editCard";
 
 import { createCard } from "../actions/cards/createCard";
 import { deleteCard } from "../actions/cards/deleteCard";
+import { logout } from "../actions/login";
+import { deleteUser } from "../actions/user/deleteUser";
 
 export interface CreateCardProps {
   deckId: number;
@@ -140,7 +142,18 @@ const cardsReducer = createReducer(initialState, (builder) => {
       state.loading = false;
       state.errorMessage =
         action.error.message || "An error occurred while deleting the card";
+    })
 
+    // ON LOGOUT
+
+    .addCase(logout, () => {
+      return initialState;
+    })
+
+    // ON ACCOUNT DELETION
+
+    .addCase(deleteUser.fulfilled, () => {
+      return initialState;
     });
 });
 

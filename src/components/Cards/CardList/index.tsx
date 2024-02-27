@@ -5,29 +5,24 @@ import Card from "./Card";
 import { useParams } from "react-router-dom";
 
 const cardList = () => {
-
   const { deckId } = useParams();
-const dispatch = useAppDispatch();
-const allCards = useAppSelector((state) => state.cards.cards);
-console.log(allCards);
+  const dispatch = useAppDispatch();
+  const allCards = useAppSelector((state) => state.cards.cards);
+  console.log(allCards);
 
+  useEffect(() => {
+    dispatch(getAllCards(deckId));
+  }, []);
 
-
-useEffect(() => {
-  dispatch(getAllCards(deckId))
-}, [])
-
-
-// const filteredCards = allCards.filter((card) => card.deck_id === deckId)
+  // const filteredCards = allCards.filter((card) => card.deck_id === deckId)
 
   return (
     <>
-    {allCards.map((card) => (
+      {allCards.map((card) => (
         <Card key={card.id} card={card} />
       ))}
     </>
-  )
-
+  );
 };
 
 export default cardList;
