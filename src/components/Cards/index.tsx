@@ -7,6 +7,7 @@ import CardList from "./CardList";
 import { useParams } from "react-router-dom";
 import editLogo from "../../assets/pencil.png";
 import deleteLogo from "../../assets/trash.png";
+import { useAppSelector } from "../../hooks/redux";
 
 function Cards() {
   const { deckId } = useParams();
@@ -18,6 +19,11 @@ function Cards() {
   const handleCreateClick = () => {
     setIsCreateModalOpen(true);
   };
+
+  const deckSelected = useAppSelector((state) =>
+    state.decks.decks.find((deck) => deck.id === Number(deckId))
+  );
+  console.log("Hello i'm:", deckSelected);
 
   return (
     <main className="container mx-auto p-4">
@@ -37,7 +43,7 @@ function Cards() {
           }}
         />
 
-        <h2 className="text-3xl font-bold text-1F3D75">Nom du Deck</h2>
+        <h2 className="text-3xl font-bold text-1F3D75">{deckSelected.name}</h2>
 
         <input
           type="image"
