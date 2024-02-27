@@ -30,8 +30,19 @@
   height: 100%;
   border: 1px solid white;
   border-radius: 1rem;
-  background: linear-gradient(120deg, #517DDB 60%, #839cd3 88%,
-      #7898df 100%);
+  color: #fff;
+}
+
+.edit-btn {
+  font-size: 0.5em;
+  border: 1px solid white;
+  border-radius: 1rem;
+}
+
+.delete-btn {
+  font-size: 0.5em;
+  border: 1px solid white;
+  border-radius: 1rem;
 }
 
 .session-btn {
