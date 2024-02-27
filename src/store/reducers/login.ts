@@ -1,5 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { login, tokenCheck } from "../actions/login";
+import { login, logout, tokenCheck } from "../actions/login";
 import { deleteUser } from "../actions/user/deleteUser";
 
 interface LoginState {
@@ -39,6 +39,13 @@ const loginReducer = createReducer(initialState, (builder) => {
       localStorage.removeItem("username");
       localStorage.removeItem("id");
     })
+    .addCase(logout, (state) => {
+      state.username = null;
+      state.isLogged = false;
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("username");
+      localStorage.removeItem("id");
+    })
     .addCase(tokenCheck, (state) => {
       const storedToken = localStorage.getItem("accessToken");
       const storedUserName = localStorage.getItem("username");
@@ -49,7 +56,9 @@ const loginReducer = createReducer(initialState, (builder) => {
         state.isLogged = false;
       }
     })
-    .addCase(deleteUser.fulfilled, () => {
+    .addCase(deleteUser.fulfilled, (state) => {
+      state.username = null;
+      state.isLogged = false;
       return initialState;
     });
 });
