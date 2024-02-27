@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { getAuthHeaders, updateTokens } from "../utils.actions";
 
 export const EDIT_TRAINING_CARDS = "EDIT_TRAINING_CARDS";
 
@@ -14,12 +15,9 @@ export const editTrainingCards = createAsyncThunk(
           import.meta.env.VITE_API_URL
         }/account/${userId}/decks/${deckId}/cards/${cardId}`,
         newCardsTest,
-        {
-          headers: {
-            authorization: localStorage.getItem("accessToken"),
-          },
-        }
+        getAuthHeaders()
       );
+      updateTokens(response);
 
       console.log(response);
       console.log("Hello: ", response.data);
