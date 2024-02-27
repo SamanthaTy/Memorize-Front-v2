@@ -3,6 +3,8 @@ import "./style.scss";
 import EditCardModal from "./EditCardModal";
 import DeleteCardModal from "./DeleteCardModal";
 import { CardInterface } from "../../../../store/reducers/cards";
+import editLogo from "../../../../assets/pencil.png";
+import deleteLogo from "../../../../assets/trash.png"; 
 
 export interface CardProps {
   card: CardInterface;
@@ -30,7 +32,7 @@ function Card({ card }: CardProps) {
 
   return (
     <>
-      <div className="mt-2 mx-1">
+      <div className="mt-2 mx-4">
         <div
           className={`flip-card ${flip ? "flip" : ""}`}
           onClick={handleCardClick}
@@ -45,13 +47,13 @@ function Card({ card }: CardProps) {
           </div>
         </div>
 
-        <div className="flex mt-2 justify-center item-center gap-2">
-          <button
-            className="bg-1F3D75 text-F5E9E0 px-4 py-2 mt-4 rounded transition-colors duration-300 ease-in-out hover:bg-F5E9E0 hover:text-1F3D75"
+        <div className="flex mt-3 justify-center item-center">
+          <input
+            type="image"
+            src={editLogo}
+            className="size-6 mr-10"
             onClick={handleEditClick}
-          >
-            Edit
-          </button>
+          />
           <EditCardModal
             isOpen={isEditModalOpen}
             onClose={() => {
@@ -59,12 +61,13 @@ function Card({ card }: CardProps) {
             }}
             cardId={card.id}
           />
-          <button
-            className="bg-1F3D75 text-F5E9E0 px-4 py-2 mt-4 rounded transition-colors duration-300 ease-in-out hover:bg-F5E9E0 hover:text-1F3D75"
+
+          <input
+            type="image"
+            src={deleteLogo}
+            className="size-6 ml-10"
             onClick={handleDeleteClick}
-          >
-            Delete
-          </button>
+          />
           <DeleteCardModal
             isOpen={isDeleteModalOpen}
             onClose={() => {

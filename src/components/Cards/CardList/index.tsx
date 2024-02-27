@@ -6,9 +6,9 @@ import { useParams } from "react-router-dom";
 
 const cardList = () => {
   const { deckId } = useParams();
-  const dispatch = useAppDispatch();
-  const allCards = useAppSelector((state) => state.cards.cards);
-  console.log(allCards);
+      const dispatch = useAppDispatch();
+      const allCards = useAppSelector((state) => state.cards.cards);
+      console.log(allCards);
 
   useEffect(() => {
     dispatch(getAllCards(deckId));
