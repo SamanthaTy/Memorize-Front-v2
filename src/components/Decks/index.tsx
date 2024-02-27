@@ -10,10 +10,10 @@ const Decks = () => {
 
   return (
     <>
-      <h2 className="flex content-start ">Salut {username} !</h2>
+      <h2 className="flex content-start text-2xl mt-3">Salut {username} !</h2>
       <div className="flex justify-end space-x-4 mb-4">
         <button
-          className="bg-blue-500 text-white px-4 py-2 rounded"
+          className="bg-blue-500 text-white px-4 py-2 rounded mt-5 mb-5"
           onClick={(event) => {
             event.preventDefault();
             setCreateModalOpen(true);

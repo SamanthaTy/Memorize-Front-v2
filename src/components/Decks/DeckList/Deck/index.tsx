@@ -31,7 +31,7 @@ const Deck = ({ deck }: DeckProps) => {
     
 
   return (
-    <div className="decks-container flex">
+    <div className="decks-container flex m-4">
       <div className="flip-card">
         <div className="flex flip-card-inner">
           <div className="flip-card-front">
@@ -55,14 +55,15 @@ const Deck = ({ deck }: DeckProps) => {
             />
           </div>
 
-            <button
+            <input
+              type="image"
               className="edit-btn p-0.5 m-0.5"
               onClick={() => {
                 setIsEditModalOpen(true);
               }}
             >
               Modifier
-            </button>
+            </input>
             <EditDeckModal
               isOpen={isEditModalOpen}
               onClose={() => {
