@@ -8,6 +8,9 @@ import { useAppSelector } from "../../../../hooks/redux";
 
 import { Link } from "react-router-dom";
 import { useNavigate, useParams } from "react-router-dom";
+import editLogo from "../../../../assets/pencil.png";
+import deleteLogo from "../../../../assets/trash.png";
+import startLogo from "../../../../assets/go.png"
 
 export interface DeckProps {
   deck: DeckInterface;
@@ -55,15 +58,15 @@ const Deck = ({ deck }: DeckProps) => {
             />
           </div>
 
+          <div className="flex justify-center mb-3">
             <input
               type="image"
-              className="edit-btn p-0.5 m-0.5"
+              src={editLogo}
+              className="size-5 mr-10"
               onClick={() => {
                 setIsEditModalOpen(true);
               }}
-            >
-              Modifier
-            </input>
+            />
             <EditDeckModal
               isOpen={isEditModalOpen}
               onClose={() => {
@@ -72,14 +75,14 @@ const Deck = ({ deck }: DeckProps) => {
               deckId={deck.id}
             />
 
-            <button
-              className="delete-btn p-0.5 m-0.5"
+            <input
+              type="image"
+              src= {deleteLogo}
+              className="size-5 ml-10"
               onClick={() => {
                 setIsDeleteModalOpen(true);
               }}
-            >
-              Supprimer
-            </button>
+            />
             <DeleteDeckModal
               isOpen={isDeleteModalOpen}
               onClose={() => {
@@ -87,6 +90,7 @@ const Deck = ({ deck }: DeckProps) => {
               }}
               deckId={deck.id}
             />
+            </div>
           </div>
         </div>
       </div>
