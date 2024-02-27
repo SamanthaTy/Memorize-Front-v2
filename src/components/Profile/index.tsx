@@ -18,8 +18,8 @@ function Profile() {
   const loggedUser = useAppSelector((state) => state.user);
 
   return (
-    <section className="flex flex-col bg-slate-400 p-10 rounded-xl mx-auto text-center items-center justify-center">
-      <h1 className="text-2xl font-bold mb-4">Page de Profil</h1>
+    <section className="mx-auto bg-F5E9E0 p-10 rounded-xl flex flex-col items-center">
+      <h1 className="text-2xl font-bold mb-4 text-1F3D75">Page de Profil</h1>
       {isEditing ? (
         <EditAccountForm toggleEdit={toggleEdit} />
       ) : (

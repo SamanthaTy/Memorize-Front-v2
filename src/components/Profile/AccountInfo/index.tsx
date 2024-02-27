@@ -12,17 +12,17 @@ function AccountInfo({ toggleEdit, loggedUser }) {
   return (
     <section className="flex flex-col text-center space-y-2">
       <div>
-        <h3 className="text-lg font-semibold text-black-600 mb-1">
-          Votre identifiant:
+        <h3 className="text-lg font-semibold text-1F3D75 mb-1">
+          Identifiant :
         </h3>
-        <p className="text-gray-800">{loggedUser.username}</p>
+        <p>{loggedUser.username}</p>
       </div>
 
       <div>
-        <h3 className="text-lg font-semibold text-black-600 mb-1">
-          Votre email:
+        <h3 className="text-lg font-semibold text-1F3D75 mb-1">
+          Email :
         </h3>
-        <p className="text-gray-800">{loggedUser.email}</p>
+        <p>{loggedUser.email}</p>
       </div>
       <ButtonsGroup
         buttons={[
