@@ -49,7 +49,7 @@ function LoginForm() {
           value={formValues.email}
           onChange={handleChangeField}
         />
-        <p className="block text-gray-600 text-sm font-medium mb-1">Email</p>
+        <p className="block text-gray-600 text-sm font-medium mt-1">Mot de passe</p>
         <input
           type="password"
           name="password"
