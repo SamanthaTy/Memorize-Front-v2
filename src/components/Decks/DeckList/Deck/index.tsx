@@ -3,11 +3,8 @@ import DeleteDeckModal from "./DeleteDeckModal";
 import "./styles.scss";
 import EditDeckModal from "./EditDeckModal";
 import { Deck as DeckInterface } from "../../../../store/reducers/decks";
-import AllDecksState from "../../../../store/reducers/decks"
-import { useAppSelector } from "../../../../hooks/redux";
 
 export interface DeckProps {
-
   deck: DeckInterface;
 }
 
@@ -16,9 +13,7 @@ const Deck = ({ deck }: DeckProps) => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
-  const allCards = useAppSelector((state) => state.cards.cards);
-
-    return (
+  return (
     <div className="decks-container flex">
       <div className="flip-card">
         <div className="flex flip-card-inner">
@@ -27,7 +22,7 @@ const Deck = ({ deck }: DeckProps) => {
             <h3 className="title py-2" >{deck.name}</h3>
             </a>
             <p className="text-sm">{deck.description}</p>
-            <p className="text-xs">{allCards.length} carte{allCards.length>1 ? "s" : ""} </p>
+            <p className="text-xs">15 cartes</p>
             <ul className="text-sm">
               <li>Easy : 5</li>
               <li>Medium : 5</li>
