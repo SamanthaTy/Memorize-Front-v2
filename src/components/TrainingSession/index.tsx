@@ -3,59 +3,72 @@ import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { getAllTrainingCards, newCardArray, setCurrentDifficulty } from "../../store/actions/trainingSession/getTrainingCards";
 import { SetStateAction, useEffect, useState } from "react";
 import { editTrainingCards } from "../../store/actions/trainingSession/newTrainingCards";
-
-
-
+import { updateTrainingCards } from "../../store/actions/trainingSession/updateTrainingCards";
 
 function TrainingSession() {
   const { deckId } = useParams()
-  const dispatch = useAppDispatch()
   const [flip, setFlip] = useState(false);
   const [countFlip, setCountFlip] = useState(0);
+  const [isDifficultySelected, setIsDifficultySelected] = useState(false);
+  const [cardIndex, setCardIndex] = useState(0);
 
+  const dispatch = useAppDispatch()
+  
   const handleCardClick = () => {
     setFlip(!flip)
     setCountFlip(countFlip + 1)
   };
 
-// const { currentDifficulty } = useAppSelector((state) => state.trainingCards)
-// if (currentDifficulty === 0) return null;
- 
-const [cardIndex, setCardIndex] = useState(0);
 
-const cards = useAppSelector((state) => state.trainingCards.cards);
+  const cards = useAppSelector((state) => state.trainingCards.cards);
 
-let card = cards[cardIndex];
-// const cardId = card.id
-// const updatedCards = [];
+  let card = cards[cardIndex];
 
-const handleCurrentDifficultyClick = (event) => {
   console.log(cardIndex);
-  console.log(card.id);
-  const id = card.id;
-  const currentDifficulty = Number(event.target.value);
-  dispatch(setCurrentDifficulty({id, currentDifficulty}));
-  // card = {...card, currentDifficulty: Number(event.target.value)};
+  console.log(cards.length);
+
+  const cardsLeftToMemorize = cards.filter((card) => card.isCardMemorized === false).length;
+  console.log(cardsLeftToMemorize);
+
+  const findHardCardIndex = cards.findIndex((card) => card.isCardMemorized === false);
+  console.log(findHardCardIndex);
+
+  const handleCurrentDifficultyClick = (event) => {
+    const id = card.id;
+    const currentDifficulty = Number(event.target.value);
+    dispatch(setCurrentDifficulty({id, currentDifficulty}));
+    setIsDifficultySelected(true);
+  }
+
+  const handleNextCard = (event) => {
+    const id = card.id;
+    console.log(id);
+    if (cardIndex < cards.length -1) {
+      setCardIndex(cardIndex + 1)
+    }
+    
+    setCountFlip(0);
+    setFlip(false);
+    setIsDifficultySelected(false);
+  }
+
+  const handleSessionEnd = () => {
+    const updatedDifficulties = cards.reduce((array, card) => {
+      const currentPick = {};
+      currentPick[card.id] = card.difficulty
+      array.push(currentPick)
+      return array;
+    }, [])
+
+    dispatch(updateTrainingCards(deckId, updatedDifficulties)) 
+  }
+
   console.log(card);
-}
+  console.log(cards);
 
-const handleNextCard = (event) => {
-  const id = card.id;
-  console.log(id);
-  dispatch(newCardArray(id))
-  if (cardIndex < cards.length -1) {
-  setCardIndex(cardIndex + 1)
-  setCountFlip(0)
-  setFlip(false);
-  } 
-}
-
-console.log(card);
-console.log(cards);
-
-useEffect(()=> {
-  dispatch(getAllTrainingCards(deckId)) 
-}, [])
+  useEffect(()=> {
+    dispatch(getAllTrainingCards(deckId)) 
+  }, [])
 
 
  
@@ -64,9 +77,8 @@ useEffect(()=> {
       <h1 className="flex justify-center title py-2">
         Training session
       </h1>
-      
-      <div className="flex justify-center title">
-        {cards.length > 0 && (
+        <div className="flex justify-center title">
+        {cardIndex < cards.length && (
           <div key={cards[cardIndex].id}
             className={`flip-card ${flip ? "flip" : ""}`}
             onClick={handleCardClick}
@@ -90,7 +102,7 @@ useEffect(()=> {
           <button 
             value={1}
             className="block bg-green-500 p-4 w-24 rounded text-white m-2"
-            onClick={(e) => handleCurrentDifficultyClick(e)}
+            onClick={handleCurrentDifficultyClick}
           >
             Easy
           </button>
@@ -111,28 +123,31 @@ useEffect(()=> {
        
         </div>
       }
+
+
         <div className="flex w-32">
           <div className="flex justify-start">
-            { cardIndex < cards.length -1 &&  cards[cardIndex].currentDifficulty > 0 &&
+            {/* { cardsLeftToMemorize === 0 &&
+            <button className="block bg-cyan-500 w-24 p-4 ml-10 rounded text-white m-2" 
+            onClick={handleSessionEnd}>
+           Finish
+            </button>
+            } */}
+            { cardsLeftToMemorize > 0 && isDifficultySelected ?
             <button className="block bg-cyan-500 w-24 p-4 ml-10 rounded text-white m-2" 
             onClick={handleNextCard}>
            Next
             </button>
-            }
-            { cardIndex === cards.length -1 && cards[cardIndex].currentDifficulty > 0 &&
-            <button className="block bg-cyan-500 w-24 p-4 ml-10 rounded text-white m-2" 
-            onClick={handleNextCard}>
-           Finish
-            </button>
+            : ""
             }
           </div>
         </div>
 
-        <div className="flex justify-end w-64">
+        { cardsLeftToMemorize === 0 ? (<div className="flex justify-end w-64">
             <Link to="/" className="flex justify-end">
-              <button className="block bg-black p-4 rounded text-white m-2 font-semibold" >End session</button>
+              <button className="block bg-black p-4 rounded text-white m-2 font-semibold" onClick={handleSessionEnd}>End session</button>
             </Link>
-        </div>        
+        </div>) : ""}   
       </div>  
     </>
   )

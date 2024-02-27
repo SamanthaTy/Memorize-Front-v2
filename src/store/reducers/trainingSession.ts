@@ -6,7 +6,8 @@ export interface Card {
   front: string;
   back: string;
   difficulty: number;
-  currentDifficulty: number;
+  isCardMemorized: boolean;
+  cardCounter: number;
 }
 
 export interface TrainingSession {
@@ -14,7 +15,7 @@ export interface TrainingSession {
   loading: boolean;
   errorMessage: string | null;
   index: number,
-  cardsToBeUpdated: Card[];
+  cardsSetToHard: Card[];
 }
 
 const initialState: TrainingSession = { 
@@ -22,7 +23,7 @@ const initialState: TrainingSession = {
     loading: false,
     errorMessage: null,
     index: 0,
-    cardsToBeUpdated: [],    
+    cardsSetToHard: [],    
 }
 
 const trainingSessionReducer = createReducer(initialState, (builder) => {
@@ -41,9 +42,11 @@ const trainingSessionReducer = createReducer(initialState, (builder) => {
 
       const filteredCards = sortedCards.slice(0, 14);
 
-      const cardsAndCurrentDifficulty = filteredCards.map(card => ({...card, currentDifficulty: 0}));
+      const cardsAndCurrentDifficulty = filteredCards.map(card => ({...card, isCardMemorized: false, cardCounter: 0}));
 
-      state.cards = cardsAndCurrentDifficulty
+      const setNewDifficultyToNewCards = cardsAndCurrentDifficulty.map(card => card.difficulty === 0 ? ({...card, difficulty: 1}): card);
+
+      state.cards = setNewDifficultyToNewCards;
 
       // const card = state.cards[state.index];;
       
@@ -56,27 +59,42 @@ const trainingSessionReducer = createReducer(initialState, (builder) => {
       state.errorMessage = "An error occurred while preparing the training deck"
     })
     .addCase(setCurrentDifficulty, (state, action) => {
+      console.log(action.payload);
       const index = state.cards.findIndex((el) => el.id === action.payload.id);
 
-      state.cards[index] = {...state.cards[index], currentDifficulty: action.payload.currentDifficulty};
-    })
-    .addCase(newCardArray, (state, action) => {
-        console.log(action.payload);
-        const cardId = action.payload;
-        console.log(cardId);
-        const index = state.cards.findIndex((el) => el.id === cardId);
-        console.log(current(state.cards[index]));
-        console.log(index);
-        if(state.cards[index].currentDifficulty !== 3) {
-        const transferredCard = state.cards.splice(index, 1, {});
-        state.cardsToBeUpdated.push(transferredCard);
-        console.log(current(state.cards));
-        console.log(current(state.cardsToBeUpdated));
+      if (action.payload.currentDifficulty === 1) {
+        if (state.cards[index].difficulty === 32) return;
+        state.cards[index] = { 
+          ...state.cards[index], 
+          difficulty: state.cards[index].difficulty * 2, 
+          isCardMemorized: true
         }
+      }
+
+      if (action.payload.currentDifficulty === 2) {
+        state.cards[index].difficulty === 1 
+          ? state.cards[index] = {
+            ...state.cards[index], isCardMemorized: true
+          }
+          : state.cards[index] = { 
+            ...state.cards[index], 
+            difficulty: state.cards[index].difficulty / 2, 
+            isCardMemorized: true
+          }
+      }
+
+      if (action.payload.currentDifficulty === 3) {
+        state.cards[index] = { 
+          ...state.cards[index], 
+          difficulty: state.cards[index].difficulty = 1, 
+          isCardMemorized: false,
+          cardCounter: state.cards[index].cardCounter + 1
+        }
+        // const transferredCard = state.cards.splice(index, 1);
+        // state.cardsSetToHard.push(transferredCard);
+      }
     })
 })
-
-
 
 
 export default trainingSessionReducer;
