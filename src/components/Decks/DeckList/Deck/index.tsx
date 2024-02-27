@@ -3,8 +3,14 @@ import DeleteDeckModal from "./DeleteDeckModal";
 import "./styles.scss";
 import EditDeckModal from "./EditDeckModal";
 import { Deck as DeckInterface } from "../../../../store/reducers/decks";
+import AllDecksState from "../../../../store/reducers/decks"
+import { useAppSelector } from "../../../../hooks/redux";
+
 import { Link } from "react-router-dom";
 import { useNavigate, useParams } from "react-router-dom";
+import editLogo from "../../../../assets/pencil.png";
+import deleteLogo from "../../../../assets/trash.png";
+import startLogo from "../../../../assets/go.png"
 
 export interface DeckProps {
   deck: DeckInterface;
@@ -28,7 +34,7 @@ const Deck = ({ deck }: DeckProps) => {
     
 
   return (
-    <div className="decks-container flex">
+    <div className="decks-container flex m-4">
       <div className="flip-card">
         <div className="flex flip-card-inner">
           <div className="flip-card-front">
@@ -43,19 +49,24 @@ const Deck = ({ deck }: DeckProps) => {
               <li>Hard : 5</li>
             </ul>
 
-            <button className="session-btn border-2 rounded-full border-white p-1 m-3"
+          <div className="flex justify-center "
             onClick={handleClickSession}>
-              START
-            </button>
+            <input 
+              type="image"
+              src={startLogo}
+              className="size-10 "
+            />
+          </div>
 
-            <button
-              className="edit-btn p-0.5 m-0.5"
+          <div className="flex justify-center mb-3">
+            <input
+              type="image"
+              src={editLogo}
+              className="size-5 mr-10"
               onClick={() => {
                 setIsEditModalOpen(true);
               }}
-            >
-              Modifier
-            </button>
+            />
             <EditDeckModal
               isOpen={isEditModalOpen}
               onClose={() => {
@@ -64,14 +75,14 @@ const Deck = ({ deck }: DeckProps) => {
               deckId={deck.id}
             />
 
-            <button
-              className="delete-btn p-0.5 m-0.5"
+            <input
+              type="image"
+              src= {deleteLogo}
+              className="size-5 ml-10"
               onClick={() => {
                 setIsDeleteModalOpen(true);
               }}
-            >
-              Supprimer
-            </button>
+            />
             <DeleteDeckModal
               isOpen={isDeleteModalOpen}
               onClose={() => {
@@ -79,6 +90,7 @@ const Deck = ({ deck }: DeckProps) => {
               }}
               deckId={deck.id}
             />
+            </div>
           </div>
         </div>
       </div>
