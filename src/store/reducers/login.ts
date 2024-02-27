@@ -56,9 +56,8 @@ const loginReducer = createReducer(initialState, (builder) => {
         state.isLogged = false;
       }
     })
-    .addCase(deleteUser.fulfilled, (state) => {
-      state.username = null;
-      state.isLogged = false;
+    .addCase(deleteUser.fulfilled, () => {
+      console.log("deleteUser fulfilled in login");
       return initialState;
     });
 });
