@@ -5,7 +5,7 @@ const Error = () => {
       <p className=" py-8 ">
         Retour à la page d'
         <a href="/" className="underline ">
-          acceuil
+          accueil
         </a>
       </p>
     </div>

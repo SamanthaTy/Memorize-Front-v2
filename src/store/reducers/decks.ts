@@ -49,7 +49,6 @@ const decksReducer = createReducer(initialState, (builder) => {
       state.isCreating = false;
       state.isEditing = false;
       state.isDeleting = false;
-
       state.loading = false;
       state.decks = action.payload;
     })

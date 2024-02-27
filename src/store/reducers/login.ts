@@ -1,5 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { login, logout, tokenCheck } from "../actions/login";
+import { login, tokenCheck } from "../actions/login";
 import { deleteUser } from "../actions/user/deleteUser";
 
 interface LoginState {
@@ -27,23 +27,21 @@ const loginReducer = createReducer(initialState, (builder) => {
       console.log("isLogged :", action.payload.isLogged);
       state.isLogged = true;
       state.username = action.payload.username;
-      state.email = action.payload.email;
       localStorage.setItem("accessToken", action.payload.accessToken);
+      localStorage.setItem("refreshToken", action.payload.refreshToken);
+      localStorage.setItem("username", action.payload.username);
       localStorage.setItem("id", action.payload.id);
     })
     .addCase(login.rejected, (state) => {
       state.errorMessage = "identifiant ou mot de passe incorrect";
       localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
+      localStorage.removeItem("username");
       localStorage.removeItem("id");
-    })
-    .addCase(logout, () => {
-      localStorage.removeItem("accessToken");
-      localStorage.removeItem("id");
-      return initialState;
     })
     .addCase(tokenCheck, (state) => {
       const storedToken = localStorage.getItem("accessToken");
-      const storedUserName = state.username;
+      const storedUserName = localStorage.getItem("username");
 
       if (storedToken && storedUserName) {
         state.isLogged = true;

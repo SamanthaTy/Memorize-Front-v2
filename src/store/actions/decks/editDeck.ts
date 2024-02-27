@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { EditDeckProps } from "../../reducers/decks";
+import { getAuthHeaders, updateTokens } from "../utils.actions.js";
 
 export const EDIT_DECK = "EDIT_DECK";
 
@@ -13,13 +14,9 @@ export const editDeck = createAsyncThunk<any, EditDeckProps>(
       const response = await axios.patch(
         `${import.meta.env.VITE_API_URL}/account/${userId}/decks/${deckId}`,
         updatedDeck,
-        {
-          headers: {
-            authorization: localStorage.getItem("accessToken"),
-          },
-        }
+        getAuthHeaders()
       );
-
+      updateTokens(response);
       console.log(response);
       console.log("Hello: ", response.data);
 
