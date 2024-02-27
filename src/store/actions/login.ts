@@ -14,9 +14,11 @@ export const login = createAsyncThunk(LOGIN, async (formData) => {
     `${import.meta.env.VITE_API_URL}/auth/`,
     formData
   );
+
   axios.defaults.headers.common[
     "authorization"
   ] = `Bearer: ${response.data.accessToken}`;
+
   console.log("Response from login action:", response.data);
   return response.data;
 });
