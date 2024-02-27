@@ -43,7 +43,7 @@ const EditDeckModal = ({ isOpen, onClose, deckId }: EditDeckModalProps) => {
         name="name"
         placeholder="Modifier le nom du deck"
         className="w-full border-2 border-gray-300 p-2 rounded-md"
-        value={updatedDeck.name}
+        defaultValue={updatedDeck.name}
         onChange={handleEditDeckField}
       />
       <input

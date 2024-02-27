@@ -21,7 +21,7 @@ const Deck = ({ deck }: DeckProps) => {
 
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-
+  const allCards = useAppSelector((state) => state.cards.cards);
   const navigate = useNavigate();
 
   const { deckId } = useParams()
@@ -31,30 +31,36 @@ const Deck = ({ deck }: DeckProps) => {
     console.log(deckId);
     navigate(`/decks/${deck.id}/trainingsession`)
     }
-    
+   
+  const countNewCards = allCards.filter((card) => card.difficulty === 0).length; 
+  const countEasyCards = allCards.filter((card) => card.difficulty === 32 ).length;
+  const countMediumCards = allCards.filter((card) => card.difficulty === 8 ).length;
+  const countHardCards = allCards.filter((card) => card.difficulty === 2 ).length;
+
 
   return (
     <div className="decks-container flex m-4">
-      <div className="flip-card">
-        <div className="flex flip-card-inner">
-          <div className="flip-card-front">
+      <div className="flip-deck">
+        <div className="flex flip-deck-inner">
+          <div className="flip-deck-front">
             <Link to={`/decks/${deck.id}`}>
-              <h3 className="title py-2">{deck.name}</h3>
+              <h3 className="title py-1">{deck.name}</h3>
             </Link>
-            <p className="text-sm">{deck.description}</p>
-            <p className="text-xs">15 cartes</p>
-            <ul className="text-sm">
-              <li>Easy : 5</li>
-              <li>Medium : 5</li>
-              <li>Hard : 5</li>
+            <p className="text-sm mt-2 mb-2">{deck.description}</p>
+            <p className="text-xs mt-1 mb-1">{allCards.length} carte{allCards.length > 1 ? "s" : ""}</p>
+            <ul className="text-xs mb-3">
+              <li>Nouvelles cartes : {countNewCards}</li>
+              <li>Easy : {countEasyCards}</li>
+              <li>Medium : {countMediumCards}</li>
+              <li>Hard : {countHardCards}</li>
             </ul>
 
-          <div className="flex justify-center "
+          <div className="flex justify-center mb-2"
             onClick={handleClickSession}>
             <input 
               type="image"
               src={startLogo}
-              className="size-10 "
+              className="white-icon size-10 "
             />
           </div>
 
@@ -62,7 +68,7 @@ const Deck = ({ deck }: DeckProps) => {
             <input
               type="image"
               src={editLogo}
-              className="size-5 mr-10"
+              className="white-icon size-5 mr-10"
               onClick={() => {
                 setIsEditModalOpen(true);
               }}
@@ -78,7 +84,7 @@ const Deck = ({ deck }: DeckProps) => {
             <input
               type="image"
               src= {deleteLogo}
-              className="size-5 ml-10"
+              className="white-icon size-5 ml-10"
               onClick={() => {
                 setIsDeleteModalOpen(true);
               }}

@@ -13,7 +13,7 @@ const Decks = () => {
       <h2 className="flex content-start text-2xl mt-3">Salut {username} !</h2>
       <div className="flex justify-end space-x-4 mb-4">
         <button
-          className="bg-blue-500 text-white px-4 py-2 rounded mt-5 mb-5"
+          className="bg-1F3D75 text-white px-4 py-2 rounded mt-2.5 mb-2"
           onClick={(event) => {
             event.preventDefault();
             setCreateModalOpen(true);
@@ -34,7 +34,7 @@ const Decks = () => {
             placeholder="Chercher les decks"
             className="border-2 border-gray-300 p-2 mt-2 rounded-md"
           />
-          <button className="bg-blue-500 text-white p-2 mt-2 rounded-md">
+          <button className="bg-1F3D75 text-white p-2 mt-2 ml-1 rounded-md">
             Search
           </button>
         </div>
