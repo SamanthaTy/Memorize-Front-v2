@@ -1,7 +1,6 @@
 import { FormEventHandler } from "react";
 import Modal from "react-modal";
 import { Styles } from "react-modal";
-import editLogo from "/home/student/Bureau/html/Mem'O'rize/projet-09-memorize-front/src/assets/pencil.png";
 
 export interface ModalProps {
   isOpen: boolean;
@@ -77,12 +76,9 @@ function ModalContainer({
               Annuler
             </button>
 
-            <img 
-              src={editLogo}
-              className="h-10 px-4 py-2 bg-1F3D75 text-F5E9E0 rounded transition-colors duration-300 ease-in-out hover:bg-F5E9E0 hover:text-1F3D75"
-            />
-              
-            
+            <button className="px-4 py-2 bg-1F3D75 text-F5E9E0 rounded transition-colors duration-300 ease-in-out hover:bg-F5E9E0 hover:text-1F3D75">
+              Confirmer
+            </button>
           </div>
         </form>
       </Modal>
