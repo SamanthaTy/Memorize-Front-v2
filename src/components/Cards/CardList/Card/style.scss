@@ -39,15 +39,17 @@
   backface-visibility: hidden;
   border: 1px solid #b4abce;
   border-radius: 1rem;
+  background: linear-gradient(120deg, #B4ABCE 60%, #d0ccdc 88%,
+  #dddbe6 100%);
 }
 
 .flip-card-front {
-  background-color: (rgba(31, 61, 117, 0.603));
+  background-color: #B4ABCE;
   color: #ffffff;
 }
 
 .flip-card-back {
-  background-color: (#517ddb);
+  background-color: (#B4ABCE);
   color: #ffffff;
   transform: rotateY(180deg);
 }

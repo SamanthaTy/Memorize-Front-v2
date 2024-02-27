@@ -37,8 +37,9 @@ function LoginForm() {
   };
 
   return (
-    <div className="flex items-center justify-center">
+    <div className="max-w-md mx-auto mt-6 p-4 bg-white shadow-md rounded-md">
       <form onSubmit={handleSubmit}>
+        <p className="block text-gray-600 text-sm font-medium mb-1">Email</p>
         <input
           type="email"
           name="email"
@@ -48,6 +49,7 @@ function LoginForm() {
           value={formValues.email}
           onChange={handleChangeField}
         />
+        <p className="block text-gray-600 text-sm font-medium mt-1">Mot de passe</p>
         <input
           type="password"
           name="password"
@@ -59,14 +61,14 @@ function LoginForm() {
         />
         <button
           type="submit"
-          className="w-full bg-blue-500 text-white p-2 mt-2 rounded-md"
+          className="w-full bg-1F3D75 text-white p-2 mt-2 rounded-md hover:bg-blue-700 transition"
         >
           Se connecter
         </button>
         <p className="mt-4 text-gray-600 flex items-center justify-center">
           Vous n'avez pas de compte?
           <a
-            className="ml-2 flex items-center justify-center"
+            className="ml-2 flex items-center justify-center hover:text-blue-500"
             href=""
             onClick={(event) => {
               event.preventDefault();
