@@ -1,6 +1,7 @@
 function Introduction() {
   return (
     <div className="flex items-center justify-center">
+
       <div className="w-4/5 md:w-auto bg-white border-1 p-4 m-4 rounded-md shadow-lg">
         <p className="text-1F3D75 font-semibold text-lg mb-4">
           Bienvenue dans notre application innovante de flashcards numériques.
@@ -57,6 +58,7 @@ function Introduction() {
           potentiel de votre apprentissage avec notre application de flashcards
           numériques. Créez, révisez, évoluez - le tout à portée de main.
         </p>
+
       </div>
     </div>
   );
