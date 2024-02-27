@@ -10,6 +10,7 @@ const DeckList = () => {
   useEffect(() => {
     dispatch(getAllDecks());
   }, []);
+  console.log(allDecks);
 
   return (
     <>

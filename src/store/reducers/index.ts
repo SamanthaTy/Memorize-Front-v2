@@ -3,6 +3,7 @@ import loginReducer from "./login";
 import decksReducer from "./decks";
 import cardsReducer from "./cards";
 import createUserReducer from "./user";
+import trainingSessionReducer from "./trainingSession";
 
 
 const reducer = {
@@ -11,6 +12,7 @@ const reducer = {
   decks: decksReducer,
   cards: cardsReducer,
   user: createUserReducer,
+  trainingCards: trainingSessionReducer,
 
 };
 
