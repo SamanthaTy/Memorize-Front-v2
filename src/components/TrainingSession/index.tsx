@@ -79,7 +79,7 @@ function TrainingSession() {
 
   return (
     <>
-      <h1 className="flex justify-center items-center title py-2">Training session</h1>
+      <h1 className="text-1F3D75 flex justify-center items-center title py-2">Training session</h1>
 
       <div className="card-container flex justify-center items-center title">
         {cardIndex < cards.length && (
@@ -152,15 +152,14 @@ function TrainingSession() {
 
         { cardsLeftToMemorize === 0 ? (
         <div className="flex justify-end items-end">
-            <Link to="/" className="flex justify-end items-end">
+            <Link to="/decks" className="flex justify-end items-end">
               <button className="block bg-black p-4 rounded text-white m-2 font-semibold" onClick={handleSessionEnd}>End session</button>
             </Link>
-          </div>
+        </div>
         ) : (
           ""
         )}
-      </div>
-    </>
+      </>
   );
 }
 
