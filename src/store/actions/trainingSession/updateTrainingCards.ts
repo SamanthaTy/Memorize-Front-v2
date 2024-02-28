@@ -6,7 +6,8 @@ export const UPDATE_DIFFICULTIES = "UPDATE_DIFFICULTIES";
 
 export const updateTrainingCards = createAsyncThunk<any, string>(
   UPDATE_DIFFICULTIES,
-  async (deckId, updatedDifficulties) => {
+  async ({ deckId, updatedDifficulties }) => {
+    console.log(deckId, updatedDifficulties);
     const userId = localStorage.getItem("id");
 
     if (userId) {
