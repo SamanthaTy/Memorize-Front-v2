@@ -61,30 +61,30 @@ function ModalContainer({
         >
           X
         </button>
-        <form
-          className="flex flex-col items-center space-y-4"
-          onSubmit={handleSubmitType}
-        >
-          {children}
+        {handleSubmitType ? (
+          <form
+            className="flex flex-col items-center space-y-4"
+            onSubmit={handleSubmitType}
+          >
+            {children}
 
-          <div className="flex space-x-36 mt-15">
-            <input
-              type="image"
-              src={crossLogo}
-              className="size-6 mt-1"
-              onClick={(event) => {
-                event.preventDefault();
-                onClose();
-              }}
-            />
+            <div className="flex space-x-36 mt-15">
+              <input
+                type="image"
+                src={crossLogo}
+                className="size-6 mt-1"
+                onClick={(event) => {
+                  event.preventDefault();
+                  onClose();
+                }}
+              />
 
-            <input
-              type="image"
-              src={checkLogo}
-              className="size-6 mt-1"             
-            />
-          </div>
-        </form>
+              <input type="image" src={checkLogo} className="size-6 mt-1" />
+            </div>
+          </form>
+        ) : (
+          <div>{children}</div>
+        )}
       </Modal>
     </div>
   );

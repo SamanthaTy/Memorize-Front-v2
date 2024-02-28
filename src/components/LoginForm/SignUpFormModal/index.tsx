@@ -1,32 +1,18 @@
-import ModalContainer, { ModalProps } from "../../ModalContainer";
-import { useAppDispatch } from "../../../hooks/redux";
-import { useState } from "react";
+import { Formik, Form } from "formik";
+import ButtonsGroup from "../../Profile/EditAccountForm/ButtonsGroup";
+import Input from "../../Profile/EditAccountForm/Input";
 import { createUser } from "../../../store/actions/user/createUser";
-
-//We use the ModalContainer created separately to use it as a template into which we can inject additional elements.
-//Here the inputs are the children of ModalContainer.
+import { useAppDispatch } from "../../../hooks/redux";
+import { initialValues, validationSchema } from "./validation";
+import ModalContainer from "../../ModalContainer";
 
 function SignUpFormModal({ isOpen, onClose }: ModalProps) {
-  const [userData, setUserData] = useState({
-    username: "",
-    email: "",
-    password: "",
-  });
-
   const dispatch = useAppDispatch();
 
-  const handleCreateUserSubmit = (event) => {
-    event.preventDefault();
-    dispatch(createUser(userData));
+  const handleFormikSubmit = (values, { setSubmitting }) => {
+    dispatch(createUser(values));
+    setSubmitting(false);
     onClose();
-  };
-
-  const handleCreateUserField = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const { name, value } = event.target;
-
-    setUserData({ ...userData, [name]: value });
   };
 
   return (
@@ -34,36 +20,29 @@ function SignUpFormModal({ isOpen, onClose }: ModalProps) {
       isOpen={isOpen}
       onClose={onClose}
       modalTitle="Créer un compte"
-      handleSubmitType={handleCreateUserSubmit}
     >
-      <input
-        type="text"
-        name="username"
-        placeholder="Identifiant"
-        className="w-full border-2 border-gray-300 p-2 rounded-md"
-        value={userData.username}
-        onChange={handleCreateUserField}
-      />
-
-      <input
-        type="email"
-        name="email"
-        placeholder="Email"
-        className="w-full border-2 border-gray-300 p-2 rounded-md"
-        value={userData.email}
-        onChange={handleCreateUserField}
-      />
-
-      <input
-        type="password"
-        name="password"
-        placeholder="Mot de passe"
-        className="w-full border-2 border-gray-300 p-2 rounded-md"
-        value={userData.password}
-        onChange={handleCreateUserField}
-      />
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={handleFormikSubmit}
+      >
+        <Form className="flex flex-col items-center justify-center text-center">
+          <div className="space-y-1">
+            <Input name="username" label="Identifiant" type="text" />
+            <Input name="email" label="Email" type="email" />
+            <Input name="password" label="Mot de passe" type="password" />
+          </div>
+          <div className="mt-4">
+            <ButtonsGroup
+              buttons={[
+                { text: "Save", type: "submit" },
+                { text: "Cancel", type: "button", onClick: onClose },
+              ]}
+            />
+          </div>
+        </Form>
+      </Formik>
     </ModalContainer>
   );
 }
-
 export default SignUpFormModal;
