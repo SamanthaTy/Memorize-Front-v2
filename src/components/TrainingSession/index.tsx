@@ -4,6 +4,8 @@ import { getAllTrainingCards, newCardArray, setCurrentDifficulty } from "../../s
 import { SetStateAction, useEffect, useState } from "react";
 import { editTrainingCards } from "../../store/actions/trainingSession/newTrainingCards";
 import { updateTrainingCards } from "../../store/actions/trainingSession/updateTrainingCards";
+import "./style.scss"
+
 
 function TrainingSession() {
   const { deckId } = useParams()
@@ -74,20 +76,21 @@ function TrainingSession() {
  
   return (
     <>
-      <h1 className="flex justify-center title py-2">
+      <h1 className="flex justify-center items-center title py-2">
         Training session
       </h1>
-        <div className="flex justify-center title">
+
+        <div className="card-container flex justify-center items-center title">
         {cardIndex < cards.length && (
           <div key={cards[cardIndex].id}
-            className={`flip-card ${flip ? "flip" : ""}`}
+            className={`flip-trainingcard ${flip ? "flip" : ""}`}
             onClick={handleCardClick}
           >
-            <div className="flip-card-inner">
-              <div className="flip-card-front">
+            <div className="flip-trainingcard-inner">
+              <div className="flip-trainingcard-front">
                 <p className="title">{cards[cardIndex].front}</p>
               </div>
-              <div className="flip-card-back">
+              <div className="flip-trainingcard-back">
                 <p className="title">{cards[cardIndex].back}</p>
               </div>
             </div>
@@ -95,38 +98,40 @@ function TrainingSession() {
        )}
       </div>
 
-      <div>
+      <div className="difficulty-buttons-container flex justify-center items-center mt-3">
       { countFlip > 0 && 
-        <div className="flex justify-center">
-          <div className="flex justify-end w-96"></div>
-          <button 
-            value={1}
-            className="block bg-green-500 p-4 w-24 rounded text-white m-2"
-            onClick={handleCurrentDifficultyClick}
-          >
-            Easy
-          </button>
-          <button
-            value={2} 
-            className="bg-blue-500 p-4 w-24 rounded text-white m-2"
-            onClick={handleCurrentDifficultyClick}
-          >
-              Medium
-          </button>
-          <button 
-            value={3}
-            className="bg-red-500 p-4 w-24 rounded text-white m-2"
-            onClick={handleCurrentDifficultyClick}
-          >
-            Hard
-          </button>
-       
-        </div>
+        <div className="flex justify-center items-center">
+
+            <button 
+              value={1}
+              className="block bg-B4ABCE p-4 w-24 rounded text-white m-2"
+              onClick={handleCurrentDifficultyClick}
+            >
+              Easy
+            </button>
+
+            <button
+              value={2} 
+              className="bg-amber-300 p-4 w-24 rounded text-white m-2"
+              onClick={handleCurrentDifficultyClick}
+            >
+                Medium
+            </button>
+
+            <button 
+              value={3}
+              className="bg-orange-200 p-4 w-24 rounded text-white m-2"
+              onClick={handleCurrentDifficultyClick}
+            >
+              Hard
+            </button>
+          </div>
       }
+      </div>
 
 
-        <div className="flex w-32">
-          <div className="flex justify-start">
+        <div className="next-container flex justify-center items-center" >
+          <div className="flex justify-center items-center mr-7">
             {/* { cardsLeftToMemorize === 0 &&
             <button className="block bg-cyan-500 w-24 p-4 ml-10 rounded text-white m-2" 
             onClick={handleSessionEnd}>
@@ -134,7 +139,7 @@ function TrainingSession() {
             </button>
             } */}
             { cardsLeftToMemorize > 0 && isDifficultySelected ?
-            <button className="block bg-cyan-500 w-24 p-4 ml-10 rounded text-white m-2" 
+            <button className="block bg-1F3D75 w-24 p-4 ml-10 rounded text-white m-2" 
             onClick={handleNextCard}>
            Next
             </button>
@@ -143,12 +148,13 @@ function TrainingSession() {
           </div>
         </div>
 
-        { cardsLeftToMemorize === 0 ? (<div className="flex justify-end w-64">
-            <Link to="/" className="flex justify-end">
+        { cardsLeftToMemorize === 0 ? (
+        <div className="flex justify-end items-end">
+            <Link to="/" className="flex justify-end items-end">
               <button className="block bg-black p-4 rounded text-white m-2 font-semibold" onClick={handleSessionEnd}>End session</button>
             </Link>
         </div>) : ""}   
-      </div>  
+        
     </>
   )
 }
