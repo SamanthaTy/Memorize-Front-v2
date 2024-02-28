@@ -12,7 +12,7 @@ export interface ModalProps {
 interface ModalContainerProps extends ModalProps {
   children: React.ReactNode;
   modalTitle: string;
-  handleSubmitType: FormEventHandler<HTMLFormElement>;
+  handleSubmitType?: FormEventHandler<HTMLFormElement>;
 }
 
 // Styles provided by React Modal module, which send the size of the modal as well as the overlay color behind
@@ -83,7 +83,7 @@ function ModalContainer({
             </div>
           </form>
         ) : (
-          <div>{children}</div>
+          <>{children}</>
         )}
       </Modal>
     </div>
