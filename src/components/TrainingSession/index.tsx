@@ -10,7 +10,6 @@ import { editTrainingCards } from "../../store/actions/trainingSession/newTraini
 import { updateTrainingCards } from "../../store/actions/trainingSession/updateTrainingCards";
 import "./style.scss"
 
-
 function TrainingSession() {
   const { deckId } = useParams();
   const [flip, setFlip] = useState(false);
@@ -90,16 +89,17 @@ function TrainingSession() {
           >
             <div className="flip-trainingcard-inner">
               <div className="flip-trainingcard-front">
-                <p className="title">{cards[cardIndex].front}</p>
+                            <p className="title">{cards[cardIndex].front}</p>
               </div>
               <div className="flip-trainingcard-back">
-                <p className="title">{cards[cardIndex].back}</p>
+                              <p className="title">{cards[cardIndex].back}</p>
               </div>
             </div>
           </div>
         )}
       </div>
 
+      
       <div className="difficulty-buttons-container flex justify-center items-center mt-3">
       { countFlip > 0 && 
         <div className="flex justify-center items-center">
@@ -134,7 +134,7 @@ function TrainingSession() {
 
         <div className="next-container flex justify-center items-center" >
           <div className="flex justify-center items-center mr-7">
-            {/* { cardsLeftToMemorize === 0 &&
+                    {/* { cardsLeftToMemorize === 0 &&
             <button className="block bg-cyan-500 w-24 p-4 ml-10 rounded text-white m-2" 
             onClick={handleSessionEnd}>
            Finish
@@ -142,8 +142,8 @@ function TrainingSession() {
             } */}
             { cardsLeftToMemorize > 0 && isDifficultySelected ?
             <button className="block bg-1F3D75 w-24 p-4 ml-10 rounded text-white m-2" 
-            onClick={handleNextCard}>
-           Next
+                onClick={handleNextCard}>
+                Next
             </button>
             : ""
             }
@@ -159,8 +159,7 @@ function TrainingSession() {
         ) : (
           ""
         )}
-      </>
-  );
-}
+    </>
+  );}
 
 export default TrainingSession;
