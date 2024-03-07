@@ -24,7 +24,7 @@ const Header = () => {
         </Link>
         <div className="flex items-center">
           <Link to="/" 
-            className="flex text-xl font-semibold">
+            className="flex text-xl font-semibold ">
             MEM'O'RIZE
           </Link>
         </div>
@@ -32,7 +32,7 @@ const Header = () => {
 
       <div className="flex flex-wrap justify-center space-x-3 mt-2 mb-2 xl:items-center xl:mr-4 ">
         <Link
-          className="rounded-full transition-colors duration-300 ease-in-out hover:bg-1F3D75 hover:text-F5E9E0"
+          className="rounded-full transition-colors duration-300 ease-in-out hover:bg-1F3D75 hover:text-F5E9E0 p-2"
           to="/"
         >
           Accueil
@@ -41,20 +41,20 @@ const Header = () => {
         {isLogged && (
           <>
             <Link
-              className=" rounded-full transition-colors duration-300 ease-in-out hover:bg-1F3D75 hover:text-F5E9E0"
+              className=" rounded-full transition-colors duration-300 ease-in-out hover:bg-1F3D75 hover:text-F5E9E0 p-2"
               to="/profile"
             >
               Mon compte
             </Link>
 
             <Link
-              className=" rounded-full transition-colors duration-300 ease-in-out hover:bg-1F3D75 hover:text-F5E9E0"
+              className=" rounded-full transition-colors duration-300 ease-in-out hover:bg-1F3D75 hover:text-F5E9E0 p-2"
               to="/decks"
             >
               Mes decks
             </Link>
             <button
-              className=" rounded-full transition-colors duration-300 ease-in-out hover:bg-1F3D75 hover:text-F5E9E0"
+              className=" rounded-full transition-colors duration-300 ease-in-out hover:bg-1F3D75 hover:text-F5E9E0 p-2"
               onClick={handleDisconnectClick}
             >
               Déconnexion
