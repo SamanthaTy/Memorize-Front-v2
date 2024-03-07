@@ -17,19 +17,22 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-F5E9E0 text-1F3D75 h-21 flex items-center justify-between p-4">
-      <div className="flex items-center">
-        <a href="/">
-          <img src={logo} alt="Logo Mem'O'rize" className="h-20 mr-2" />
-        </a>
-        <div className="flex items-center"></div>
-        <a href="/" className="text-xl font-semibold">
-          MEM'O'RIZE
-        </a>
+    <header className="bg-F5E9E0 text-1F3D75 h-21 flex flex-col items-center justify-between w-full xl:flex-row ">
+      <div className="flex items-center flex-col xl:flex-row xl:flex-start">
+        <Link to="/" className="flex flex-col">
+          <img src={logo} alt="Logo Mem'O'rize" className="flex flex-col w-32 sm:w-28 xl:w-20 xl:flex-row xl:flex-start" />
+        </Link>
+        <div className="flex items-center">
+          <Link to="/" 
+            className="flex text-xl font-semibold">
+            MEM'O'RIZE
+          </Link>
+        </div>
       </div>
-      <div className="flex items-center space-x-4">
+
+      <div className="flex flex-wrap justify-center space-x-3 mt-2 mb-2 xl:items-center xl:mr-4 ">
         <Link
-          className="px-4 py-2 rounded-full transition-colors duration-300 ease-in-out hover:bg-1F3D75 hover:text-F5E9E0"
+          className="rounded-full transition-colors duration-300 ease-in-out hover:bg-1F3D75 hover:text-F5E9E0"
           to="/"
         >
           Accueil
@@ -38,27 +41,29 @@ const Header = () => {
         {isLogged && (
           <>
             <Link
-              className="px-4 py-2 rounded-full transition-colors duration-300 ease-in-out hover:bg-1F3D75 hover:text-F5E9E0"
+              className=" rounded-full transition-colors duration-300 ease-in-out hover:bg-1F3D75 hover:text-F5E9E0"
               to="/profile"
             >
               Mon compte
             </Link>
 
             <Link
-              className="px-4 py-2 rounded-full transition-colors duration-300 ease-in-out hover:bg-1F3D75 hover:text-F5E9E0"
+              className=" rounded-full transition-colors duration-300 ease-in-out hover:bg-1F3D75 hover:text-F5E9E0"
               to="/decks"
             >
               Mes decks
             </Link>
             <button
-              className="px-4 py-2 rounded-full transition-colors duration-300 ease-in-out hover:bg-1F3D75 hover:text-F5E9E0"
+              className=" rounded-full transition-colors duration-300 ease-in-out hover:bg-1F3D75 hover:text-F5E9E0"
               onClick={handleDisconnectClick}
             >
               Déconnexion
             </button>
           </>
         )}
+
       </div>
+
     </header>
   );
 };
