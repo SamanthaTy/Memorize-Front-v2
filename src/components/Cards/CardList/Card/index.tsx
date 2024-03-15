@@ -47,7 +47,7 @@ function Card({ card }: CardProps) {
           </div>
         </div>
 
-        <div className="flex mt-3 justify-center item-center">
+        <div className="flex mt-3 justify-center item-center mb-3">
           <input
             type="image"
             src={editLogo}

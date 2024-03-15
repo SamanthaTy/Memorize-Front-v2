@@ -10,10 +10,10 @@ const Decks = () => {
 
   return (
     <>
-      <h2 className="flex content-start text-2xl mt-3">Salut {username} !</h2>
-      <div className="flex justify-end space-x-4 mb-4">
+      <h2 className="flex justify-center text-2xl mt-3 xl:content-start xl:justify-start">Salut {username} !</h2>
+      <div className="flex flex-wrap justify-center mt-2 mb-2 sm:space-x-2 xl:justify-end xl:space-x-4 xl:mb-4">
         <button
-          className="bg-1F3D75 text-white px-4 py-2 rounded mt-2.5 mb-2"
+          className="bg-1F3D75 text-white px-4 py-2 rounded mt-2.5 mb-2 flex justify-center"
           onClick={(event) => {
             event.preventDefault();
             setCreateModalOpen(true);
@@ -28,7 +28,7 @@ const Decks = () => {
           }}
         />
 
-        <div className="search-container">
+        <div className="search-container flex justify-center">
           <input
             type="search"
             placeholder="Chercher les decks"
@@ -38,8 +38,10 @@ const Decks = () => {
             Search
           </button>
         </div>
+
       </div>
-      <div className="flex flex-wrap">
+
+      <div className="flex flex-wrap justify-center xl:justify-start">
         <DeckList />
       </div>
     </>
