@@ -20,10 +20,6 @@ export interface CardInterface {
   deck_id: number;
 }
 
-// interface CardsById {
-//   [deckId: number]: Card[];
-// }
-
 export interface CardsState {
   cards: CardInterface[];
   isFetching: boolean;
@@ -35,9 +31,6 @@ export interface CardsState {
 }
 
 const initialState: CardsState = {
-  // cards: {
-  //   123: [],
-  // },
   cards: [],
   isFetching: false,
   isCreating: false,
@@ -60,16 +53,6 @@ const cardsReducer = createReducer(initialState, (builder) => {
       state.isDeleting = false;
 
       state.loading = false;
-      // const cards = {};
-      // if the cards object doesnt have a deck id from the current card, then create an empty array and add it to the array.
-      // action.payload.forEach(card => {
-      //   if (!cards[card.deck_id]) {
-      //     cards[card.deck_id] = [];
-      //   }
-      //   cards[card.deck_id].push(card);
-      // });
-      // state.cards = cards;
-
       state.cards = action.payload;
     })
     .addCase(getAllCards.rejected, (state) => {

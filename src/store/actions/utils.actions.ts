@@ -6,7 +6,7 @@ export const getAuthHeaders = () => {
 
   return {
     headers: {
-      authorization: `Bearer: ${JSON.stringify(accessToken)}`,
+      authorization: `Bearer ${JSON.stringify(accessToken)}`,
       "x-refresh-token": JSON.stringify(refreshToken),
     },
   };

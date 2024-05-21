@@ -47,13 +47,8 @@ const trainingSessionReducer = createReducer(initialState, (builder) => {
       const setNewDifficultyToNewCards = cardsAndCurrentDifficulty.map(card => card.difficulty === 0 ? ({...card, difficulty: 1}): card);
 
       state.cards = setNewDifficultyToNewCards;
-
-      // const card = state.cards[state.index];;
-      
+    
     })
-    // .addCase(editTrainingCards.fulfilled, (state, action) => {
-    //   state.cards = action.payload
-    // })
     .addCase(getAllTrainingCards.rejected, (state) => {
       state.loading = false;
       state.errorMessage = "An error occurred while preparing the training deck"
@@ -90,8 +85,6 @@ const trainingSessionReducer = createReducer(initialState, (builder) => {
           isCardMemorized: false,
           cardCounter: state.cards[index].cardCounter + 1
         }
-        // const transferredCard = state.cards.splice(index, 1);
-        // state.cardsSetToHard.push(transferredCard);
       }
     })
 })
