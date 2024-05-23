@@ -8,7 +8,7 @@ function LoginForm() {
   // For now, we hard code the user info to log into his account.
   const [formValues, setFormValues] = useState({
     email: "demo-account@gmail.com",
-    password: "DemoAccount!23",
+    password: "Demo-Account!23",
   });
 
   const navigate = useNavigate();
