@@ -2,6 +2,8 @@ import { Outlet } from "react-router-dom";
 import { useEffect } from "react";
 import { tokenCheck } from "../../store/actions/login";
 import { useAppDispatch } from "../../hooks/redux";
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 import Footer from "../Footer";
 import Header from "../Header";
@@ -33,6 +35,7 @@ function App() {
       <Header />
       <main className="flex flex-col container mx-auto p-4 flex-grow">
         <Outlet />
+        <ToastContainer />
       </main>
       <Footer />
     </div>

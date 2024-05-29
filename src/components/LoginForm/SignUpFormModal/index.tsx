@@ -5,14 +5,20 @@ import { createUser } from "../../../store/actions/user/createUser";
 import { useAppDispatch } from "../../../hooks/redux";
 import { initialValues, validationSchema } from "./validation";
 import ModalContainer from "../../ModalContainer";
+import { toast } from "react-toastify";
 
 function SignUpFormModal({ isOpen, onClose }: ModalProps) {
   const dispatch = useAppDispatch();
 
-  const handleFormikSubmit = (values, { setSubmitting }) => {
-    dispatch(createUser(values));
-    setSubmitting(false);
-    onClose();
+  const handleFormikSubmit = async (values, { setSubmitting }) => {
+    try {
+      await dispatch(createUser(values)).unwrap();
+      setSubmitting(false);  
+      onClose(); 
+      toast.success("Votre compte a bien été créé, vous pouvez vous connecter.");
+    } catch (error) {
+      toast.error("Une erreur est survenue, veuillez ré-essayer.");
+    }
   };
 
   return (
